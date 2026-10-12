@@ -184,6 +184,18 @@ under the title. Toggles say what clicking will do: a bookmarked node shows
 **unbook** (highlighted), an unbookmarked one shows **book**. Bookmarks hint at the category tool with
 `+ nová kategória :: usporiadať` below the list and a quiet `upraviť` on each category (on hover).
 
+
+## 4b3. Shared rules (from the end-to-end review)
+
+- **Composer:** every add form has the same toolbar (`B`, `I`, `odkaz`, `obrázok`, `@user`).
+- **Templates are nodes:** picked by node number everywhere (configure and "add a node"), with the name shown next to it.
+- **Selecting posts:** every list of posts ends with a quiet `vybrané K+` line (the discussion adds `put do… :: delete_hardlink`); bookmarks end with `vybrané prečítané :: unbook`.
+- **My own posts** have a gray `edit` before `↵ K+`, linking to that post's configure (change the content, move it).
+- **One pager:** `novšie · 1 2 3 · staršie` on every page.
+- **No subtitles or hints** under titles or form fields; the title preview in configure is shown bare.
+- **K in lists** (K page, search) is inline in the meta line with a quiet `K+`, never a big right-hand column.
+- **Node images:** a blog's image is its first photo, or none; never the author's icon.
+
 ## 4b3. Links go to the template's page
 
 In the showcase every link opens the example page of the target node's template: post titles go to

@@ -21,7 +21,7 @@ def write(name, title, body):
 
 
 def head(title):
-    return f'  <div class="head">\n    <h1>{title}</h1>\n    <p class="crumbs">nóda <a href="kyberia.html">kyberia</a></p>\n  </div>\n'
+    return f'  <div class="head">\n    <h1>{title}</h1>\n    <div class="actions"><span class="k ksum">120 K</span><button class="btn">K+</button><button class="btn on" aria-pressed="true" title="je v bookmarks">unbook</button><button class="btn">fook</button></div>\n  </div>\n'
 
 
 def who(u, right):
@@ -67,12 +67,7 @@ write("stats.html", "stats :: kyberia", stats)
 kyb = io.open("kyberia.html", encoding="utf-8").read()
 topic = re.search(r'<section class="topic prose">(.*?)</section>', kyb, re.S).group(1)
 topic = "\n".join(line[8:] if line.startswith("        ") else line.strip() for line in topic.strip("\n").splitlines())
-source = head("source") + f"""  <dl class="kv srcmeta">
-    <dt>template</dt><dd>nodeshell</dd>
-    <dt>formát</dt><dd>HTML :: nl2br vypnuté</dd>
-    <dt>dĺžka</dt><dd>{len(topic)} znakov</dd>
-  </dl>
-  <pre class="source"><code>{e(topic)}</code></pre>"""
+source = head("source") + f"""  <pre class="source"><code>{e(topic)}</code></pre>"""
 write("source.html", "source :: kyberia", source)
 
 # ── commanders: the node's rights lists, as on kyberia (masters, ops, execute, access, bans, silence) ──

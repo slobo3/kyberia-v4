@@ -66,22 +66,21 @@ rights_rows.append(row("pridať",
 
 conf_body = f"""  <div class="head">
     <h1>configure</h1>
-    <p class="crumbs">nóda <a href="forum.html"><b>kyberia v4</b>: redizajn</a></p>
   </div>
   <div class="settings">
 {section("obsah", [
     row("text", '<textarea class="field" rows="8">Tu sa rieši redizajn kyberie: farby ostávajú, písmo a rozostupy sú nové. Návrhy, bugy a nápady píšte sem.</textarea><span class="radios"><label class="check"><input type="checkbox"> bez HTML</label><label class="check"><input type="checkbox" checked> nl2br</label></span>'),
 ])}
 {section("názov", [
-    row("názov", '<input class="field" value="&lt;b&gt;kyberia v4&lt;/b&gt;: redizajn">', hint='náhľad: <span class="preview"><b>kyberia v4</b>: redizajn</span> :: povolené &lt;b&gt;, &lt;i&gt;, &lt;font color/size&gt;…'),
+    row("názov", '<input class="field" value="&lt;b&gt;kyberia v4&lt;/b&gt;: redizajn">', hint='<span class="preview"><b>kyberia v4</b>: redizajn</span>'),
 ])}
 {section("obrázok nódy", [
-    row("obrázok", '<span class="imgpick"><img src="img/kyberia.gif" alt="" width="62" height="77"><input type="file" aria-label="nový obrázok"></span>', hint="GIF, PNG alebo JPG, ideálne 120 × 150"),
+    row("obrázok", '<span class="imgpick"><img src="img/kyberia.gif" alt="" width="62" height="77"><input type="file" aria-label="nový obrázok"></span>'),
 ])}
 {section("template", [
     # templates are nodes too: picked by number like parent (4 = forum, as on kyberia)
     row("template", '<input class="field num id" value="4" inputmode="numeric" aria-label="číslo template nódy">'
-                    '<p class="nodetitle"><a href="forum.html">forum</a></p>', hint="zmení len zobrazenie: obsah, deti, K aj práva ostanú"),
+                    '<p class="nodetitle"><a href="forum.html">forum</a></p>'),
 ])}
 {section("umiestnenie", [
     row("parent", '<input class="field num id" value="63540" inputmode="numeric" aria-label="číslo nódy, kam presunúť">'
@@ -105,14 +104,14 @@ ignored = "".join(f'<span class="tag">{u} <button class="btn ghost" type="button
 setup_body = f"""  <div class="head"><h1>setup</h1></div>
   <div class="settings">
 {section("ty", [
-    row("ikona", f'<span class="imgpick"><img class="av" src="{icon("slobo")}" alt="" width="50" height="50"><input type="file" aria-label="nová ikona"></span>', hint="50 × 50, GIF môže byť animovaný"),
+    row("ikona", f'<span class="imgpick"><img class="av" src="{icon("slobo")}" alt="" width="50" height="50"><input type="file" aria-label="nová ikona"></span>'),
     row("mood", '<input class="field" value="redizajnujem kyberiu">'),
 ])}
 {section("mail", [
     row("e-mail", '<input class="field" type="email" value="slobo@example.org">'),
 ])}
 {section("čítanie", [
-    row("na stranu", '<input class="field num" value="200" inputmode="numeric">', hint="koľko príspevkov ukázať naraz"),
+    row("na stranu", '<input class="field num" value="200" inputmode="numeric">'),
     row("poradie", '<select class="field"><option>najnovšie hore</option><option>najstaršie hore</option></select>'),
 ])}
 {section("ignore", [

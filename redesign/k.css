@@ -272,7 +272,7 @@ aside.side { font-size: var(--fs-s); padding-top: 8px; }
 .cat > header .tools { margin-left: auto; }
 .bm { list-style: none; margin: 0; padding: 0; }
 .bm li {
-  display: grid; grid-template-columns: minmax(0, 1fr) 96px 64px 64px 110px; gap: 12px; align-items: baseline;
+  display: grid; grid-template-columns: 14px minmax(0, 1fr) 96px 64px 64px 110px; gap: 12px; align-items: baseline;
   padding: 7px 0; font-size: var(--fs-s);
 }
 .bm .name { font-size: var(--fs); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -820,7 +820,6 @@ span.when { color: var(--mute); }
 .whos li > span:last-child { color: var(--mute); }
 .whos li > span:last-child a { color: var(--green); font-weight: 400; }
 .whos .ph { --s: 25px; }
-.srcmeta { margin: 4px 0 14px; font-size: var(--fs-s); }
 .source { margin: 0; padding: 16px; background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); overflow-x: auto;
   font: 400 var(--fs-s)/1.6 var(--mono); color: var(--green); white-space: pre-wrap; word-break: break-word; }
 
@@ -860,6 +859,13 @@ img.av.xs { --s: 16px; }
 .visits .flags .flag { color: var(--green); font-weight: 700; }
 .visits .cnt { color: var(--green); text-align: right; }
 
+/* kyberia add form: template by node number, its name next to it */
+.tplpick { display: inline-flex; align-items: center; gap: 6px; }
+.tplpick .field.num.id { width: 64px; }
+.tplpick .nodetitle { color: var(--white); font-size: var(--fs-s); }
+/* K list: K count and K+ inline in the meta line */
+.klist .by .pa { margin-left: 10px; }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }
@@ -875,7 +881,7 @@ img.av.xs { --s: 16px; }
   .wrap { padding: 0 14px 60px; }
   .rows li { grid-template-columns: minmax(0, 1fr) auto auto; row-gap: 0; }
   .rows li > input, .rows .cnt, .rows .owner { display: none; }
-  .bm li { grid-template-columns: minmax(0, 1fr) auto; }
+  .bm li { grid-template-columns: 14px minmax(0, 1fr) auto; }
   .bm .flag, .bm .owner, .bm .dim { display: none; }
   .thread { --gap: 10px; --ml: 25px; --pl: 0px; }
   .thread li { --cml: 25px; }

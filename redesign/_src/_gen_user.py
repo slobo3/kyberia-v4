@@ -125,13 +125,17 @@ PAGE = f"""<!-- title: ozvena -->
           <input class="field" placeholder="názov" aria-label="názov">
           <label class="check"><input type="checkbox"> bez HTML</label>
         </div>
+        <div class="tools" role="toolbar" aria-label="formátovanie">
+          <button type="button" class="btn ghost"><b>B</b></button>
+          <button type="button" class="btn ghost"><i>I</i></button>
+          <button type="button" class="btn ghost">odkaz</button>
+          <button type="button" class="btn ghost">obrázok</button>
+          <button type="button" class="btn ghost">@user</button>
+        </div>
         <textarea class="field" placeholder="napíš ozvena…" aria-label="text"></textarea>
         <div class="send"><span></span><span><button type="button" class="btn">náhľad</button> <button type="submit" class="btn primary">pridať</button></span></div>
       </form>
 
-      <div class="thread-bar">
-        <h2>friends</h2>
-      </div>
 
 {thread}
       <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>

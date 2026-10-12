@@ -26,6 +26,13 @@ def composer(label, placeholder, title_ph="názov (nepovinný, inak Re: …)"):
           <input class="field" placeholder="{title_ph}" aria-label="názov">
           <label class="check"><input type="checkbox"> bez HTML</label>
         </div>
+        <div class="tools" role="toolbar" aria-label="formátovanie">
+          <button type="button" class="btn ghost"><b>B</b></button>
+          <button type="button" class="btn ghost"><i>I</i></button>
+          <button type="button" class="btn ghost">odkaz</button>
+          <button type="button" class="btn ghost">obrázok</button>
+          <button type="button" class="btn ghost">@user</button>
+        </div>
         <textarea class="field" placeholder="{placeholder}" aria-label="text"></textarea>
         <div class="send"><span></span><span><button type="button" class="btn">náhľad</button> {COST}<button type="submit" class="btn primary">pridať</button></span></div>
       </form>"""
@@ -100,7 +107,7 @@ for i, (t, when, views, subs, blocks) in enumerate(DRIENKA):
     write(POSTPAGE[t],
           f"<!-- title: {t} -->\n<!-- nav: node -->\n"
           f"<!-- node: id={9184100 - i * 1731}; name={t}; template=blog; parent=7004001|drienka|user.html; owner=drienka; "
-          f"viewers=slobo,ihla,ode; img=img/u/drienka.gif; created={when}; updated={when}; perms=r :: public -->\n"
+          f"viewers=slobo,ihla,ode; img={next((b[1] for b in blocks if b[0] == IMG), 'none')}; created={when}; updated={when}; perms=r :: public -->\n"
           f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
 
 # ── data: a file node (uploaded file with its own access rights) ──────────

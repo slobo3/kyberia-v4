@@ -132,6 +132,8 @@ def node_column(node, extra, acts=""):
     viewers = ", ".join(user_link(v) for v in node.get("viewers", "").split(",") if v)
     if node.get("template") == "system":
         image = ""  # system nodes don't need images
+    elif node.get("img") == "none":
+        image = ""  # a node without an image
     elif node.get("img"):
         image = f'<img class="nodeimg" src="{node["img"]}" alt="">'
     else:
@@ -192,7 +194,25 @@ def post_process(doc):
                  r'<div class="pt\1"><a href="submission.html">\2</a></div>', doc)
     # the time is plain text, not a link
     doc = re.sub(r'<a class="when" href="[^"]*">(.*?)</a>', r'<span class="when">\1</span>', doc)
+    # posts can be selected (☐) wherever they appear, so every list of posts ends with what to do with them
+    if 'class="pick"' in doc and 'class="bulk"' not in doc:
+        m = re.search(r'<ol class="thread[^"]*">', doc)
+        if m:
+            depth, i = 0, m.start()
+            for tok in re.finditer(r"<ol[\s>]|</ol>", doc[m.start():]):
+                depth += 1 if tok.group(0) != "</ol>" else -1
+                if depth == 0:
+                    i = m.start() + tok.end()
+                    break
+            doc = doc[:i] + '\n<p class="bulk">vybrané <a href="#">K+</a></p>' + doc[i:]
+    # one pager everywhere
+    doc = re.sub(r'<nav class="pager"[^>]*>.*?</nav>', PAGER, doc, flags=re.S)
     return doc
+
+
+PAGER = ('<nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">novšie</a>'
+         '<span class="pages"><a href="#" aria-current="page">1</a><a href="#">2</a><a href="#">3</a></span>'
+         '<a class="btn" href="#">staršie</a></nav>')
 
 
 def build(path):

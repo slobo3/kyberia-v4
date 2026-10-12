@@ -51,7 +51,6 @@ def head(h1):
 # ── last: everything, newest first ─────────────────────────────────────────
 posts = sorted(POSTS, key=lambda p: (p[1], [-int(x) for x in p[2].split(":")]))
 body = head("last")
-body += '  <div class="filters"><span class="seg" role="group" aria-label="filter"><a href="#" aria-current="true">všetko</a><a href="#">len nové</a><a href="#">bez ignorovaných</a></span></div>\n'
 body += '  <ol class="thread flat">\n' + "\n".join(feed_post(p) for p in posts) + "\n  </ol>\n"
 body += '  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
 write("last.html", page("last", "last", "id=35; name=last; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo,sklo,paprika,mrazik; details=no", body))
@@ -124,7 +123,7 @@ for frm, day, time, where, text, new in reversed(THREAD):
     nn = ' <span class="new">NEW</span>' if new else ""
     me = " me" if frm == "slobo" else ""
     who = f'<a class="who" href="user.html">{frm}</a>'
-    meta = f'{nn} {day} {time} {sep()} z {e(where)} {who}' if me else f'{who} {day} {time} {sep()} z {e(where)}{nn}'
+    meta = f'{nn} {day} {time} {who}' if me else f'{who} {day} {time}{nn}'
     msgs.append(f'        <li class="msg{me}"><div class="mh">{meta}</div>'
                 f'<p class="mb">{e(text)}</p></li>')
 body = head("mail") + f"""  <div class="mail">
