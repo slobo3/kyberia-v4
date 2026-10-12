@@ -902,3 +902,7 @@ font[size="4"], font[size="5"], font[size="6"], font[size="7"] { font-size: 1.3e
   .top .mnav .mme a { padding: 6px 8px; font-size: var(--fs-s); }
   .top .mnav .mme .logout { margin: 0 0 0 auto; height: 28px; }
 }
+
+@media (max-width: 720px) {
+  .top .mnav .grp a .who-me { color: var(--green); margin-left: 6px; margin-right: auto; font-weight: 400; }
+}

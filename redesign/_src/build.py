@@ -64,7 +64,8 @@ def header(active, title=""):
   <details class="mmenu"><summary aria-label="menu"><svg viewBox="0 0 20 16" width="20" height="16" aria-hidden="true"><rect y="0" width="20" height="2"/><rect y="7" width="20" height="2"/><rect y="14" width="20" height="2"/></svg></summary>
     <nav class="mnav" aria-label="menu">
       {"".join(mgroups)}
-      <div class="mme"><a href="user.html">slobo</a><a href="search.html">search</a><a href="#">setup</a><a href="#" class="btn ghost logout">logout</a></div>
+      <div class="grp"><a href="user.html">userinfo <span class="who-me">[slobo]</span></a><a href="search.html">search</a></div>
+      <div class="mme"><a href="#">setup</a><a href="#" class="btn ghost logout">logout</a></div>
     </nav>
   </details>
 </div></header>
