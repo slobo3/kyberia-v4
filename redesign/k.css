@@ -826,8 +826,12 @@ img.av.xs { --s: 16px; }
 .tag img.av.xs { margin-right: 6px; }
 .uid { color: var(--mute); font-family: var(--mono); font-size: var(--fs-xs); margin-left: 4px; }
 .none { color: var(--mute); font-size: var(--fs-s); }
-.adder { display: inline-flex; gap: 6px; align-items: center; }
+.adder { display: inline-flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 100%; }
 .adder .field.num.id { width: 110px; }
+.adder select.field { width: auto; max-width: 100%; }
+.person { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 6px; align-items: center; color: var(--white); }
+.person img.av.xs { grid-row: span 2; margin: 0; }
+.person .uid { color: var(--mute); }
 .whos li.none { display: block; color: var(--mute); }
 
 /* stats = the node's visitor list (last visit, new for them, booked, K, visits) */

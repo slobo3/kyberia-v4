@@ -45,17 +45,23 @@ LISTS = [
 ]
 
 
-def chips(users):
-    if not users:
-        return '<span class="none">nikto</span>'
-    return "".join(f'<span class="tag"><img class="av xs" src="{icon(u)}" alt="">{e(u)} <span class="uid">[{USER_ID[u]}]</span>'
-                   f'<button class="btn ghost" type="button" aria-label="odobrať {e(u)}">×</button></span>' for u in users)
+def person_row(u, rights):
+    who = f'<span class="person"><img class="av xs" src="{icon(u)}" alt="">{e(u)} <span class="uid">[{USER_ID[u]}]</span></span>'
+    chips = "".join(f'<span class="tag">{r}<button class="btn ghost" type="button" aria-label="odobrať {r} pre {e(u)}">×</button></span>' for r in rights)
+    return row(who, f'<div class="tags">{chips}</div>')
 
 
-def list_row(name, hint, users):
-    adder = (f'<span class="adder"><input class="field num id" placeholder="číslo" inputmode="numeric" aria-label="číslo používateľa do {name}">'
-             f'<button class="btn ghost" type="button">pridať</button></span>')
-    return row(name, f'<div class="tags">{chips(users)}</div>{adder}', hint=hint)
+# práva as a list of people, each with the lists they're on; adding says which right you give
+PEOPLE = {}
+for name, _hint, users in LISTS:
+    for u in users:
+        PEOPLE.setdefault(u, []).append(name)
+rights_rows = [person_row(u, rs) for u, rs in PEOPLE.items()]
+opts = "".join(f"<option>{n}: {h}</option>" for n, h, _ in LISTS)
+rights_rows.append(row("pridať",
+    '<span class="adder"><input class="field num id" value="7004016" inputmode="numeric" aria-label="číslo používateľa">'
+    f'<select class="field" aria-label="aké právo">{opts}</select>'
+    '<button class="btn ghost" type="button">pridať</button></span><p class="nodetitle"><a href="user.html">papraď</a></p>'))
 
 
 conf_body = f"""  <div class="head">
@@ -85,7 +91,7 @@ conf_body = f"""  <div class="head">
     row("system", '<span class="radios"><label><input type="radio" name="acc" checked> public</label><label><input type="radio" name="acc"> moderated</label><label><input type="radio" name="acc"> private</label></span>'),
     row("external access", '<label class="check"><input type="checkbox"> viditeľná aj pre neprihlásených</label>'),
 ])}
-{section("práva", [list_row(n, h, us) for n, h, us in LISTS])}
+{section("práva", rights_rows)}
   </div>
   <div class="savebar"><a class="btn ghost" href="forum.html">zrušiť</a><button class="btn primary" type="submit">uložiť zmeny</button></div>"""
 write("conf.html",

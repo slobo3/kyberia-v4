@@ -181,8 +181,9 @@ node_rights(node_id, list text /* masters|ops|access|execute|bans|silence */, us
 One form, one save. Order: **obsah** (content, bez HTML, nl2br) → názov (styled-title preview) →
 obrázok → template (templates are nodes too: entered by **node number**, e.g. 4 = forum, its name shown
 under the field) → umiestnenie (parent by **node number**, its title shown under the field) → prístup (system access, external access) →
-**práva**: the six lists as chips `name [id]` with ×, each with an add field that takes a **user
-number** (name shown on lookup). User settings (setup) are a separate page.
+**práva**: a list of **people** (icon, name, `[id]`), each with the rights they hold as chips with ×
+(masters, ops, access, execute, bans, silence). One add row: **user number** (name shown on lookup) +
+which right to give + pridať. User settings (setup) are a separate page.
 
 ---
 
