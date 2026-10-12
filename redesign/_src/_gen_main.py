@@ -32,7 +32,7 @@ online = FRIENDS
 def main_row(idx, t, u, sec, d, k, new, excerpt):
     nn = f' <span class="new">{new} new</span>' if new else ""
     return (f'      <li><img class="thumb" src="img/n/main{idx}.gif" alt="" width="60" height="75">'
-            f'<a class="t" href="forum.html">{e(t)}</a>'
+            f'<a class="t" href="submission.html">{e(t)}</a>'
             f'<span class="m">{ulink(u)} {SEP} {e(sec)} {SEP} {d}{nn}</span>'
             f'<p class="x">{e(excerpt)}</p></li>')
 
@@ -41,7 +41,7 @@ friends = "\n".join(  # collage: icons only; name + location on hover / for scre
     f'        <li><a href="user.html" title="{e(u)} :: {e(LOCATION[u])}"><img class="av" src="{icon(u)}" alt="{e(u)}" width="50" height="50"></a></li>'
     for u in online)
 rows = "\n".join(main_row(i, *r) for i, r in rest)
-ktop = "\n".join(f'        <li><a href="forum.html">{e(p[5] or p[3])}</a><span class="k">{p[6]} K</span></li>' for p in k_today)
+ktop = "\n".join(f'        <li><a href="submission.html">{e(p[5] or p[3])}</a><span class="k">{p[6]} K</span></li>' for p in k_today)
 active = "\n".join(f'        <li><a href="forum.html">{e(strip_re(p[5] or p[3]))}</a><span class="g2">{p[8]}</span></li>' for p in busy)
 
 body = f"""  <header class="front">
@@ -55,7 +55,7 @@ body = f"""  <header class="front">
         <img class="leadimg" src="img/n/main0.gif" alt="" width="120" height="150">
         <div>
           <div class="m">{ulink(lead[1])} {SEP} {e(lead[2])} {SEP} {lead[3]} <span class="new">{lead[5]} new</span></div>
-          <h2><a href="forum.html">{e(lead[0])}</a></h2>
+          <h2><a href="submission.html">{e(lead[0])}</a></h2>
           <p>{e(lead[6])}</p>
         </div>
       </article>

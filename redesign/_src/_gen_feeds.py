@@ -27,7 +27,7 @@ def sep():
 def feed_item(p, score=True, show_day=False, rank=None):
     user, day, time, where, section, title, k, new, children, text = p
     when = f"{DATE[day]} {time}" if show_day else time
-    t = f'<div class="ttl">{e(title)}</div>' if title else ""
+    t = f'<div class="ttl"><a href="submission.html">{e(title)}</a></div>' if title else ""
     nn = f' <span class="new">NEW</span>' if new else ""
     ch = f" {sep()} {children} children" if children else ""
     kk = f'<span class="k">{k} K</span>' if k else ""
@@ -39,7 +39,7 @@ def feed_item(p, score=True, show_day=False, rank=None):
   <div>
     <div class="where">v <a class="parent" href="forum.html">{e(where)}</a> {sep()} <a href="kyberia.html">{e(section)}</a></div>
     {t}
-    <div class="by">{ulink(user)} {sep()} {when}{ch}{nn}</div>
+    <div class="by">{ulink(user)} {sep()} <a class="when" href="submission.html">{when}</a>{nn}</div>
     <p class="txt">{e(text)}</p>
   </div>
   {sc}
@@ -87,11 +87,13 @@ body = head("RE") + '  <ol class="thread">\n' + "\n".join(items) + '\n  </ol>\n 
 write("re.html", page("RE", "RE", "id=3579407; name=RE; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo; details=no", body))
 
 # ── K: ranked ──────────────────────────────────────────────────────────────
-ranked = sorted([p for p in POSTS if p[6]], key=lambda p: -p[6])[:15]
+from _content import K_ITEMS  # noqa: E402
+from _k_block import k_item  # noqa: E402
+ranked = sorted(K_ITEMS, key=lambda it: -it[7])
 body = head("K")
 body += ('  <div class="filters">\n    <span class="seg" role="group" aria-label="obdobie"><a href="#" aria-current="true">24 h</a><a href="#">3 dni</a><a href="#">týždeň</a><a href="#">mesiac</a></span>\n'
          '    <span class="seg" role="group" aria-label="výber"><a href="#" aria-current="true">všetko</a><a href="#">kNEW</a></span>\n  </div>\n')
-body += '  <ol class="feed klist">\n' + "\n".join(feed_item(p, show_day=True, rank=i + 1) for i, p in enumerate(ranked)) + "\n  </ol>"
+body += '  <ol class="feed klist">\n' + "\n".join(k_item(i + 1, *it) for i, it in enumerate(ranked)) + "\n  </ol>"
 side = """      <section>
         <h2>fook</h2>
         <ul class="links">

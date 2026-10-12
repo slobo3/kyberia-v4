@@ -117,6 +117,8 @@ node details  →  own content  →  add form (if you may write)  →  children
 | nodeshell | listing grouped by template (`forum::`, `nodeshell::`…) | a child node; template chosen in the form |
 | forum / submission | discussion: threaded or flat | a reply |
 | user | friend posts: flat, newest first | a friend post (and a friendship) |
+| blog | diary entries newest first (title, date, views, replies, K, excerpt) | a new entry |
+| data | file preview + details + download, then a discussion | a reply |
 | system (bookmarks, mail, K…) | the page's own view, no node details | per page |
 
 Design consequences: the same components (node details, composer, post, listing row) appear
@@ -156,6 +158,12 @@ link, because a template is a node too.
 `K+ :: book|unbook :: fook :: put do…`. Toggles say what clicking will do: a bookmarked node shows
 **unbook** (highlighted), an unbookmarked one shows **book**. Bookmarks hint at the category tool with
 `+ nová kategória :: usporiadať` below the list and a quiet `upraviť` on each category (on hover).
+
+## 4b3. Links go to the template's page
+
+In the showcase every link opens the example page of the target node's template: post titles and post
+times go to **submission**, forum names to **forum**, sections to the **nodeshell** (kyberia), people to
+**user**, diaries to **blog**, files to **data**.
 
 ## 4c. Styled titles
 

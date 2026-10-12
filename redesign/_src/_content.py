@@ -130,3 +130,37 @@ def icon(user):
     import unicodedata
     s = unicodedata.normalize("NFKD", user).encode("ascii", "ignore").decode()
     return "img/u/" + "".join(c if c.isalnum() else "_" for c in s.lower()) + ".gif"
+
+# K (top appreciated): mostly photos and longer posts. (user, where, section, title, kind, img, text, K, when)
+K_ITEMS = [
+    ("drienka", "fotka dňa", "::graphics::design::photo", "hmla nad Dunajom", "photo", "img/k/hmla.gif",
+     "Šiesta ráno z Apollo mosta, dvadsať minút čakania na svetlo.", 64, "12.10.2026 07:12"),
+    ("anima", "Veda a technológie", "Veda a technológie", "Prečo sa mestské stromy oplatia viac ako klimatizácia", "text", None,
+     "Pred rokom som začala zbierať štúdie o tom, čo robia stromy s teplotou v meste. Väčšina hovorí to isté: vzrastlý strom ochladí okolie o dva až štyri stupne a v uliciach, kde sa ľudia pohybujú, to robí väčší rozdiel než akákoľvek klimatizácia. Viedeň, Barcelona a Rotterdam to merali každá inak, ale výsledok je podobný. Prečo to radnice aj tak počítajú zle? Lebo strom je v rozpočte zelene, ale úspora je v zdravotníctve a v účtoch za elektrinu, a nikto neporovnáva tie dve tabuľky naraz.", 58, "12.10.2026 09:14"),
+    ("sova", "fotka dňa", "::graphics::design::photo", "mačka na parapete, Štrkovec", "photo", "img/k/macka.gif",
+     "Susedova. Sedí tam každý večer o siedmej, presne keď sa rozsvieti lampa.", 51, "11.10.2026 19:20"),
+    ("polly", "Kyberia session 2026", "Hudba", "session: fotky zo zvukovej skúšky", "photo", "img/k/session.gif",
+     "Generálka v piatok večer. Svetlá sú hotové, šatňa ešte nie.", 47, "11.10.2026 23:05"),
+    ("bubon", "Hudobné okienko", "Hudba", "Re[4]: čo počúvate dnes", "video", "youtube.com :: 7:42",
+     "Live session z malého klubu v Brne, zvuk je lepší než na albume. Od 3:10 to začne.", 44, "12.10.2026 18:02"),
+    ("vlnka", "Slovenská politická scéna", "Politika", "Re[12]: rozpočet na budúci rok", "text", None,
+     "Kto čakal, že sa bude škrtať na kultúre a nie na tendroch, ten tu asi nežije dlho.", 41, "12.10.2026 19:15"),
+    ("mráz", "BUGLIST", "kyberia.sk", "denne aktívni za tri mesiace", "photo", "img/k/graf.gif",
+     "Graf z logov. Tá diera vpravo je víkend, keď padol server. Zvyšok je pekne stabilný.", 38, "12.10.2026 16:40"),
+    ("kremeň", "Slovenčina pre profesionálov", "Filozofia, text & jazyk", "„za účelom“ musí zomrieť", "text", None,
+     "Zbierka najhorších úradných fráz za tento týždeň. Víťaz: „v rámci zabezpečenia realizácie“, tesne za ním „predmetná vec“ a „z dôvodu toho, že“. Každý piatok vyberieme jednu a preložíme ju do ľudskej reči. Pravidlá: bez mien, bez fotiek úradníkov, a ak frázu nájdete vo vlastnom texte, priznajte sa. Ja začínam: minulý mesiac som napísal „v nadväznosti na uvedené“ a dodnes sa hanbím.", 33, "11.10.2026 11:02"),
+    ("drienka", "denník: drienka", "Photo & Visual", "Petržalka v hmle", "photo", "img/k/panelaky.gif",
+     "Panelové domy v hmle vyzerajú ako lode. Fotila som len okná, v ktorých sa svieti.", 31, "10.10.2026 18:05"),
+    ("rybár", "analógová fotografia", "Photo & Visual", "aleja pri Dunaji, Portra 400", "photo", "img/k/aleja.gif",
+     "Platany pri Dunaji v októbri. Jedno políčko, žiadna úprava.", 27, "10.10.2026 08:40"),
+    ("hobra", "Hudba", "Hudba", "dokument: ako sa robí vinyl", "video", "vimeo.com :: 24:10",
+     "Lisovňa v Lodenici, od laku po obal. Dvadsať minút, ktoré vás naučia mať radšej platne.", 25, "10.10.2026 20:15"),
+    ("k22", "Thinkpad yard", "Ostatné", "Re[7]: X230 v roku 2026", "text", None,
+     "Displej je zlý, váha je zlá. Tá klávesnica to vyváži.", 24, "11.10.2026 20:31"),
+    ("drienka", "denník: drienka", "Photo & Visual", "prečo stále analóg", "text", None,
+     "Lebo každé políčko niečo stojí. Lebo nevidím výsledok hneď. Lebo keď sa film vráti z labu, je to ako list od seba samej spred dvoch týždňov. Digitál mi dal tisíc fotiek z výletu a žiadnu som si nepozrela dvakrát. Z filmu mám tridsaťšesť a poznám každú. Neviem, či je to lepšie. Viem, že je to moje.", 22, "09.10.2026 22:30"),
+    ("drienka", "denník: drienka", "Photo & Visual", "prvý film z novej Nikon FM2", "photo", "img/k/film.gif",
+     "Prvých 36 políčok: tri ostré, päť krivých, zvyšok sú moje topánky. Je to láska.", 18, "05.10.2026 21:40"),
+    ("lemur", "Compz & Net", "Compz & Net", "Self-hosting v roku 2026: čo nám beží doma", "text", None,
+     "Starý Thinkpad pod posteľou, Nextcloud, Jellyfin, Pi-hole a záložný disk, ktorý som raz za rok zabudol pripojiť. Žerie to 11 W, beží to päť rokov a jediný výpadok bol, keď mačka vytiahla kábel. Čo by som urobil inak: zálohy automaticky od prvého dňa, nie od prvej straty dát.", 15, "09.10.2026 12:30"),
+]

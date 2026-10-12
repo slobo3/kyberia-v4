@@ -79,9 +79,10 @@ behave differently is the node's **template**:
 | `submission` | its replies as a thread | a reply |
 | `user` | friend posts: flat, chronological, newest first | a friend post; posting makes you a friend |
 | `friend` | (a friend post itself; renders like a post) | — |
+| `blog` | a user's diary (denník): entries newest first, each with title, date, views, replies, K and an excerpt | a new entry ("pridaj zápis") |
 | `system:*` | bookmarks, mail, last, RE, fr, people, K, search: their special views; no node details | per page (mail: a message) |
 | `article` | **MVP: a submission with a "promotable to main" flag** | — |
-| `data` | uploaded file with access control. **Post-MVP.** | — |
+| `data` | an uploaded file with its own access rights: preview, file details, download, then a discussion. **Post-MVP.** | a reply |
 
 `link` is not a template: a `put` hard-link is a synapse row (§2.3) that appears in listings as
 `link:: <name>`.
@@ -191,6 +192,9 @@ management, and for user nodes: password, email, mail notify, mood, listing amou
   wallet: **1 K per node** in the MVP (configurable per template later). The composer shows the cost next
   to the add button (`−1 K pridať`); with an empty wallet you can't post. The daily ledger shows it as
   "minul si na príspevky".
+- **K page content:** what gets K is mostly **photos, videos and longer posts** (plus the odd sharp one-liner).
+  The K list shows media inline (image, embedded video) and long text in full; each entry reads
+  `name, v <node> :: od <user> :: time`, no children counts.
 - **K page** (`/k`): nodes ordered by K received, created in the last N days (`newly
   CREATED K valued nodes`, interval input in days). Shown as full posts with a red K count +
   `K` badge on the left.

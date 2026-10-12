@@ -67,7 +67,7 @@ def post(level, user, time, k, new, text, topic="Kyberia session 2026"):
     return f"""<article class="post{cls}">
   <img class="av" src="{icon(user)}" alt="" width="50" height="50">
   <div>
-    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať">{role} <a class="when" href="forum.html">{day} {time}</a> <span class="sep">::</span> <span class="lvl">level {level}</span>{up}{kk}{nn}</div>
+    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať">{role} <a class="when" href="submission.html">{day} {time}</a> <span class="sep">::</span> <span class="lvl">level {level}</span>{up}{kk}{nn}</div>
     {title}
     <div class="pb"><p>{text}</p></div>
     <div class="pa"><button class="btn ghost">odpovedať</button><button class="btn ghost">K+</button></div>
@@ -137,7 +137,7 @@ PAGE = f"""<!-- title: ozvena -->
       </div>
 
       <nav class="tabs" aria-label="nódy používateľa">
-        <a href="#" aria-current="page">userinfo</a><a href="#">submissions</a><a href="#">forums</a><a href="#">nodeshells</a><a href="#">articles</a><a href="#">blogs</a><a href="#">datas</a><a href="#">K</a><a href="#">friends</a><a href="#">movement</a><a href="#">bookmarks</a>
+        <a href="#" aria-current="page">userinfo</a><a href="#">submissions</a><a href="#">forums</a><a href="#">nodeshells</a><a href="#">articles</a><a href="blog.html">blogs</a><a href="data.html">datas</a><a href="#">K</a><a href="#">friends</a><a href="#">movement</a><a href="#">bookmarks</a>
       </nav>
 
       <section class="userinfo" aria-label="userinfo">
