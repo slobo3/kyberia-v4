@@ -73,7 +73,9 @@ conf_body = f"""  <div class="head">
     row("obrázok", '<span class="imgpick"><img src="img/kyberia.gif" alt="" width="62" height="77"><input type="file" aria-label="nový obrázok"></span>', hint="GIF, PNG alebo JPG, ideálne 120 × 150"),
 ])}
 {section("template", [
-    row("template", '<select class="field"><option>forum</option><option>forum flat</option><option>nodeshell</option><option>submission</option><option>blog</option><option>data</option></select>', hint="zmení len zobrazenie: obsah, deti, K aj práva ostanú"),
+    # templates are nodes too: picked by number like parent (4 = forum, as on kyberia)
+    row("template", '<input class="field num id" value="4" inputmode="numeric" aria-label="číslo template nódy">'
+                    '<p class="nodetitle"><a href="forum.html">forum</a></p>', hint="zmení len zobrazenie: obsah, deti, K aj práva ostanú"),
 ])}
 {section("umiestnenie", [
     row("parent", '<input class="field num id" value="63540" inputmode="numeric" aria-label="číslo nódy, kam presunúť">'

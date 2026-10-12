@@ -7,7 +7,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _content import icon  # noqa: E402
-from _blogdata import OVERVIEW  # noqa: E402
+from _blogdata import OVERVIEW, POSTPAGE  # noqa: E402
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 e = html.escape
@@ -16,8 +16,8 @@ SEP = '<span class="sep">::</span>'
 items = "\n".join(f"""    <article class="entry">
       <img class="av" src="{icon(u)}" alt="" width="50" height="50">
       <div>
-        <h2><a href="submission.html">{e(t)}</a></h2>
-        <div class="m"><a href="blog.html">denník: {e(u)}</a> {SEP} <a class="when" href="submission.html">{when}</a> {SEP} videné {v}× {SEP} <a href="submission.html">{r} reakcií</a></div>
+        <h2><a href="{POSTPAGE.get(t, "submission.html")}">{e(t)}</a></h2>
+        <div class="m"><a href="blog.html">denník: {e(u)}</a> {SEP} <a class="when" href="{POSTPAGE.get(t, "submission.html")}">{when}</a> {SEP} videné {v}× {SEP} <a href="{POSTPAGE.get(t, "submission.html")}">{r} reakcií</a></div>
         {f'<img class="bthumb" src="{img}" alt="" width="320" height="210">' if img else ""}
         {f"<p>{e(x)}</p>" if x else ""}
       </div>

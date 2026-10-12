@@ -662,6 +662,7 @@ font[size="4"], font[size="5"], font[size="6"], font[size="7"] { font-size: 1.3e
 .entry .m a { color: var(--white); }
 .entry .m a.when { color: var(--mute); }
 .entry .m a.when:hover { color: var(--white); text-decoration: underline; }
+.entry .pa { display: flex; margin: 14px 0 0 -8px; }
 .entry p { margin: 0; max-width: 68ch; }
 /* data (file) node */
 .datafile { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 28px; align-items: start; padding: 4px 0 26px; border-bottom: 1px solid var(--rule-2); }

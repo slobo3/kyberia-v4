@@ -89,8 +89,8 @@ write("submission.html",
       "owner=anima; viewers=slobo,cín,mrak,lemur; img=img/n/main0.gif; created=12.10.2026 09:14; updated=12.10.2026 09:31; perms=r, w :: public -->\n"
       f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
 
-# ── blog: a user's diary (denník); entries newest first ───────────────────
-from _blogdata import DRIENKA, IMG  # noqa: E402
+# ── blog: a user's diary (denník) is a forum; each entry is a forum post (child node), shown in full ──
+from _blogdata import DRIENKA, IMG, POSTPAGE, REPLIES as BLOG_REPLIES  # noqa: E402
 
 
 def block(b):
@@ -99,11 +99,11 @@ def block(b):
     return f"<p>{e(b[1])}</p>"
 
 
-# blog entries on kyberia are long (often with photos): show them in full, no K numbers in the entry meta
 entries = "\n".join(f"""    <article class="entry full">
-      <h2><a href="submission.html">{e(t)}</a></h2>
-      <div class="m"><a href="user.html">drienka</a> {SEP} <a class="when" href="submission.html">{when}</a> {SEP} videné {views}× {SEP} <a href="submission.html">{subs} reakcií</a></div>
+      <h2><a href="{POSTPAGE[t]}">{e(t)}</a></h2>
+      <div class="m"><a href="user.html">drienka</a> {SEP} <a class="when" href="{POSTPAGE[t]}">{when}</a> {SEP} videné {views}× {SEP} <a href="{POSTPAGE[t]}">{subs} reakcií</a></div>
       {"".join(block(b) for b in blocks)}
+      <div class="pa"><a class="btn ghost" href="{POSTPAGE[t]}">odpovedať</a></div>
     </article>""" for t, when, views, subs, blocks in DRIENKA)
 body = f"""  <div class="head">
     <h1>denník: drienka</h1>
@@ -114,7 +114,6 @@ body = f"""  <div class="head">
       <button class="btn">fook</button>
     </div>
   </div>
-  <section class="topic prose"><p>Fotky z rána, film, mesto v hmle. Píšem, keď sa vrátim z labu.</p></section>
 {composer("pridať zápis do denníka", "o čom dnes…", "názov zápisu")}
   <div class="entries">
 {entries}
@@ -122,15 +121,47 @@ body = f"""  <div class="head">
   <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie zápisy</a></nav>"""
 write("blog.html",
       "<!-- title: denník: drienka -->\n<!-- nav: node -->\n"
-      "<!-- node: id=7004120; name=denník: drienka; template=blog; parent=7004001|drienka|user.html; owner=drienka; "
+      "<!-- node: id=7004120; name=denník: drienka; template=forum; parent=7004001|drienka|user.html; owner=drienka; "
       "viewers=slobo,ihla,ode; img=img/u/drienka.gif; created=14.03.2019 20:10; updated=12.10.2026 07:12; perms=r :: public -->\n"
       f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
 
+# each diary entry on its own: a forum post node (template submission). The title is the node name and the
+# node column carries owner and dates, so the page is just the text, then the replies at the bottom.
+for i, (t, when, views, subs, blocks) in enumerate(DRIENKA):
+    reps = BLOG_REPLIES.get(t, [])
+    items = []  # level-2 replies nest under the reply before them
+    for u, w, x, k, n, lv in reps:
+        if lv == 2 and items:
+            items[-1][1].append(post(u, w, x, "Re[2]: " + t, k=k, new=n, level=2))
+        else:
+            items.append(((u, w, x, k, n), []))
+    thread = "\n".join(post(u, w, x, "Re: " + t, k=k, new=n, level=1, children="\n".join(kids)) for (u, w, x, k, n), kids in items)
+    more = '\n  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>' if subs > len(reps) else ""
+    body = f"""  <div class="head">
+    <h1>{e(t)}</h1>
+    <div class="actions">
+      <button class="btn">K+</button>
+      <button class="btn">book</button>
+      <button class="btn">fook</button>
+    </div>
+  </div>
+  <section class="topic prose blogpost">
+    {"".join(block(b) for b in blocks)}
+  </section>
+  <div class="thread-bar"><h2>{subs} reakcií</h2></div>
+  <ol class="thread">
+{thread}
+  </ol>{more}
+{composer("odpovedať na zápis", "tvoja reakcia…")}"""
+    write(POSTPAGE[t],
+          f"<!-- title: {t} -->\n<!-- nav: node -->\n"
+          f"<!-- node: id={9184100 - i * 1731}; name={t}; template=submission; parent=7004120|denník: drienka|blog.html; owner=drienka; "
+          f"viewers=slobo,ihla,ode; img=img/u/drienka.gif; created={when}; updated={when}; perms=r :: public -->\n"
+          f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
+
 # ── data: a file node (uploaded file with its own access rights) ──────────
 comments = (
-    post("ihla", "12.10.2026 08:01", "Plné rozlíšenie je krásne. Tá zrnitosť je presne to, prečo fotím na film.", "Re: hmla_nad_dunajom.tif", k=4, level=1)
-    + "\n" + post("ode", "12.10.2026 09:40", "Môžem si to vytlačiť na stenu? Opýtam sa radšej, než to spravím.", "Re: hmla_nad_dunajom.tif", level=1, new=True,
-                  children=post("drienka", "12.10.2026 09:52", "Môžeš, len mi pošli fotku tej steny.", "Re[2]: hmla_nad_dunajom.tif", k=2, level=2, new=True))
+    post("ihla", "12.10.2026 10:15", "Plné rozlíšenie je krásne, v tom tife je vidieť každé zrnko.", "Re: hmla_nad_dunajom.tif", k=4, level=1)
 )
 body = f"""  <div class="head">
     <h1>hmla_nad_dunajom.tif</h1>
@@ -145,20 +176,18 @@ body = f"""  <div class="head">
   <section class="datafile">
     <img class="preview" src="img/n/main12.gif" alt="náhľad: hmla nad Dunajom" width="240" height="300">
     <dl class="kv">
-      <dt>súbor</dt><dd>hmla_nad_dunajom.tif</dd>
       <dt>veľkosť</dt><dd>48,2 MB</dd>
       <dt>typ</dt><dd>image/tiff, 6000 × 4000</dd>
       <dt>stiahnuté</dt><dd>37×</dd>
-      <dt>kto môže</dt><dd>priatelia drienky</dd>
     </dl>
   </section>
 {composer("napísať k súboru", "tvoja reakcia…")}
-  <div class="thread-bar"><h2>3 reakcie</h2></div>
+  <div class="thread-bar"><h2>1 reakcia</h2></div>
   <ol class="thread">
 {comments}
   </ol>"""
 write("data.html",
       "<!-- title: hmla_nad_dunajom.tif -->\n<!-- nav: node -->\n"
-      "<!-- node: id=9184101; name=hmla_nad_dunajom.tif; template=data; parent=7004120|denník: drienka|blog.html; owner=drienka; "
+      "<!-- node: id=9184101; name=hmla_nad_dunajom.tif; template=data; parent=9184100|hmla nad Dunajom|zapis-hmla.html; owner=drienka; "
       "viewers=slobo,ihla,ode; img=img/n/main12.gif; created=12.10.2026 07:15; updated=12.10.2026 07:15; perms=r :: friends -->\n"
       f'<main class="wrap" id="obsah">\n{body}\n</main>\n')

@@ -80,7 +80,7 @@ behave differently is the node's **template**:
 | `submission` | its replies as a thread | a reply |
 | `user` | friend posts: flat, chronological, newest first | a friend post; posting makes you a friend |
 | `friend` | (a friend post itself; renders like a post) | — |
-| `blog` | a user's diary (denník): entries newest first, each with title, date, views, replies, K and an excerpt | a new entry ("pridaj zápis") |
+| (denník) | no own template: a diary **is a forum** whose posts are the entries, shown in full, newest first. Each entry is a post node (`submission`) with its own page: the title is the node name, then the text, replies at the bottom | a new entry ("pridať zápis") |
 | `system:*` | bookmarks, mail, last, RE, fr, people, K, search: their special views; no node details | per page (mail: a message) |
 | `article` | **MVP: a submission with a "promotable to main" flag** | — |
 | `data` | an uploaded file with its own access rights: preview, file details, download, then a discussion. **Post-MVP.** | a reply |
@@ -179,8 +179,8 @@ node_rights(node_id, list text /* masters|ops|access|execute|bans|silence */, us
 ### 4.3 Configure (`/id/{n}/conf`)
 
 One form, one save. Order: **obsah** (content, bez HTML, nl2br) → názov (styled-title preview) →
-obrázok → template (forum, forum flat, nodeshell, submission, blog, data…) → umiestnenie (parent by
-**node number**, its title shown under the field) → prístup (system access, external access) →
+obrázok → template (templates are nodes too: entered by **node number**, e.g. 4 = forum, its name shown
+under the field) → umiestnenie (parent by **node number**, its title shown under the field) → prístup (system access, external access) →
 **práva**: the six lists as chips `name [id]` with ×, each with an add field that takes a **user
 number** (name shown on lookup). User settings (setup) are a separate page.
 

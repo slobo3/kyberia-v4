@@ -86,3 +86,37 @@ OVERVIEW = [
      "",
      "img/k/macka.gif"),
 ]
+
+# each diary entry is its own node (a forum post): its page
+POSTPAGE = {"hmla nad Dunajom": "zapis-hmla.html", "Lisabon, štyri dni s jedným filmom": "zapis-lisabon.html",
+            "prvý film z novej Nikon FM2": "zapis-fm2.html", "okná": "zapis-okna.html",
+            "prečo stále analóg": "zapis-analog.html", "susedov kocúr": "zapis-kocur.html"}
+
+# replies under each entry: (user, when, text, K, new, level); the rest sit on older pages
+REPLIES = {
+    "hmla nad Dunajom": [
+        ("ihla", "12.10.2026 08:01", "Tá zrnitosť v hmle je presne to, prečo fotím na film. Digitál by z toho urobil sivú kašu.", 4, False, 1),
+        ("ode", "12.10.2026 09:40", "Môžem si tú hmlu vytlačiť na stenu? Opýtam sa radšej, než to spravím.", None, True, 1),
+        ("drienka", "12.10.2026 09:52", "Môžeš, len mi pošli fotku tej steny.", 2, True, 2),
+    ],
+    "Lisabon, štyri dni s jedným filmom": [
+        ("anima", "07.10.2026 08:12", "Tridsaťšesť políčok na štyri dni, to by som nevydržala. Ja by som to minula v prvej električke.", 3, False, 1),
+        ("polly", "07.10.2026 12:40", "Tá električka 28 je presne taká, ako ju píšeš. Aj s tou pani, ktorá vždy vie, kde vystúpiť.", None, False, 1),
+        ("ihla", "08.10.2026 21:05", "Ktorý film? Na tom svetle vyzerá ako Ektar.", None, False, 1),
+    ],
+    "prvý film z novej Nikon FM2": [
+        ("lemur", "29.09.2026 07:30", "FM2 prežije aj nás. Svetlomer si nechaj skontrolovať, na starých kusoch rád klame o pol clony.", 2, False, 1),
+        ("drienka", "29.09.2026 08:02", "Klame, už viem. O tom bude ďalší zápis.", None, False, 2),
+    ],
+    "okná": [
+        ("ode", "21.09.2026 19:20", "Tretie okno zľava. Vždy sa naň pozerám, keď idem okolo.", None, False, 1),
+        ("sova", "22.09.2026 00:14", "Panelák ako kalendár adventných okienok.", 1, False, 1),
+    ],
+    "prečo stále analóg": [
+        ("kvasar", "15.09.2026 22:31", "Lebo každé políčko niečo stojí, tak rozmýšľaš. Viac netreba.", 3, False, 1),
+    ],
+    "susedov kocúr": [
+        ("bgdny", "08.09.2026 20:02", "Fero. Určite Fero.", 5, False, 1),
+        ("anima", "08.09.2026 21:15", "Mikuláš, a nehádajte sa.", None, False, 1),
+    ],
+}
