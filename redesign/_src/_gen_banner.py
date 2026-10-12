@@ -9,7 +9,7 @@ import random
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-W, H = 1180, 240
+W, H = 1208, 240
 BLACK, GREEN, DIM, DIMMER, LIGHT, PALE, WHITE = (0, 0, 0), (109, 174, 66), (47, 74, 31), (29, 46, 19), (140, 207, 90), (190, 232, 150), (255, 255, 255)
 
 

@@ -635,3 +635,12 @@ img.nodeimg[src*="img/u/"] { width: 100px; height: 100px; max-width: none; image
 /* main: no K numbers on stories (K lives in the K dnes list) */
 .leadstory { grid-template-columns: 120px minmax(0, 1fr); }
 .mainlist li { grid-template-columns: 60px minmax(0, 1fr); }
+
+/* one page width for the top bar and every page's content (node column 220 + gap 48 + content 940) */
+:root { --page: 1208px; }
+.top-in, .wrap, .foot { max-width: calc(var(--page) + 40px); padding-left: 20px; padding-right: 20px; }
+.front-page { max-width: calc(var(--page) + 40px); }
+.front .banner { max-width: var(--page); }
+.shell { grid-template-columns: 220px minmax(0, 1fr); }
+@media (max-width: 720px) { .top-in, .wrap, .foot { padding-left: 14px; padding-right: 14px; } }
+html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or not */

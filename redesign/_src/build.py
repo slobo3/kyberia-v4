@@ -48,7 +48,6 @@ def header(active):
         groups.append('<span class="grp">' + "".join(links) + "</span>")
     return f"""<a class="skip" href="#obsah">preskočiť na obsah</a>
 <header class="top"><div class="top-in">
-  <a class="brand" href="main.html">kyberia<b>.</b>sk</a>
   <nav class="nav" aria-label="hlavná navigácia">
     {"".join(groups)}
   </nav>
