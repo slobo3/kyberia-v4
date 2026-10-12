@@ -39,7 +39,7 @@ for day, time, level, k, new, parent, text in hits:
     <div class="ph"><a class="who" href="user.html"><mark>{WHO}</mark></a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="submission.html">{day} {time}</a> {SEP} <span class="lvl">level {level}</span>{kk}{nn}</div>
     <div class="ctx">v <a href="submission.html">{e(parent)}</a></div>
     <div class="pb"><p>{e(text)}</p></div>
-    <div class="pa"><button class="btn ghost">odpovedať</button><button class="btn ghost">K+</button></div>
+    <div class="pa"><button class="btn">odpovedať</button><button class="btn">K+</button></div>
   </div>
 </article></li>""")
 
@@ -51,7 +51,7 @@ body = f"""  <div class="head">
     <select class="field by" name="by" aria-label="filtrovať podľa"><option value="text">text</option><option value="title">názov</option><option value="user" selected>user</option></select>
     <button class="btn" type="submit">filtrovať</button>
   </form>
-  <p class="filterinfo"><span><b>{len(posts)}</b> od <b>{WHO}</b></span> <a class="btn ghost" href="forum.html">zrušiť filter</a></p>
+  <p class="filterinfo"><span><b>{len(posts)}</b> od <b>{WHO}</b></span> <a class="btn" href="forum.html">zrušiť filter</a></p>
   <ol class="thread flat">
 {chr(10).join(posts)}
   </ol>"""

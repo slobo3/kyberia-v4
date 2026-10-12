@@ -68,7 +68,7 @@ def post(level, user, time, k, new, text, topic="Kyberia session 2026"):
     <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="submission.html">{day} {time}</a> <span class="sep">::</span> <span class="lvl">level {level}</span>{up}{kk}{nn}</div>
     {title}
     <div class="pb"><p>{text}</p></div>
-    <div class="pa"><button class="btn ghost">odpovedať</button><button class="btn ghost">K+</button></div>
+    <div class="pa"><button class="btn">odpovedať</button><button class="btn">K+</button></div>
   </div>
 </article>"""
 
@@ -107,7 +107,7 @@ def friend_post(user, when, k, new, text):
   <div>
     <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="user.html">{when}</a>{kk}{nn}</div>
     <div class="pb"><p>{text}</p></div>
-    <div class="pa"><button class="btn ghost">K+</button></div>
+    <div class="pa"><button class="btn">K+</button></div>
   </div>
 </article></li>"""
 
@@ -128,8 +128,8 @@ PAGE = f"""<!-- title: ozvena -->
             <a class="btn primary" href="mail.html">mail</a>
             <button class="btn">book</button>
             <button class="btn">K+</button>
-            <button class="btn ghost">ignore</button>
-            <button class="btn ghost">ignore_mail</button>
+            <button class="btn">ignore</button>
+            <button class="btn">ignore_mail</button>
           </div>
         </div>
       </div>

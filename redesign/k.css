@@ -229,8 +229,8 @@ aside.side { font-size: var(--fs-s); padding-top: 8px; }
 .post .pt.re { font-weight: 400; color: var(--mute); }
 .post .pb { color: var(--ink); max-width: 68ch; }
 .post .pb p:last-child { margin-bottom: 0; }
-.post .pa { display: flex; gap: 2px; margin: 6px 0 0 -8px; opacity: .55; }
-.post:hover .pa, .post:focus-within .pa { opacity: 1; }
+.post .pa { display: flex; gap: 4px; margin: 8px 0 0; }
+.pa .btn { height: 26px; padding: 0 10px; }
 .post .orphan { color: var(--red); font-weight: 700; }
 .post .pb blockquote { margin: 4px 0 8px; padding-left: 12px; border-left: 2px solid var(--rule-3); color: var(--mute); font-style: italic; }
 .post .pb img { border: 1px solid var(--rule-2); margin: 6px 0; }
@@ -442,6 +442,8 @@ mark { background: none; color: var(--white); font-weight: 700; }
 .nodecol .kv dd { overflow-wrap: anywhere; }
 .nodecol .kv dd a { color: var(--white); }
 .nodecol .viewers { line-height: 1.5; }
+.nodeacts { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 12px 0 0; }
+.nodeacts .ksum { margin-right: 6px; }
 .nodelinks { display: flex; flex-wrap: wrap; margin: 12px 0 0; }
 .nodelinks a + a::before { content: "::"; color: var(--mute); margin: 0 .45em; }
 .actions .ksum { align-self: center; margin-right: 6px; font-size: var(--fs-l); }
@@ -659,7 +661,7 @@ font[size="4"], font[size="5"], font[size="6"], font[size="7"] { font-size: 1.3e
 .entry .m a { color: var(--white); }
 .entry .m a.when { color: var(--mute); }
 .entry .m a.when:hover { color: var(--white); text-decoration: underline; }
-.entry .pa { display: flex; margin: 14px 0 0 -8px; }
+.entry .pa { display: flex; margin: 14px 0 0; }
 .entry p { margin: 0; max-width: 68ch; }
 /* data (file) node */
 .datafile { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 28px; align-items: start; padding: 4px 0 26px; border-bottom: 1px solid var(--rule-2); }
@@ -967,6 +969,7 @@ img.av.xs { --s: 16px; }
   .nodecol > .nodehead .nodeimg { width: 72px; height: auto; margin: 0; }
   .nodecol > .nodehead .nodeimg.tile { height: 72px; }
   .nodecol > .nodehead .kv { grid-template-columns: max-content minmax(0, 1fr); column-gap: 12px; row-gap: 3px; font-size: var(--fs-s); }
+  .nodecol > .nodehead .nodeacts { grid-column: 1 / -1; }
   .nodecol > :not(.nodehead) { order: 2; }
   .nodecol > .nodelinks { margin: 30px 0 0; padding-top: 16px; border-top: 1px solid var(--rule-2); font-size: var(--fs-s); }
   .nodecol > section:not(.nodehead) { font-size: var(--fs-s); }

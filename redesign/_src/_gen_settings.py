@@ -61,7 +61,7 @@ opts = "".join(f"<option>{n}: {h}</option>" for n, h, _ in LISTS)
 rights_rows.append(row("pridať",
     '<span class="adder"><input class="field num id" value="7004016" inputmode="numeric" aria-label="číslo používateľa">'
     f'<select class="field" aria-label="aké právo">{opts}</select>'
-    '<button class="btn ghost" type="button">pridať</button></span><p class="nodetitle"><a href="user.html">papraď</a></p>'))
+    '<button class="btn" type="button">pridať</button></span><p class="nodetitle"><a href="user.html">papraď</a></p>'))
 
 
 conf_body = f"""  <div class="head">

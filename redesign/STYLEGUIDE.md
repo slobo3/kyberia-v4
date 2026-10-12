@@ -75,7 +75,7 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
 │ viewers   a, b, c   │
 │ created / updated   │
 │ permissions         │
-│ view  threaded::flat│ │ 120 K [K+] [book] [fook]          ← node pages only     │
+│ 120 K [K+][book][fook] ← always here, every node page                        │
 │ stats::source::     │ │                                                        │
 │ commanders::dendr.. │ │ …page content…                                         │
 │ ─────────────────── │ │                                                        │
@@ -172,7 +172,15 @@ a blog, a file…) highlights nothing, on desktop and phone.
 
 ## 4b2. Node actions
 
-`K+ :: book|unbook :: fook :: put do…`. Toggles say what clicking will do: a bookmarked node shows
+**One button style for every action:** the bordered `.btn` (white text, gray border, green on hover;
+`.on` = green for an active toggle, `.primary` = filled green for the one main action of a form). Post
+actions (`odpovedať`, `K+`) use it too, slightly smaller, never dimmed. Borderless ghost buttons only for
+`×` on chips and `zrušiť` next to a save.
+
+
+The node's **K, K+, book|unbook and fook always sit in the node column**, under the details (on phones,
+under the node basics at the top). Other node actions (`put do…`, `configure`, `stiahnuť`, `mail`) stay
+under the title. Toggles say what clicking will do: a bookmarked node shows
 **unbook** (highlighted), an unbookmarked one shows **book**. Bookmarks hint at the category tool with
 `+ nová kategória :: usporiadať` below the list and a quiet `upraviť` on each category (on hover).
 

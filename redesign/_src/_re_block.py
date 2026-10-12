@@ -14,6 +14,6 @@ def re_post(icon, user, when, node, text, k, new):
     <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="submission.html">{e(when)}</a>{kk}{nn}</div>
     <div class="pt re">Re: <a href="submission.html">{e(node)}</a></div>
     <div class="pb"><p>{e(text)}</p></div>
-    <div class="pa"><button class="btn ghost">odpovedať</button><button class="btn ghost">K+</button></div>
+    <div class="pa"><button class="btn">odpovedať</button><button class="btn">K+</button></div>
   </div>
 </article></li>"""

@@ -27,7 +27,7 @@ def post(user, when, text, title=None, k=None, new=False, level=None, children="
     <div class="ph"><a class="who" href="user.html">{e(user)}</a>{PICK} <a class="when" href="submission.html">{e(when)}</a>{lv}{kk}{nn}</div>
     {t}
     <div class="pb"><p>{e(text)}</p></div>
-    <div class="pa"><button class="btn ghost">odpovedať</button><button class="btn ghost">K+</button></div>
+    <div class="pa"><button class="btn">odpovedať</button><button class="btn">K+</button></div>
   </div>
 </article>{kids}</li>"""
 
