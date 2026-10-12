@@ -595,6 +595,10 @@ html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .mainlist .thumb { grid-row: 1 / span 3; }
 
+/* post time = link to that post node: gray, white + underline on hover */
+.post .ph a.when { color: var(--mute); }
+.post .ph a.when:hover { color: var(--white); text-decoration: underline; }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }

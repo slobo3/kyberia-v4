@@ -104,7 +104,7 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
 | top bar | Bracketed groups in green, white links; the active link is a green block with black text. Red badge for new mail and RE. Search field, wallet, user. |
 | child listing (`.rows`) | Grouped under `nodeshell::`, `forum::`, `submission::`, `link::`. Columns: name (white) · children (gray) · `N new`/`descdnt` (red) · K (red) · owner (green). |
 | bookmarks (`.bm`) | Category heading (green) + total `N new`. Rows: name · `N new` · `descdnt` · `changed` · owner. |
-| post | 40px avatar · white name · gray time · `level N` · `UP` · red `NEW`/K · title (green; `Re[n]:` in gray) · green body · quiet actions (`odpovedať`, `K+`); unlabeled select checkbox after the name. |
+| post | 40px avatar · white name · gray time · `level N` · `UP` · red `NEW`/K · title (green; `Re[n]:` in gray) · green body · quiet actions (`odpovedať`, `K+`); unlabeled select checkbox after the name; the time is a link to the post node (gray, white + underline on hover). |
 | thread | Nested lists with a dark-green guide line. Full indent for 4 levels, then compact, so a 20-deep flamewar still fits. |
 | user page | Avatar, coordinate trail, name, `K` + actions (`mail`, `book`, `K+`, `ignore`, `ignore_mail`), tabs, userinfo frame, then **friends**: flat, chronological, newest first. Posting there makes you a friend. |
 | feed item | Used by last, RE, fr, sub, K and search: where (green, parent white bold) · title · who/when · text · score column. |

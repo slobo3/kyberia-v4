@@ -67,7 +67,7 @@ def post(level, user, time, k, new, text, topic="Kyberia session 2026"):
     return f"""<article class="post{cls}">
   <img class="av" src="{icon(user)}" alt="" width="50" height="50">
   <div>
-    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať">{role} {day} {time} <span class="sep">::</span> <span class="lvl">level {level}</span>{up}{kk}{nn}</div>
+    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať">{role} <a class="when" href="forum.html">{day} {time}</a> <span class="sep">::</span> <span class="lvl">level {level}</span>{up}{kk}{nn}</div>
     {title}
     <div class="pb"><p>{text}</p></div>
     <div class="pa"><button class="btn ghost">odpovedať</button><button class="btn ghost">K+</button></div>
@@ -107,7 +107,7 @@ def friend_post(user, when, k, new, text):
     return f"""<li><article class="post">
   <img class="av" src="{icon(user)}" alt="" width="50" height="50">
   <div>
-    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať"> {when}{kk}{nn}</div>
+    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="user.html">{when}</a>{kk}{nn}</div>
     <div class="pb"><p>{text}</p></div>
     <div class="pa"><button class="btn ghost">K+</button></div>
   </div>
