@@ -29,11 +29,12 @@ busy = sorted([p for p in POSTS if p[1] <= 1], key=lambda p: -p[8])[:8]
 online = FRIENDS[:7]
 
 
-def main_row(idx, t, u, sec, d, k, new, _excerpt):
+def main_row(idx, t, u, sec, d, k, new, excerpt):
     nn = f' <span class="new">{new} new</span>' if new else ""
     return (f'      <li><img class="thumb" src="img/n/main{idx}.gif" alt="" width="60" height="75">'
             f'<a class="t" href="forum.html">{e(t)}</a>'
-            f'<span class="m">{ulink(u)} {SEP} {e(sec)} {SEP} {d}{nn}</span></li>')
+            f'<span class="m">{ulink(u)} {SEP} {e(sec)} {SEP} {d}{nn}</span>'
+            f'<p class="x">{e(excerpt)}</p></li>')
 
 
 friends = "\n".join(

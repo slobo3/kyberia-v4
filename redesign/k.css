@@ -590,6 +590,11 @@ html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or
 
 .post .ph .pick { margin: 0 8px 0 -2px; align-self: center; }  /* vybrať: in the post header, no label */
 
+/* main: short excerpt under each "na main" title, two lines max */
+.mainlist .x { grid-column: 2; margin: 4px 0 0; color: var(--ink); font-size: var(--fs-s); line-height: 1.45; max-width: 68ch;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.mainlist .thumb { grid-row: 1 / span 3; }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }
