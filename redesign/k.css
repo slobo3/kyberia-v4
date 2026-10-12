@@ -908,8 +908,10 @@ img.av.xs { --s: 16px; }
   /* phones: icons stay (25px from level 4), indent stops after level 8 so level 20 still reads */
   .thread.deep ol ol ol ol { --av: 25px; --gap: 8px; --ml: 12px; --pl: 0px; }
   .thread.deep ol ol ol > li { --cml: 12px; }
-  .thread.deep ol ol ol ol ol ol ol ol ol { --ml: 0px; --pl: 0px; }
-  .thread.deep ol ol ol ol ol ol ol ol > li { --cml: 0px; }
+  /* no more indent, but the line stays at the icon centre: the list steps in 12px, its items step back */
+  .thread.deep ol ol ol ol ol ol ol ol ol { --ml: 12px; --pl: 0px; --opl: -12px; }
+  .thread.deep ol ol ol ol ol ol ol ol ol > li { margin-left: -12px; }
+  .thread.deep ol ol ol ol ol ol ol ol > li { --cml: 12px; }
 }
 @media (max-width: 1000px) {
   .shell, .shell.wide { grid-template-columns: minmax(0, 1fr); }
