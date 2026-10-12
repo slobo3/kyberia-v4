@@ -114,12 +114,11 @@ thread = '<ol class="thread friends">\n' + "\n".join(friend_post(*x) for x in FR
 
 PAGE = f"""<!-- title: ozvena -->
 <!-- nav: people -->
-<!-- node: id=4401337; name=ozvena; template=user; parent=||; owner=ozvena; viewers=slobo,kvasar,sklo,drienka -->
+<!-- node: id=4401337; name=ozvena; template=user; parent=||; owner=ozvena; viewers=slobo,kvasar,sklo,drienka; img=img/ozvena.svg -->
 <main class="wrap" id="obsah">
   <div class="cols">
     <div>
-      <div class="prof">
-        <span class="av l avimg" style="--h:15" aria-hidden="true">o</span>
+      <div class="head prof">
         <div>
           <ol class="coords" aria-label="cwbe coordinatez"><li><span class="id">4401337</span><span class="n">ozvena</span></li></ol>
           <h1>ozvena</h1>
@@ -176,7 +175,7 @@ PAGE = f"""<!-- title: ozvena -->
       <section>
         <h2>friends</h2>
         <ul class="who-list">
-          <li><span class="av s" style="--h:170">p</span><span class="u">lúč</span><span class="idle"></span></li>
+          <li><span class="av s" style="--h:170">l</span><span class="u">lúč</span><span class="idle"></span></li>
         </ul>
       </section>
       <section>

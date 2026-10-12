@@ -82,7 +82,7 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
 ```
 
 - The node column shows only node, template, parent, owner, viewers (names, not avatars), and
-  `stats :: source :: commanders :: dendrites :: axones` (white links). Page-specific sections go underneath. Permissions, visitor
+  `stats :: source :: commanders :: dendrites & axones` (the last opens one page with both lists) (white links). Page-specific sections go underneath. Permissions, visitor
   counts, tiamat, K-filters, neurons and polls are not shown.
 - The node column is sticky on desktop and moves below the content under 1000px.
 - The coordinate trail is the signature element: ids in mono above the names. The current node is bold.
