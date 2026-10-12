@@ -6,6 +6,7 @@ import re
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _content import icon  # noqa: E402
+from _post import article, post as list_post  # noqa: E402
 
 e = html.escape
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # run from anywhere; paths are relative to redesign/
@@ -53,24 +54,9 @@ FLAME = [
 ]
 
 
-def post(level, user, time, k, new, text, topic="Kyberia session 2026"):
+def post(level, user, time, k, new, text):
     day = "13.10.2026" if time[:2] in ("00", "01") else "12.10.2026"
-    title = ""
-    if level > 1:
-        n = "" if level == 2 else f"[{level - 1}]"
-        title = f'<div class="pt re">Re{n}: {topic}</div>'
-    up = ""  # no UP links (decided)
-    kk = f' <span class="sep">::</span> <span class="k">{k}</span>' if k else ""
-    nn = ' <span class="sep">::</span> <span class="new">NEW</span>' if new else ""
-    return f"""<article class="post">
-  <img class="av" src="{icon(user)}" alt="" width="50" height="50">
-  <div>
-    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="submission.html">{day} {time}</a> <span class="sep">::</span> <span class="lvl">level {level}</span>{up}{kk}{nn}</div>
-    {title}
-    <div class="pb"><p>{text}</p></div>
-    <div class="pa"><button class="btn">odpovedať</button><button class="btn">K+</button></div>
-  </div>
-</article>"""
+    return article(user, f"{day} {time}", text, k=k, new=new)
 
 
 inner = ""
@@ -100,16 +86,8 @@ FRIENDS = [
 HUE.setdefault("lúč", 170)
 
 def friend_post(user, when, k, new, text):
-    kk = f' <span class="sep">::</span> <span class="k">{k}</span>' if k else ""
-    nn = ' <span class="sep">::</span> <span class="new">NEW</span>' if new else ""
-    return f"""<li><article class="post">
-  <img class="av" src="{icon(user)}" alt="" width="50" height="50">
-  <div>
-    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="user.html">{when}</a>{kk}{nn}</div>
-    <div class="pb"><p>{text}</p></div>
-    <div class="pa"><button class="btn">K+</button></div>
-  </div>
-</article></li>"""
+    return list_post(user, when, text, k=k, new=new)
+
 
 thread = '<ol class="thread friends">\n' + "\n".join(friend_post(*x) for x in FRIENDS) + "\n</ol>"
 

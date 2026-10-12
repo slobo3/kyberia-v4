@@ -147,8 +147,8 @@ a blog, a file…) highlights nothing, on desktop and phone.
 | top bar | Bracketed groups in green, white links; the active link is a green block with black text. Red badge for new mail and RE. Search field, wallet, user. |
 | child listing (`.rows`) | Grouped under `nodeshell::`, `forum::`, `submission::`, `link::`. Columns: name (white) · children (gray) · `N new`/`descdnt` (red) · K (red) · owner (green). |
 | bookmarks (`.bm`) | Category heading (green) + total `N new`. Rows: name · `N new` · `descdnt` · `changed` · owner. |
-| post | 40px avatar · white name · gray time · `level N` · red `NEW`/K · title (green; `Re[n]:` in gray) · green body · quiet actions (`odpovedať`, `K+`); unlabeled select checkbox after the name; the post title (`Re: …` or its own) is a **white link** to the post; the time is plain gray text. |
-| thread | Nested lists with a dark-green guide line. Full indent for 4 levels, then compact, so a 20-deep flamewar still fits. |
+| post | **One component (`_src/_post.py`) for every list of posts**: threaded and flat discussion, filter, last, fr, RE, replies under a post or blog, friend posts. Anatomy: icon · white name · unlabeled ☐ · gray date+time (not a link) · red K · red `NEW` · red `SIROTKA` for orphans; then `v parent :: grandparent` (white links, only where the post isn't shown under its parent: last, fr, RE, filter); then the title only if someone wrote one (automatic `Re[n]: …` is hidden), a white link to the post; green text. Post actions `odpovedať  K+` are **small green text actions at the right end of the header**, never bordered buttons (those are for node actions and forms). No `level N`, no coordinates. |
+| thread | Threaded = the same posts nested, with a dark-green guide line; flat = not nested, by time. That is the only difference. Full indent for 4 levels, then compact, so a 20-deep flamewar still fits. |
 | user page | Avatar, coordinate trail, name, `K` + actions (`mail`, `book`, `K+`, `ignore`, `ignore_mail`), tabs, userinfo frame, then **friends**: flat, chronological, newest first. Posting there makes you a friend. |
 | feed item | Used by last, RE, fr, sub, K and search: where (green, parent white bold) · title · who/when · text · score column. |
 | composer | Panel with title field, `bez HTML`, a formatting row, textarea, `náhľad` and `pridať`. Posting spends K, but the cost is **not** shown in the composer (only in the wallet ledger). |
@@ -173,8 +173,8 @@ a blog, a file…) highlights nothing, on desktop and phone.
 ## 4b2. Node actions
 
 **One button style for every action:** the bordered `.btn` (white text, gray border, green on hover;
-`.on` = green for an active toggle, `.primary` = filled green for the one main action of a form). Post
-actions (`odpovedať`, `K+`) use it too, slightly smaller, never dimmed. Borderless ghost buttons only for
+`.on` = green for an active toggle, `.primary` = filled green for the one main action of a form). Per-post actions
+(`odpovedať`, `K+`) are the exception: small text actions in the post header, never dimmed. Borderless ghost buttons only for
 `×` on chips and `zrušiť` next to a save.
 
 

@@ -8,7 +8,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _content import icon  # noqa: E402
+from _post import post  # noqa: E402
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 e = html.escape
@@ -29,22 +29,12 @@ for i, (user, time, k, new, text) in enumerate(FLAME):
     hits.append((day, time, level, k, new, parent, re.sub(r"<[^>]+>", "", text)))
 hits.sort(key=lambda h: (h[0][6:], h[0][3:5], h[0][:2], h[1]), reverse=True)
 
-posts = []
-for day, time, level, k, new, parent, text in hits:
-    kk = f' {SEP} <span class="k">{k}</span>' if k else ""
-    nn = f' {SEP} <span class="new">NEW</span>' if new else ""
-    posts.append(f"""<li><article class="post">
-  <img class="av" src="{icon(WHO)}" alt="" width="50" height="50">
-  <div>
-    <div class="ph"><a class="who" href="user.html"><mark>{WHO}</mark></a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="submission.html">{day} {time}</a> {SEP} <span class="lvl">level {level}</span>{kk}{nn}</div>
-    <div class="ctx">v <a href="submission.html">{e(parent)}</a></div>
-    <div class="pb"><p>{e(text)}</p></div>
-    <div class="pa"><button class="btn">odpovedať</button><button class="btn">K+</button></div>
-  </div>
-</article></li>""")
+posts = [post(WHO, f"{day} {time}", e(text), k=k, new=new, mark=True, where=[(parent, "submission.html")])
+         for day, time, level, k, new, parent, text in hits]
 
 body = f"""  <div class="head">
     <h1>Kyberia session 2026: zostava, miesto, lístky</h1>
+    <div class="actions"><span class="k ksum">51 K</span><button class="btn">K+</button><button class="btn on" aria-pressed="true" title="je v bookmarks">unbook</button><button class="btn">fook</button></div>
   </div>
   <form class="filterbar on" action="forum-filter.html" role="search" aria-label="filter v tejto nóde">
     <input class="field" name="filter" value="{WHO}" aria-label="filter">

@@ -7,6 +7,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _content import icon  # noqa: E402
+from _post import post as shared_post  # noqa: E402
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 e = html.escape
@@ -16,20 +17,7 @@ COST = ''
 
 
 def post(user, when, text, title=None, k=None, new=False, level=None, children=""):
-    kk = f' {SEP} <span class="k">{k} K</span>' if k else ""
-    nn = f' {SEP} <span class="new">NEW</span>' if new else ""
-    lv = f' {SEP} <span class="lvl">level {level}</span>' if level else ""
-    t = f'<div class="pt re">{e(title)}</div>' if title else ""
-    kids = f"\n<ol>\n{children}\n</ol>" if children else ""
-    return f"""<li><article class="post">
-  <img class="av" src="{icon(user)}" alt="" width="50" height="50">
-  <div>
-    <div class="ph"><a class="who" href="user.html">{e(user)}</a>{PICK} <a class="when" href="submission.html">{e(when)}</a>{lv}{kk}{nn}</div>
-    {t}
-    <div class="pb"><p>{e(text)}</p></div>
-    <div class="pa"><button class="btn">odpovedať</button><button class="btn">K+</button></div>
-  </div>
-</article>{kids}</li>"""
+    return shared_post(user, when, e(text), title=title, k=k, new=new, kids=children)
 
 
 def composer(label, placeholder, title_ph="názov (nepovinný, inak Re: …)"):

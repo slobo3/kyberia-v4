@@ -224,15 +224,15 @@ aside.side { font-size: var(--fs-s); padding-top: 8px; }
 .post { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 0 14px; padding: 18px 0 6px; }
 .post .ph { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 4px; font-size: var(--fs-s); color: var(--mute); }
 .post .ph .who { color: var(--white); font-weight: 700; font-size: var(--fs); margin-right: 6px; }
-.post .ph .vec { font: 400 var(--fs-xs) var(--mono); color: var(--green-2); margin-left: auto; }
 .post .pt { font-weight: 700; color: var(--green); margin: 2px 0 4px; }
-.post .pt.re { font-weight: 400; color: var(--mute); }
 .post .pb { color: var(--ink); max-width: 68ch; }
 .post .pb p:last-child { margin-bottom: 0; }
 .post .pw { font-size: var(--fs-s); color: var(--mute); margin: 2px 0 0; }
 .post .pw a { color: var(--white); }
-.post .pa { display: flex; gap: 4px; margin: 8px 0 0; }
-.pa .btn { height: 26px; padding: 0 10px; }
+/* per-post actions: small text actions at the right end of the header (node actions are buttons) */
+.post .ph .pa { display: inline-flex; gap: 12px; margin-left: auto; }
+.act { padding: 0; border: 0; background: none; font: 500 var(--fs-s) var(--sans); color: var(--green); cursor: pointer; }
+.act:hover, .act:focus-visible { color: var(--white); text-decoration: underline; }
 .post .orphan { color: var(--red); font-weight: 700; }
 .post .pb blockquote { margin: 4px 0 8px; padding-left: 12px; border-left: 2px solid var(--rule-3); color: var(--mute); font-style: italic; }
 .post .pb img { border: 1px solid var(--rule-2); margin: 6px 0; }
@@ -414,7 +414,6 @@ h1 a, h2 a, h3 a, .art a, .rows .name a, .bm .name a, .feed .where a.parent, blo
 /* userinfo is the user's own HTML: rendered as-is, in a contained frame */
 .userinfo { margin-top: 22px; border: 1px solid var(--rule); overflow: hidden; font-family: Tahoma, Verdana, sans-serif; font-size: 11px; line-height: 1.35; color: #ccc; }
 .userinfo img { display: inline; max-width: 100%; height: auto; }
-.post .lvl { color: var(--mute); }
 .whisper { color: var(--mute); }
 
 /* deep threads (flamewars): full indent for 4 levels, then compact so level 20 still fits */
@@ -587,7 +586,6 @@ html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or
 /* pages whose column only has page sections (bookmarks, fr): start level with the title */
 .nodecol > section:first-child { padding-top: 0; border-top: 0; }
 
-.post .pa { flex-wrap: wrap; }  /* deep threads on phones: never wider than the screen */
 
 .post .ph .pick { margin: 0 8px 0 -2px; align-self: center; }  /* vybrať: in the post header, no label */
 
@@ -745,8 +743,6 @@ input[type=radio] { accent-color: var(--green); }
 .filterbar.on .field:first-child { border-color: var(--green); }
 .filterinfo { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin: 6px 0 4px; font-size: var(--fs-s); color: var(--green); }
 .filterinfo b { color: var(--white); }
-.post .ctx { font-size: var(--fs-s); color: var(--mute); margin: 1px 0 3px; }
-.post .ctx a { color: var(--green); }
 mark { background: none; color: var(--white); font-weight: 800; text-decoration: underline; text-decoration-color: var(--green); }
 /* pager: page numbers, newer/older, jump to first new */
 .pager .pages { display: inline-flex; gap: 2px; }
@@ -766,8 +762,7 @@ mark { background: none; color: var(--white); font-weight: 800; text-decoration:
 .entry h2 { font-size: var(--fs-l); }
 
 /* post titles: white links to the post; time is plain gray text */
-.post .pt a, .post .pt.re a { color: var(--white); }
-.post .pt.re a { font-weight: 400; }
+.post .pt a { color: var(--white); }
 .post .pt a:hover { text-decoration: underline; }
 span.when { color: var(--mute); }
 /* blog photos */
@@ -866,8 +861,7 @@ img.av.xs { --s: 16px; }
   .thread ol { margin-left: 8px; padding-left: 12px; }
   .post { grid-template-columns: 28px minmax(0, 1fr); gap: 0 10px; }
   .post .av { --s: 28px; }
-  .post .ph .vec { display: none; }
-  .mail { grid-template-columns: 1fr; border: 0; }
+    .mail { grid-template-columns: 1fr; border: 0; }
   .convos { border-right: 0; }
   .stream { display: none; }
   .mail.open .convos { display: none; }

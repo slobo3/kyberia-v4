@@ -6,6 +6,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _post import post as shared_post  # noqa: E402
 from _content import DATE, DAYS, FRIENDS, IDLE, LOCATION, MAIL, MAIN, POSTS, REPLIES, THREAD, THREAD_WITH, USERS, icon  # noqa: E402
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -24,45 +25,11 @@ def sep():
     return '<span class="sep">::</span>'
 
 
-def feed_item(p, score=True, show_day=False, rank=None):
+def feed_post(p):
+    """last / fr: the shared post component, with where it was written."""
     user, day, time, where, section, title, k, new, children, text = p
-    when = f"{DATE[day]} {time}" if show_day else time
-    t = f'<div class="ttl"><a href="submission.html">{e(title)}</a></div>' if title else ""
-    nn = f' <span class="new">NEW</span>' if new else ""
-    ch = f" {sep()} {children} children" if children else ""
-    kk = f'<span class="k">{k} K</span>' if k else ""
-    lead = f'<span class="rank">{rank}</span>' if rank else av(user)
-    fook = '<button class="btn ghost">fook</button>' if rank else ""
-    sc = f'<div class="score">{kk}<button class="btn">K+</button>{fook}</div>' if score else '<div class="score"></div>'
-    return f"""<li>
-  {lead}
-  <div>
-    <div class="where">v <a class="parent" href="forum.html">{e(where)}</a> {sep()} <a href="kyberia.html">{e(section)}</a></div>
-    {t}
-    <div class="by">{ulink(user)} {sep()} <a class="when" href="submission.html">{when}</a>{nn}</div>
-    <p class="txt">{e(text)}</p>
-  </div>
-  {sc}
-</li>"""
-
-
-def feed_post(p, show_day=False):
-    """last / fr: the same post component as a flat discussion, plus where it was written."""
-    user, day, time, where, section, title, k, new, children, text = p
-    when = f"{DATE[day]} {time}" if show_day else time
-    kk = f' {sep()} <span class="k">{k} K</span>' if k else ""
-    nn = f' {sep()} <span class="new">NEW</span>' if new else ""
-    t = f'<div class="pt">{e(title)}</div>' if title else ""
-    return f"""<li><article class="post">
-  {av(user)}
-  <div>
-    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="submission.html">{when}</a>{kk}{nn}</div>
-    <div class="pw">v <a href="forum.html">{e(where)}</a> {sep()} <a href="kyberia.html">{e(section)}</a></div>
-    {t}
-    <div class="pb"><p>{e(text)}</p></div>
-    <div class="pa"><button class="btn">odpovedať</button><button class="btn">K+</button></div>
-  </div>
-</article></li>"""
+    return shared_post(user, f"{DATE[day]} {time}", e(text), title=title, k=k, new=new,
+                       where=[(where, "forum.html"), (section, "kyberia.html")])
 
 
 def page(title, nav, node, body, side=""):
@@ -81,19 +48,17 @@ def head(h1):
     return f'  <div class="head">\n    <h1>{e(h1)}</h1>\n  </div>\n'
 
 
-# ── last: everything, grouped by day ───────────────────────────────────────
+# ── last: everything, newest first ─────────────────────────────────────────
 posts = sorted(POSTS, key=lambda p: (p[1], [-int(x) for x in p[2].split(":")]))
 body = head("last")
 body += '  <div class="filters"><span class="seg" role="group" aria-label="filter"><a href="#" aria-current="true">všetko</a><a href="#">len nové</a><a href="#">bez ignorovaných</a></span></div>\n'
-for day in sorted({p[1] for p in posts}):
-    label = DAYS[day] if day < len(DAYS) else DATE[day]
-    body += f'  <h2 class="day">{label}</h2>\n  <ol class="thread">\n' + "\n".join(feed_post(p) for p in posts if p[1] == day) + "\n  </ol>\n"
+body += '  <ol class="thread flat">\n' + "\n".join(feed_post(p) for p in posts) + "\n  </ol>\n"
 body += '  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
 write("last.html", page("last", "last", "id=35; name=last; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo,sklo,paprika,mrazik; details=no", body))
 
 # ── fr: friends only ───────────────────────────────────────────────────────
 fr = [p for p in posts if p[0] in FRIENDS]
-body = head("fr") + '  <ol class="thread">\n' + "\n".join(feed_post(p, show_day=True) for p in fr) + '\n  </ol>\n  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
+body = head("fr") + '  <ol class="thread flat">\n' + "\n".join(feed_post(p) for p in fr) + '\n  </ol>\n  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
 side = '      <section>\n        <h2>priatelia</h2>\n        <ul class="who-list">\n' + "\n".join(
     f'          <li>{av(u, "av s on" if i < 5 else "av s")}<span class="u">{u}</span><span class="idle">{"online" if i < 5 else IDLE[i * 3]}</span></li>'
     for i, u in enumerate(FRIENDS)) + "\n        </ul>\n      </section>"
@@ -102,7 +67,7 @@ write("fr.html", page("fr", "fr", "id=3576777; name=fr; template=system; parent=
 # ── RE: replies to my nodes, rendered exactly like posts in a discussion ──
 from _re_block import re_post  # noqa: E402
 items = [re_post(icon, user, when, node, text, k, new) for user, when, node, quote, text, k, new in REPLIES]
-body = head("RE") + '  <ol class="thread">\n' + "\n".join(items) + '\n  </ol>\n  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
+body = head("RE") + '  <ol class="thread flat">\n' + "\n".join(items) + '\n  </ol>\n  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
 write("re.html", page("RE", "RE", "id=3579407; name=RE; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo; details=no", body))
 
 # ── K: ranked ──────────────────────────────────────────────────────────────
