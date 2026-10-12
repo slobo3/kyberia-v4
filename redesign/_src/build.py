@@ -165,10 +165,14 @@ def build(path):
         side = strip_cruft_sections(side)
         content = re.sub(r"\s*<div class=\"meta sub\">.*?</div>", "", content, flags=re.S)  # node data lives in the column now
         content = re.sub(r'\s*<ol class="coords".*?</ol>', "", content, flags=re.S)  # no coordinate trail (decided)
+        if node.get("template") == "system":  # the active top-bar item already names the page: title only for screen readers
+            content = re.sub(r'<div class="head">\s*<h1>(.*?)</h1>\s*</div>', r'<h1 class="sr">\g<1></h1>', content, count=1, flags=re.S)
         column = node_column(node, side.rstrip())
         wide = " wide" if 'class="mail' in content else ""
         if not column:
             wide += " solo"  # no left column at all
+        if node.get("template") == "system":
+            wide += " sys"
         page = f"""{header(nav)}<main class="wrap" id="obsah">
   <div class="shell{wide}">
     {column}

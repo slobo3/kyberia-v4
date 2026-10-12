@@ -617,6 +617,12 @@ html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or
 .collage a { display: block; }
 .collage a:hover img { outline: 1px solid var(--green); outline-offset: -1px; }
 
+/* system pages: no visible title, content starts right under the top bar */
+.shell.sys > .content { padding-top: 24px; }
+.shell.sys > .nodecol { padding-top: 24px; }
+.shell.sys > .content > .filters:first-child, .shell.sys > .content > h1.sr + .filters { padding-top: 0; }
+.shell.sys > .content > h1.sr + .cat, .shell.sys > .content > h1.sr + .day, .shell.sys > .content > h1.sr + .block { margin-top: 0; }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }

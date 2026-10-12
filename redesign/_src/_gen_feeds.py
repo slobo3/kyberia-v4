@@ -80,21 +80,10 @@ side = '      <section>\n        <h2>priatelia</h2>\n        <ul class="who-list
     for i, u in enumerate(FRIENDS)) + "\n        </ul>\n      </section>"
 write("fr.html", page("fr", "fr", "id=3576777; name=fr; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo,anima; details=no", body, side))
 
-# ── RE: replies to my nodes ────────────────────────────────────────────────
-items = []
-for user, when, node, quote, text, k, new in REPLIES:
-    kk = f'<span class="k">{k} K</span>' if k else ""
-    nn = ' <span class="new">NEW</span>' if new else ""
-    items.append(f"""<li>
-  {av(user)}
-  <div>
-    <blockquote class="mine"><a href="forum.html">{e(node)}</a> {sep()} „…{e(quote)}…“</blockquote>
-    <div class="by">{ulink(user)} {sep()} {when}{nn}</div>
-    <p class="txt">{e(text)}</p>
-  </div>
-  <div class="score">{kk}<button class="btn">odpovedať</button></div>
-</li>""")
-body = head("RE") + '  <ol class="feed replies">\n' + "\n".join(items) + '\n  </ol>\n  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
+# ── RE: replies to my nodes, rendered exactly like posts in a discussion ──
+from _re_block import re_post  # noqa: E402
+items = [re_post(icon, user, when, node, text, k, new) for user, when, node, quote, text, k, new in REPLIES]
+body = head("RE") + '  <ol class="thread">\n' + "\n".join(items) + '\n  </ol>\n  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
 write("re.html", page("RE", "RE", "id=3579407; name=RE; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo; details=no", body))
 
 # ── K: ranked ──────────────────────────────────────────────────────────────
