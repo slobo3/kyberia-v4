@@ -100,6 +100,26 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
 
 ---
 
+## 3b. One node, many templates
+
+Every page shows a **node**. Forum, nodeshell and user aren't different kinds of thing, just
+different **templates** (default renderers) for the same anatomy:
+
+```
+node details  →  own content  →  add form (if you may write)  →  children
+```
+
+| template | children render as | the add form creates |
+|---|---|---|
+| nodeshell | listing grouped by template (`forum::`, `nodeshell::`…) | a child node; template chosen in the form |
+| forum / submission | discussion: threaded or flat | a reply |
+| user | friend posts: flat, newest first | a friend post (and a friendship) |
+| system (bookmarks, mail, K…) | the page's own view, no node details | per page |
+
+Design consequences: the same components (node details, composer, post, listing row) appear
+under every template. A template never invents its own chrome. `template` in the node details is a
+link, because a template is a node too.
+
 ## 4. Components
 
 | component | notes |
@@ -144,5 +164,5 @@ what they do (`pridať`, `poslať`, `náhľad`). Footer:
 3. Is there a subtitle, an explainer or a counter line under a title?
 4. Does the page use the shared skeleton (node image + node column, title), unless it's main?
 5. Is K written as `N K`, in red, with no icon?
-6. Is it readable on a 390px phone: no horizontal scroll, node column below the content? Check **every** page in `_src/_mobile-preview.html` after **every** change.
+6. Is it readable on a 390px phone: no horizontal scroll, node column below the content? Check **every** page in `mobile.html` after **every** change.
 7. Are all `@media` rules still at the end of `k.css`? Add new base rules above the responsive section, never after it.

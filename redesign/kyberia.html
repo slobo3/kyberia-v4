@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>kyberia :: kyberia.sk</title>
-<link rel="stylesheet" href="k.css?v=e28ae625">
+<link rel="stylesheet" href="k.css?v=641ab9ad">
 </head>
 <body>
 <a class="skip" href="#obsah">preskočiť na obsah</a>
@@ -13,7 +13,7 @@
     <span class="grp"><a href="main.html">main</a><a href="kyberia.html" aria-current="page">kyberia</a><a href="fr.html">fr</a><a href="re.html">RE<span class="new">3</span></a><a href="bookmarks.html">bookmarks</a></span><span class="grp"><a href="mail.html">mail<span class="new">2</span></a><a href="last.html">last</a><a href="people.html">people</a></span><span class="grp"><a href="k.html">K</a></span>
   </nav>
   <form class="search-top" action="search.html" role="search"><input class="jump" name="q" type="search" placeholder="search" aria-label="search"></form>
-  <div class="me"><a href="k.html" class="g" title="K wallet">5 849 K</a><a href="user.html">slobo</a><img class="av s" src="img/u/slobo.gif" alt="" width="25" height="25"></div>
+  <div class="me"><a href="k.html" class="g" title="K wallet">5 849 K</a><a href="user.html">slobo</a><img class="av s" src="img/u/slobo.gif" alt="" width="25" height="25"><a href="#" class="g">setup</a><a href="#" class="btn ghost logout">logout</a></div>
 </div></header>
 <main class="wrap" id="obsah">
   <div class="shell">
@@ -22,7 +22,7 @@
         <img class="nodeimg" src="img/kyberia.gif" alt="">
         <dl class="kv">
           <dt>node</dt><dd>kyberia</dd>
-          <dt>template</dt><dd>nodeshell</dd>
+          <dt>template</dt><dd><a href="#" title="template je tiež nóda">nodeshell</a></dd>
           <dt>parent</dt><dd><a href="main.html">main</a></dd>
           <dt>owner</dt><dd><a href="user.html">fiktivny_admin</a></dd>
           <dt>viewers</dt><dd class="viewers"><a href="user.html">slobo</a>, <a href="user.html">anima</a>, <a href="user.html">bgdny</a>, <a href="user.html">polly</a>, <a href="user.html">ode</a></dd>
@@ -57,6 +57,16 @@
         <p>môže byť ownerom, mastermi a operátormi tejto nódy udelený silence. Opakované porušenie viac ako dvoch pravidiel môže viesť aj k banu.</p>
         <p class="notice">Masterom a operátorom: každý silence odôvodnite v <a href="forum.html">101 silence justification arXiv</a>.</p>
       </section>
+
+      <form class="composer" aria-label="pridať nódu do kyberia">
+        <div class="title-row">
+          <input class="field" placeholder="názov novej nódy" aria-label="názov">
+          <label class="tpl">template <select class="field typ" aria-label="template novej nódy"><option>forum</option><option>nodeshell</option><option>submission</option></select></label>
+          <label class="check"><input type="checkbox"> bez HTML</label>
+        </div>
+        <textarea class="field" placeholder="o čom to bude…" aria-label="obsah"></textarea>
+        <div class="send"><span></span><span><button type="button" class="btn">náhľad</button> <button type="submit" class="btn primary">pridať</button></span></div>
+      </form>
 
       <div class="listing">
         <h2>nodeshell:: <span class="g2">28</span></h2>

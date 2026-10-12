@@ -12,7 +12,7 @@ Design and look & feel live in [`design/DESIGN.md`](design/DESIGN.md).
 
 A Slovak/Czech members-only community running since 2001. It is not a forum *app*; it is
 **one tree of nodes**. A category, a forum, a post, a reply, a user profile, a "friend"
-comment and a bookmark category are all the same thing: a *node* with a type, a parent,
+comment and a bookmark category are all the same thing: a *node* with a template, a parent,
 an owner, content, and permissions. Everything the site does is an *operation* (a green
 button) performed on a node.
 
@@ -43,7 +43,7 @@ skins, polls, stats.
 | `id` | integer, global, monotonically increasing. URL is `/id/{id}`. Node `1` is the root ("vrchol hierarchie"), the only node without a parent. |
 | `name` | title. For replies, auto-defaults to `Re: <parent name>`, then `Re[2]:`, `Re[3]:`… by depth. |
 | `content` | HTML body (sanitised) or plain text (`NO HTML` checkbox). `nl2br` flag per node. |
-| `type` | one of the types in §2.2. Decides the view template and allowed operations. |
+| `template_id` | the node's **template** (§2.2), itself a node. Decides how the node and its children render and which operations are offered. **Not a fixed type:** it can be changed via configure. |
 | `parent_id` | the primary parent. |
 | `vector` | materialized path of ancestor ids from root to self. Observed format: 8-digit zero-padded ids concatenated, e.g. `00000101 03391807 08479011`. Shown as "cwbe coordinatez" (one ancestor id per line) and as a tiny id-path above each post. Depth = number of segments. |
 | `owner_id` | user (node) who created it. Can be changed (`set_creator`). |
@@ -54,20 +54,39 @@ skins, polls, stats.
 | `external_link` | optional, e.g. `db://user` on user nodes **[inferred: internal marker]**. |
 | counters | `k` (K received), `children_count`, `descendants_count`, `views`, `last_child_at`, `last_descendant_at`. Denormalised; needed for listings. |
 
-### 2.2 Node types (MVP)
+### 2.2 Everything is a node; templates are just defaults (decided, core principle)
 
-| type | what it is | default view |
+There are no hard-coded "kinds" of thing. A category, forum, post, user, friend comment,
+bookmark category, even system pages (bookmarks, mail, K…) are **nodes**. What makes them look and
+behave differently is the node's **template**:
+
+- A template is **itself a node** (as on kyberia: `template: 4` links to `/id/4`), with a name and
+  a renderer behind it.
+- The template decides three things only: (1) how the node's own content renders, (2) how its
+  **children** render, (3) which operations are offered. Permissions still decide who may do what.
+- **Every node has the same anatomy**: node details (image, node, template, parent, owner, viewers,
+  created, updated, permissions), own content, **add form** (if you may write), children.
+- **Any node can switch template** in configure (e.g. an article becomes a forum). Nothing is lost:
+  the same node, the same children, rendered differently.
+- New templates can be added later **without changing the data model**.
+
+**Default templates (MVP):**
+
+| template | children render as | add form creates |
 |---|---|---|
-| `nodeshell` | container/category ("Hudba", "Compz & Net"). Holds forums and other nodeshells. | header content + **child listing** (one line per child) |
-| `forum` | a discussion topic. Children are posts. | header content + **add form** + **threaded discussion** |
-| `submission` | a post/reply. Can itself have replies (threads are submission trees). Also used for standalone articles/notes. | the post + its sub-thread |
-| `user` | a user profile. Content is the user's free-form "about" HTML. Children are `friend` nodes and profile comments. | profile + discussion |
-| `friend` | "a comment about a user" created under that user's node; creating one = adding that user as friend. | rendered as post |
-| `article` | factual piece; can be promoted to main page; can be converted to forum. **MVP: treat as `submission` with a flag.** | |
-| `data` | uploaded file with access control. **Post-MVP.** | |
-| `link` | a hard-link created by `put`; appears in listings as `link:: <name>`. Implemented as a synapse row, not a real node (§2.3). | |
+| `nodeshell` | a listing grouped by the children's templates (`nodeshell::`, `forum::`, `submission::`, `link::`) | a child node of any template (default: forum) |
+| `forum` | a discussion, threaded or flat (view switch) | a reply (`submission`) |
+| `submission` | its replies as a thread | a reply |
+| `user` | friend posts: flat, chronological, newest first | a friend post; posting makes you a friend |
+| `friend` | (a friend post itself; renders like a post) | — |
+| `system:*` | bookmarks, mail, last, RE, fr, people, K, search: their special views; no node details | per page (mail: a message) |
+| `article` | **MVP: a submission with a "promotable to main" flag** | — |
+| `data` | uploaded file with access control. **Post-MVP.** | — |
 
-Listings print the type as a lowercase prefix: `nodeshell:: Hudba :: (305 children) NEW DESCENDANT 12 K (evad)`.
+`link` is not a template: a `put` hard-link is a synapse row (§2.3) that appears in listings as
+`link:: <name>`.
+
+Listings print the child's template as a lowercase prefix: `nodeshell:: Hudba :: (305 children) 12 new 12 K (evad)`.
 
 ### 2.3 Synapses (links between nodes)
 
@@ -84,7 +103,7 @@ Listings print the type as a lowercase prefix: `nodeshell:: Hudba :: (305 childr
 
 ## 3. Users, identity, presence
 
-- A user **is a node** of type `user`. Login name = node name.
+- A user **is a node** with the `user` template. Login name = node name.
 - Fields beyond the node: `login`, `password_hash`, `email`, `mood` (short status text plus a
   mood list), `mail_notify` setting, `listing_amount` (default 200), `listing_order`
   (`najnovšie hore` = newest first), `last_action_at`, `current_node_id` (where they are now).
@@ -263,7 +282,8 @@ visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
 
 ### In
 1. Auth: login/logout, gated registration (admin approval), password change.
-2. Node tree with types `nodeshell`, `forum`, `submission`, `user`, `friend`.
+2. Node tree where every node has a `template_id`; default templates `nodeshell`, `forum`, `submission`, `user`,
+   `friend` and the `system:*` pages. Templates are nodes; any node can switch template.
 3. Node view with sidebar meta (owner, parent, template/type, coordinates, permissions,
    created/updated, K, children/descendants), child listing, threaded/flat discussion, add form.
 4. Create child nodes, reply, preview, edit own, configure (subset in §4).
@@ -313,7 +333,7 @@ Keep the system aliases (`/id/19`, `/id/24`, …) as redirects so old links work
 ## 11. Data model (Postgres sketch)
 
 ```sql
-nodes(id bigint pk, name text, content text, type text, parent_id bigint,
+nodes(id bigint pk, name text, content text, template_id bigint /* -> nodes.id */, parent_id bigint,
       path bigint[] /* vector */, depth int, owner_id bigint,
       system_access text, external_access bool, nl2br bool, no_html bool,
       image text, external_link text,

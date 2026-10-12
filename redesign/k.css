@@ -604,6 +604,14 @@ html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or
 .nodecol .kv dd.views a[aria-current] { color: var(--white); font-weight: 700; }
 .nodecol .kv dd.views a + a::before { content: "::"; color: var(--mute); margin: 0 .4em; font-weight: 400; }
 
+/* add form on nodeshells: name + type */
+.composer .title-row .field.typ { flex: 0 0 auto; width: auto; }
+/* top bar: setup + logout */
+.top .me .logout { height: 26px; padding: 0 8px; color: var(--white); border-color: var(--rule-2); }
+
+.composer .tpl { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-s); color: var(--mute); white-space: nowrap; }
+.nodecol .kv dd a[title^="template"] { color: var(--white); }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }

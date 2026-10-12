@@ -52,7 +52,7 @@ def header(active):
     {"".join(groups)}
   </nav>
   <form class="search-top" action="search.html" role="search"><input class="jump" name="q" type="search" placeholder="search" aria-label="search"></form>
-  <div class="me"><a href="k.html" class="g" title="K wallet">5 849 K</a><a href="user.html">slobo</a><img class="av s" src="img/u/slobo.gif" alt="" width="25" height="25"></div>
+  <div class="me"><a href="k.html" class="g" title="K wallet">5 849 K</a><a href="user.html">slobo</a><img class="av s" src="img/u/slobo.gif" alt="" width="25" height="25"><a href="#" class="g">setup</a><a href="#" class="btn ghost logout">logout</a></div>
 </div></header>
 """
 
@@ -105,7 +105,7 @@ def node_column(node, extra):
         {image}
         <dl class="kv">
           <dt>node</dt><dd>{e(node["name"])}</dd>
-          <dt>template</dt><dd>{e(node["template"])}</dd>
+          <dt>template</dt><dd><a href="#" title="template je tiež nóda">{e(node["template"])}</a></dd>
           <dt>parent</dt><dd>{parent}</dd>
           <dt>owner</dt><dd>{user_link(node["owner"])}</dd>
           <dt>viewers</dt><dd class="viewers">{viewers}</dd>
