@@ -17,7 +17,7 @@ def write(name, text):
     print("wrote", name)
 
 
-def row(label, control, action="uložiť", hint=""):
+def row(label, control, action="", hint=""):
     h = f'<p class="hint">{hint}</p>' if hint else ""
     a = f'<button class="btn" type="button">{action}</button>' if action else ""
     return f"""      <div class="setrow">
@@ -49,18 +49,18 @@ conf_body = f"""  <div class="head">
     row("názov", '<input class="field" value="&lt;b&gt;kyberia v4&lt;/b&gt;: redizajn">', hint='náhľad: <span class="preview"><b>kyberia v4</b>: redizajn</span> :: povolené &lt;b&gt;, &lt;i&gt;, &lt;font color/size&gt;…'),
 ])}
 {section("obrázok nódy", [
-    row("obrázok", '<span class="imgpick"><img src="img/kyberia.gif" alt="" width="62" height="77"><input type="file" aria-label="nový obrázok"></span>', "nahrať", "GIF, PNG alebo JPG, ideálne 120 × 150"),
+    row("obrázok", '<span class="imgpick"><img src="img/kyberia.gif" alt="" width="62" height="77"><input type="file" aria-label="nový obrázok"></span>', hint="GIF, PNG alebo JPG, ideálne 120 × 150"),
 ])}
 {section("template", [
-    row("template", '<select class="field"><option>forum</option><option>forum flat</option><option>nodeshell</option><option>submission</option><option>blog</option><option>data</option></select>', "zmeniť", "zmení len zobrazenie: obsah, deti, K aj práva ostanú"),
+    row("template", '<select class="field"><option>forum</option><option>forum flat</option><option>nodeshell</option><option>submission</option><option>blog</option><option>data</option></select>', hint="zmení len zobrazenie: obsah, deti, K aj práva ostanú"),
 ])}
 {section("umiestnenie", [
     row("parent", '<input class="field num id" value="63540" inputmode="numeric" aria-label="číslo nódy, kam presunúť">'
-                  '<p class="nodetitle"><a href="kyberia.html">Compz &amp; Net</a></p>', "presunúť"),
+                  '<p class="nodetitle"><a href="kyberia.html">Compz &amp; Net</a></p>'),
 ])}
 {section("prístup", [
-    row("system", '<span class="radios"><label><input type="radio" name="acc" checked> public</label><label><input type="radio" name="acc"> moderated</label><label><input type="radio" name="acc"> private</label><label><input type="radio" name="acc"> closed</label></span>'),
-    row("zvonka", '<label class="check"><input type="checkbox"> viditeľná aj pre neprihlásených</label>'),
+    row("system", '<span class="radios"><label><input type="radio" name="acc" checked> public</label><label><input type="radio" name="acc"> moderated</label><label><input type="radio" name="acc"> private</label></span>'),
+    row("external access", '<label class="check"><input type="checkbox"> viditeľná aj pre neprihlásených</label>'),
 ])}
 {section("práva", [
     row("ľudia", f'''<table class="rights">
@@ -69,12 +69,13 @@ conf_body = f"""  <div class="head">
 {rights}
           </tbody>
         </table>''', ""),
-    row("pridať", '<input class="field" placeholder="meno používateľa">', "pridať"),
+    row("pridať", '<input class="field num id" value="7004009" inputmode="numeric" aria-label="číslo používateľa"><p class="nodetitle"><a href="user.html">tichá_voda</a></p>', "pridať"),
 ])}
 {section("obsah", [
     row("text", '<textarea class="field" rows="8">Tu sa rieši redizajn kyberie: farby ostávajú, písmo a rozostupy sú nové. Návrhy, bugy a nápady píšte sem.</textarea><span class="radios"><label class="check"><input type="checkbox"> bez HTML</label><label class="check"><input type="checkbox" checked> nl2br</label></span>'),
 ])}
-  </div>"""
+  </div>
+  <div class="savebar"><a class="btn ghost" href="forum.html">zrušiť</a><button class="btn primary" type="submit">uložiť zmeny</button></div>"""
 write("conf.html",
       "<!-- title: configure :: kyberia v4 -->\n<!-- nav: node -->\n"
       "<!-- node: id=9190001; name=kyberia v4: redizajn; template=forum; parent=63540|Compz & Net|kyberia.html; owner=slobo; "
@@ -86,26 +87,26 @@ ignored = "".join(f'<span class="tag">{u} <button class="btn ghost" type="button
 setup_body = f"""  <div class="head"><h1>setup</h1></div>
   <div class="settings">
 {section("ty", [
-    row("ikona", f'<span class="imgpick"><img class="av" src="{icon("slobo")}" alt="" width="50" height="50"><input type="file" aria-label="nová ikona"></span>', "nahrať", "50 × 50, GIF môže byť animovaný"),
+    row("ikona", f'<span class="imgpick"><img class="av" src="{icon("slobo")}" alt="" width="50" height="50"><input type="file" aria-label="nová ikona"></span>', hint="50 × 50, GIF môže byť animovaný"),
     row("mood", '<input class="field" value="redizajnujem kyberiu">'),
 ])}
 {section("mail", [
     row("e-mail", '<input class="field" type="email" value="slobo@example.org">'),
-    row("upozornenia", '<select class="field"><option>len názov správy</option><option>celá správa</option><option>nič</option></select>'),
 ])}
 {section("čítanie", [
     row("na stranu", '<input class="field num" value="200" inputmode="numeric">', hint="koľko príspevkov ukázať naraz"),
     row("poradie", '<select class="field"><option>najnovšie hore</option><option>najstaršie hore</option></select>'),
 ])}
 {section("ignore", [
-    row("ignoruješ", f'<span class="tags">{ignored}</span><input class="field" placeholder="pridať meno">', "pridať"),
+    row("ignoruješ", f'<span class="tags">{ignored}</span><input class="field num id" value="7004021" inputmode="numeric" aria-label="číslo používateľa"><p class="nodetitle"><a href="user.html">mrak</a></p>', "pridať"),
 ])}
 {section("heslo", [
     row("staré heslo", '<input class="field" type="password" autocomplete="current-password">', ""),
     row("nové heslo", '<input class="field" type="password" autocomplete="new-password">', ""),
     row("ešte raz", '<input class="field" type="password" autocomplete="new-password">', "zmeniť heslo"),
 ])}
-  </div>"""
+  </div>
+  <div class="savebar"><a class="btn ghost" href="main.html">zrušiť</a><button class="btn primary" type="submit">uložiť zmeny</button></div>"""
 write("setup.html",
       "<!-- title: setup -->\n<!-- nav: node -->\n"
       "<!-- node: id=5001001; name=slobo; template=user; parent=||; owner=slobo; viewers=slobo; "

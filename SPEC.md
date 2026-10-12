@@ -48,8 +48,8 @@ skins, polls, stats.
 | `vector` | materialized path of ancestor ids from root to self. Observed format: 8-digit zero-padded ids concatenated, e.g. `00000101 03391807 08479011`. Shown as "cwbe coordinatez" (one ancestor id per line) and as a tiny id-path above each post. Depth = number of segments. |
 | `owner_id` | user (node) who created it. Can be changed (`set_creator`). |
 | `created_at`, `updated_at` | shown as `dd.mm.yyyy - hh:mm:ss`. Posts show `(modif: …)` if edited. |
-| `system_access` | `public` / `moderated` / `private` / `closed`. See §4. |
-| `external_access` | bool: visible to anonymous/web visitors ("net: yes"). |
+| `system_access` | `public` / `moderated` / `private`. See §4. |
+| `external_access` | bool: visible to anonymous/web visitors ("net: yes"); labelled **external access** in configure. |
 | `image` | optional node icon (avatar for users), stored as `/images/nodes/{a}/{b}/{id}.gif`. |
 | `external_link` | optional, e.g. `db://user` on user nodes **[inferred: internal marker]**. |
 | counters | `k` (K received), `children_count`, `descendants_count`, `views`, `last_child_at`, `last_descendant_at`. Denormalised; needed for listings. |
@@ -157,7 +157,6 @@ net:    yes         ← node.external_access
 | `public` | all members | all members |
 | `moderated` | all members | members, but masters/operators can hide/move/silence |
 | `private` | only users on the node's access list | access list |
-| `closed` | all members | owner/masters only |
 
 Per-node, per-user access rows: `node_access(node_id, user_id, read, write, master, operator, silence, ban)`.
 
@@ -250,7 +249,9 @@ Every page — including system pages (bookmarks /id/19, mail /id/24, last, peop
 uses the same layout: **left node column** (starting with the node image) + content (title, then
 the page). No coordinate trail. **Exception: main** has its own front-page layout.
 The node column shows only: node image, `node`, `template`, `parent`, `owner`, `viewers` (plain names, not
-avatars), `created`, `updated`, `permissions` (your rights :: access) and links `stats :: source :: commanders :: dendrites & axones`. Below that, page-specific
+avatars), `created`, `updated`, `permissions` (your rights :: access) and links `stats :: source :: commanders :: dendrites & axones`
+(stats: visits over time, frequent visitors, who gave K, counts; source: the node's raw HTML, read-only;
+commanders: owner, masters, operators, current silences with links to their justification). Below that, page-specific
 sections (friends online, K wallet, fook list…). Dropped as cruft: permissions box,
 visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
 **Exceptions:** main has its own layout; **system nodes** (mail, bookmarks, RE, fr, last, people, K, search…) show no node details at all.
@@ -435,7 +436,7 @@ visit.last_visit_at)` for ~100 bookmarks per page load. Use `last_child_at` /
 ---
 
 ## 13. Open questions for the community/admins
-1. Exact semantics of `moderated` vs `closed`, and of the `operator` vs `master` roles.
+1. Exact semantics of `moderated`, and of the `operator` vs `master` roles. (`closed` dropped.)
 2. ~~Registration approval~~: member voting (decided). Still need the written rules.
 3. ~~K~~: wallet = daily allowance + K received (decided). Allowance size TBD.
 4. What the number next to each name in the sidebar visitor list means.

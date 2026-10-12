@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>setup :: kyberia.sk</title>
-<link rel="stylesheet" href="k.css?v=c0f8f705">
+<link rel="stylesheet" href="k.css?v=99515c90">
 </head>
 <body>
 <a class="skip" href="#obsah">preskočiť na obsah</a>
+<div class="showcase-strip"><a class="showcase-back" href="index.html">← kyberia v4 showcase</a></div>
 <header class="top"><div class="top-in">
   <nav class="nav" aria-label="hlavná navigácia">
     <span class="grp"><a href="main.html">main</a><a href="kyberia.html">kyberia</a><a href="fr.html">fr</a><a href="re.html">RE<span class="new">3</span></a><a href="bookmarks.html">bookmarks</a></span><span class="grp"><a href="mail.html">mail<span class="new">2</span></a><a href="last.html">last</a><a href="people.html">people</a><a href="blogs.html">blogs</a></span><span class="grp"><a href="k.html">K</a></span>
@@ -38,7 +39,7 @@
           <dt>created</dt><dd>06.10.2014 23:38</dd><dt>updated</dt><dd>12.10.2026 20:02</dd><dt>permissions</dt><dd>r, w, owner :: private</dd>
         </dl>
       </section>
-      <p class="nodelinks"><a href="#">stats</a><a href="#">source</a><a href="#">commanders</a><a href="synapses.html">dendrites &amp; axones</a></p>
+      <p class="nodelinks"><a href="stats.html">stats</a><a href="source.html">source</a><a href="commanders.html">commanders</a><a href="synapses.html">dendrites &amp; axones</a></p>
 
     </aside>
     <div class="content">
@@ -49,12 +50,12 @@
       <div class="setrow">
         <div class="setlabel">ikona</div>
         <div class="setctl"><span class="imgpick"><img class="av" src="img/u/slobo.gif" alt="" width="50" height="50"><input type="file" aria-label="nová ikona"></span><p class="hint">50 × 50, GIF môže byť animovaný</p></div>
-        <div class="setact"><button class="btn" type="button">nahrať</button></div>
+        <div class="setact"></div>
       </div>
       <div class="setrow">
         <div class="setlabel">mood</div>
         <div class="setctl"><input class="field" value="redizajnujem kyberiu"></div>
-        <div class="setact"><button class="btn" type="button">uložiť</button></div>
+        <div class="setact"></div>
       </div>
     </section>
     <section class="setsec">
@@ -62,12 +63,7 @@
       <div class="setrow">
         <div class="setlabel">e-mail</div>
         <div class="setctl"><input class="field" type="email" value="slobo@example.org"></div>
-        <div class="setact"><button class="btn" type="button">uložiť</button></div>
-      </div>
-      <div class="setrow">
-        <div class="setlabel">upozornenia</div>
-        <div class="setctl"><select class="field"><option>len názov správy</option><option>celá správa</option><option>nič</option></select></div>
-        <div class="setact"><button class="btn" type="button">uložiť</button></div>
+        <div class="setact"></div>
       </div>
     </section>
     <section class="setsec">
@@ -75,19 +71,19 @@
       <div class="setrow">
         <div class="setlabel">na stranu</div>
         <div class="setctl"><input class="field num" value="200" inputmode="numeric"><p class="hint">koľko príspevkov ukázať naraz</p></div>
-        <div class="setact"><button class="btn" type="button">uložiť</button></div>
+        <div class="setact"></div>
       </div>
       <div class="setrow">
         <div class="setlabel">poradie</div>
         <div class="setctl"><select class="field"><option>najnovšie hore</option><option>najstaršie hore</option></select></div>
-        <div class="setact"><button class="btn" type="button">uložiť</button></div>
+        <div class="setact"></div>
       </div>
     </section>
     <section class="setsec">
       <h2>ignore</h2>
       <div class="setrow">
         <div class="setlabel">ignoruješ</div>
-        <div class="setctl"><span class="tags"><span class="tag">vlnka <button class="btn ghost" type="button" aria-label="zrušiť ignore vlnka">×</button></span><span class="tag">bager <button class="btn ghost" type="button" aria-label="zrušiť ignore bager">×</button></span></span><input class="field" placeholder="pridať meno"></div>
+        <div class="setctl"><span class="tags"><span class="tag">vlnka <button class="btn ghost" type="button" aria-label="zrušiť ignore vlnka">×</button></span><span class="tag">bager <button class="btn ghost" type="button" aria-label="zrušiť ignore bager">×</button></span></span><input class="field num id" value="7004021" inputmode="numeric" aria-label="číslo používateľa"><p class="nodetitle"><a href="user.html">mrak</a></p></div>
         <div class="setact"><button class="btn" type="button">pridať</button></div>
       </div>
     </section>
@@ -110,6 +106,7 @@
       </div>
     </section>
   </div>
+  <div class="savebar"><a class="btn ghost" href="main.html">zrušiť</a><button class="btn primary" type="submit">uložiť zmeny</button></div>
     </div>
   </div>
 </main>

@@ -182,6 +182,12 @@ In the showcase every link opens the example page of the target node's template:
 **submission**, forum names to **forum**, sections to the **nodeshell** (kyberia), people to
 **user**, diaries to **blog**, files to **data**.
 
+## 4b4. Settings forms
+
+Configure and setup are **one form, one save**: a single `uložiť zmeny` (with `zrušiť`) pinned to the bottom of the
+screen while scrolling. Rows have no buttons of their own, except separate actions (`pridať` a person, `zmeniť heslo`).
+Moving a node takes the target **node number**; the target's title is shown under the field.
+
 ## 4c. Styled titles
 
 Node names may carry the author's inline HTML (`<b>`, `<font color>`, `<font size>`…, see SPEC §2.4).

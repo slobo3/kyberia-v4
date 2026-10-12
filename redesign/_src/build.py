@@ -56,6 +56,7 @@ def header(active, title=""):
     mgroups = ['<div class="grp">' + "".join(ls) + "</div>" for ls in mobile_sets]
     here = e(title or active)
     return f"""<a class="skip" href="#obsah">preskočiť na obsah</a>
+<div class="showcase-strip"><a class="showcase-back" href="index.html">← kyberia v4 showcase</a></div>
 <header class="top"><div class="top-in">
   <nav class="nav" aria-label="hlavná navigácia">
     {"".join(groups)}
@@ -130,7 +131,7 @@ def node_column(node, extra):
           {dates}
         </dl>
       </section>
-      <p class="nodelinks"><a href="#">stats</a><a href="#">source</a><a href="#">commanders</a><a href="synapses.html">dendrites &amp; axones</a></p>
+      <p class="nodelinks"><a href="stats.html">stats</a><a href="source.html">source</a><a href="commanders.html">commanders</a><a href="synapses.html">dendrites &amp; axones</a></p>
 {extra}
     </aside>"""
 
