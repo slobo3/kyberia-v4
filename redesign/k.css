@@ -762,6 +762,17 @@ mark { background: none; color: var(--white); font-weight: 800; text-decoration:
 .entry.full p:last-child { margin-bottom: 0; }
 .entry h2 { font-size: var(--fs-l); }
 
+/* post titles: white links to the post; time is plain gray text */
+.post .pt a, .post .pt.re a { color: var(--white); }
+.post .pt.re a { font-weight: 400; }
+.post .pt a:hover { text-decoration: underline; }
+span.when { color: var(--mute); }
+/* blog photos */
+.entry .bimg { margin: 12px 0 14px; }
+.entry .bimg img { display: block; width: 100%; max-width: 640px; height: auto; image-rendering: pixelated; border: 1px solid var(--rule-2); }
+.entry .bimg figcaption { margin-top: 5px; font-size: var(--fs-xs); color: var(--mute); }
+.entry .bthumb { display: block; width: 100%; max-width: 320px; height: auto; margin: 8px 0; image-rendering: pixelated; border: 1px solid var(--rule-2); }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }

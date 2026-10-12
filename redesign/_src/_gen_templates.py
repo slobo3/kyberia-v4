@@ -12,7 +12,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 e = html.escape
 SEP = '<span class="sep">::</span>'
 PICK = '<input class="pick" type="checkbox" aria-label="vybrať">'
-COST = '<span class="cost" title="pridanie stojí 1 K">−1 K</span> '
+COST = ''
 
 
 def post(user, when, text, title=None, k=None, new=False, level=None, children=""):
@@ -86,17 +86,25 @@ body = f"""  <div class="head">
 write("submission.html",
       "<!-- title: Prečo sa mestské stromy oplatia viac ako klimatizácia -->\n<!-- nav: node -->\n"
       "<!-- node: id=9185501; name=Prečo sa mestské stromy oplatia…; template=submission; parent=63611|Veda a technológie|kyberia.html; "
-      "owner=anima; viewers=slobo,cín,mrak,lemur; img=img/n/main0.gif; created=12.10.2026 09:14; updated=12.10.2026 09:31; perms=r, w :: public; view=threaded -->\n"
+      "owner=anima; viewers=slobo,cín,mrak,lemur; img=img/n/main0.gif; created=12.10.2026 09:14; updated=12.10.2026 09:31; perms=r, w :: public -->\n"
       f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
 
 # ── blog: a user's diary (denník); entries newest first ───────────────────
-from _blogdata import DRIENKA  # noqa: E402
-# blog entries on kyberia are long: show them in full, no K numbers in the entry meta
+from _blogdata import DRIENKA, IMG  # noqa: E402
+
+
+def block(b):
+    if b[0] == IMG:
+        return f'<figure class="bimg"><img src="{b[1]}" alt="{e(b[2])}" width="640" height="420"><figcaption>{e(b[2])}</figcaption></figure>'
+    return f"<p>{e(b[1])}</p>"
+
+
+# blog entries on kyberia are long (often with photos): show them in full, no K numbers in the entry meta
 entries = "\n".join(f"""    <article class="entry full">
       <h2><a href="submission.html">{e(t)}</a></h2>
       <div class="m"><a href="user.html">drienka</a> {SEP} <a class="when" href="submission.html">{when}</a> {SEP} videné {views}× {SEP} <a href="submission.html">{subs} reakcií</a></div>
-      {"".join(f"<p>{e(par)}</p>" for par in pars)}
-    </article>""" for t, when, views, subs, pars in DRIENKA)
+      {"".join(block(b) for b in blocks)}
+    </article>""" for t, when, views, subs, blocks in DRIENKA)
 body = f"""  <div class="head">
     <h1>denník: drienka</h1>
     <div class="actions">

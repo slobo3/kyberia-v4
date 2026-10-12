@@ -18,9 +18,10 @@ items = "\n".join(f"""    <article class="entry">
       <div>
         <h2><a href="submission.html">{e(t)}</a></h2>
         <div class="m"><a href="blog.html">denník: {e(u)}</a> {SEP} <a class="when" href="submission.html">{when}</a> {SEP} videné {v}× {SEP} <a href="submission.html">{r} reakcií</a></div>
-        <p>{e(x)}</p>
+        {f'<img class="bthumb" src="{img}" alt="" width="320" height="210">' if img else ""}
+        {f"<p>{e(x)}</p>" if x else ""}
       </div>
-    </article>""" for u, t, when, v, r, x in OVERVIEW)
+    </article>""" for u, t, when, v, r, x, img in OVERVIEW)
 
 body = f"""  <div class="head"><h1>blogs</h1></div>
   <div class="entries list">

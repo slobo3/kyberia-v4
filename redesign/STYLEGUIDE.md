@@ -115,7 +115,8 @@ node details  →  own content  →  add form (if you may write)  →  children
 | template | children render as | the add form creates |
 |---|---|---|
 | nodeshell | listing grouped by template (`forum::`, `nodeshell::`…) | a child node; template chosen in the form |
-| forum / submission | discussion: threaded or flat | a reply |
+| forum / submission | threaded discussion | a reply |
+| forum flat | flat discussion, chronological | a reply |
 | user | friend posts: flat, newest first | a friend post (and a friendship) |
 | blog | diary entries newest first (title, date, views, replies, K, excerpt) | a new entry |
 | data | file preview + details + download, then a discussion | a reply |
@@ -146,11 +147,11 @@ a blog, a file…) highlights nothing, on desktop and phone.
 | top bar | Bracketed groups in green, white links; the active link is a green block with black text. Red badge for new mail and RE. Search field, wallet, user. |
 | child listing (`.rows`) | Grouped under `nodeshell::`, `forum::`, `submission::`, `link::`. Columns: name (white) · children (gray) · `N new`/`descdnt` (red) · K (red) · owner (green). |
 | bookmarks (`.bm`) | Category heading (green) + total `N new`. Rows: name · `N new` · `descdnt` · `changed` · owner. |
-| post | 40px avatar · white name · gray time · `level N` · red `NEW`/K · title (green; `Re[n]:` in gray) · green body · quiet actions (`odpovedať`, `K+`); unlabeled select checkbox after the name; the time is a link to the post node (gray, white + underline on hover). |
+| post | 40px avatar · white name · gray time · `level N` · red `NEW`/K · title (green; `Re[n]:` in gray) · green body · quiet actions (`odpovedať`, `K+`); unlabeled select checkbox after the name; the post title (`Re: …` or its own) is a **white link** to the post; the time is plain gray text. |
 | thread | Nested lists with a dark-green guide line. Full indent for 4 levels, then compact, so a 20-deep flamewar still fits. |
 | user page | Avatar, coordinate trail, name, `K` + actions (`mail`, `book`, `K+`, `ignore`, `ignore_mail`), tabs, userinfo frame, then **friends**: flat, chronological, newest first. Posting there makes you a friend. |
 | feed item | Used by last, RE, fr, sub, K and search: where (green, parent white bold) · title · who/when · text · score column. |
-| composer | Panel with title field, `bez HTML`, a formatting row, textarea, `náhľad` and `pridať`. The K cost (`−1 K`, red) sits right before `pridať`: **posting spends K**. |
+| composer | Panel with title field, `bez HTML`, a formatting row, textarea, `náhľad` and `pridať`. Posting spends K, but the cost is **not** shown in the composer (only in the wallet ledger). |
 | mail | Conversations list plus a stream; each message shows where the sender was. |
 | filter bar | Field + scope (text / názov / user) + `filtrovať`, above the children of any node. Results: flat posts with their place (`v Re[n]: …`) and the match highlighted; one line `N od X` + `zrušiť filter`. |
 | pager | `novšie` · page numbers (current in a green block) · `staršie` · `skoč na prvé nové` (red). |
@@ -177,8 +178,8 @@ a blog, a file…) highlights nothing, on desktop and phone.
 
 ## 4b3. Links go to the template's page
 
-In the showcase every link opens the example page of the target node's template: post titles and post
-times go to **submission**, forum names to **forum**, sections to the **nodeshell** (kyberia), people to
+In the showcase every link opens the example page of the target node's template: post titles go to
+**submission**, forum names to **forum**, sections to the **nodeshell** (kyberia), people to
 **user**, diaries to **blog**, files to **data**.
 
 ## 4c. Styled titles

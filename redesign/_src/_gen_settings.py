@@ -52,8 +52,7 @@ conf_body = f"""  <div class="head">
     row("obrázok", '<span class="imgpick"><img src="img/kyberia.gif" alt="" width="62" height="77"><input type="file" aria-label="nový obrázok"></span>', "nahrať", "GIF, PNG alebo JPG, ideálne 120 × 150"),
 ])}
 {section("template", [
-    row("template", '<select class="field"><option>forum</option><option>nodeshell</option><option>submission</option><option>blog</option><option>data</option></select>', "zmeniť", "zmení len zobrazenie: obsah, deti, K aj práva ostanú"),
-    row("zobrazenie", '<span class="seg"><a href="#" aria-current="true">threaded</a><a href="#">flat</a></span>', ""),
+    row("template", '<select class="field"><option>forum</option><option>forum flat</option><option>nodeshell</option><option>submission</option><option>blog</option><option>data</option></select>', "zmeniť", "zmení len zobrazenie: obsah, deti, K aj práva ostanú"),
 ])}
 {section("umiestnenie", [
     row("parent", '<input class="field" value="Compz &amp; Net (63540)">', "presunúť", "presunie nódu aj so všetkými deťmi"),
@@ -78,7 +77,7 @@ conf_body = f"""  <div class="head">
 write("conf.html",
       "<!-- title: configure :: kyberia v4 -->\n<!-- nav: node -->\n"
       "<!-- node: id=9190001; name=kyberia v4: redizajn; template=forum; parent=63540|Compz & Net|kyberia.html; owner=slobo; "
-      "viewers=slobo,kvasar,lemur; img=img/kyberia.gif; created=01.10.2026 20:00; updated=12.10.2026 20:02; perms=r, w, owner :: public; view=threaded -->\n"
+      "viewers=slobo,kvasar,lemur; img=img/kyberia.gif; created=01.10.2026 20:00; updated=12.10.2026 20:02; perms=r, w, owner :: public -->\n"
       f'<main class="wrap" id="obsah">\n{conf_body}\n</main>\n')
 
 # ── setup: my own settings ────────────────────────────────────────────────

@@ -75,7 +75,8 @@ behave differently is the node's **template**:
 | template | children render as | add form creates |
 |---|---|---|
 | `nodeshell` | a listing grouped by the children's templates (`nodeshell::`, `forum::`, `submission::`, `link::`) | a child node of any template (default: forum) |
-| `forum` | a discussion, threaded or flat (view switch) | a reply (`submission`) |
+| `forum` | a threaded discussion | a reply (`submission`) |
+| `forum flat` | a flat discussion: all posts chronological, no nesting (a separate template, not a view switch) | a reply |
 | `submission` | its replies as a thread | a reply |
 | `user` | friend posts: flat, chronological, newest first | a friend post; posting makes you a friend |
 | `friend` | (a friend post itself; renders like a post) | — |
@@ -189,8 +190,8 @@ management, and for user nodes: password, email, mail notify, mood, listing amou
   treasury, 🦆/🐘 or crypto. Allowance size and whether unspent allowance accumulates: **[decide;
   match the old rules]**.
 - **Posting spends K (decided).** Creating a node (post, reply, forum, friend post) costs K from the
-  wallet: **1 K per node** in the MVP (configurable per template later). The composer shows the cost next
-  to the add button (`−1 K pridať`); with an empty wallet you can't post. The daily ledger shows it as
+  wallet: **1 K per node** in the MVP (configurable per template later). The cost is **not** shown in the composer;
+  with an empty wallet you can't post. The daily ledger shows it as
   "minul si na príspevky".
 - **K page content:** what gets K is mostly **photos, videos and longer posts** (plus the odd sharp one-liner).
   The K list shows media inline (image, embedded video) and long text in full; each entry reads
@@ -249,7 +250,7 @@ Every page — including system pages (bookmarks /id/19, mail /id/24, last, peop
 uses the same layout: **left node column** (starting with the node image) + content (title, then
 the page). No coordinate trail. **Exception: main** has its own front-page layout.
 The node column shows only: node image, `node`, `template`, `parent`, `owner`, `viewers` (plain names, not
-avatars), `created`, `updated`, `permissions` (your rights :: access), `view` (threaded :: flat, discussion nodes), and links `stats :: source :: commanders :: dendrites & axones`. Below that, page-specific
+avatars), `created`, `updated`, `permissions` (your rights :: access) and links `stats :: source :: commanders :: dendrites & axones`. Below that, page-specific
 sections (friends online, K wallet, fook list…). Dropped as cruft: permissions box,
 visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
 **Exceptions:** main has its own layout; **system nodes** (mail, bookmarks, RE, fr, last, people, K, search…) show no node details at all.
@@ -267,7 +268,7 @@ visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
 3. The discussion.
 
 ### 7.2 Thread rendering
-- Default is **threaded**; `show[ 2 | 3 ] flat` switches the view mode (flat = chronological).
+- Threaded vs flat is **the template** (`forum` vs `forum flat`), switched in configure like any template.
 - Each post: tiny vector path line, then avatar (50px) on the left, then a box:
   - header bar: `login ☐ dd.mm.yyyy - hh:mm:ss level: N UP NEW`
     - `level` = depth below the viewed node; `UP` links to the parent post; `NEW` in red.

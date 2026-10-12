@@ -58,6 +58,6 @@ body = f"""  <div class="head">
 io.open("forum-filter.html", "w", encoding="utf-8").write(
     "<!-- title: filter: kvasar :: Kyberia session 2026 -->\n<!-- nav: node -->\n"
     "<!-- node: id=9184022; name=Kyberia session 2026; template=forum; parent=63528|Hudba|kyberia.html; owner=polly; "
-    "viewers=slobo,bgdny,kvasar,tichá_voda,sklo; img=img/session.svg; created=11.10.2026 21:40; updated=12.10.2026 21:03; perms=r, w :: public; view=threaded -->\n"
+    "viewers=slobo,bgdny,kvasar,tichá_voda,sklo; img=img/session.svg; created=11.10.2026 21:40; updated=12.10.2026 21:03; perms=r, w :: public -->\n"
     f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
 print("wrote forum-filter.html with", len(posts), "results")

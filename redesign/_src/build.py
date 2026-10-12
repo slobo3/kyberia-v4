@@ -161,6 +161,18 @@ def split_old_format(body):
     return m.group(1), ""
 
 
+def post_process(doc):
+    """Site-wide rules applied to every built page."""
+    # post titles ("Re: …" or own title) are white links to the post node
+    doc = re.sub(r'<div class="pt( re)?">Re: <a href="([^"]+)">(.*?)</a></div>',
+                 r'<div class="pt\1"><a href="\2">Re: \3</a></div>', doc)
+    doc = re.sub(r'<div class="pt( re)?">(?!<a )(.*?)</div>',
+                 r'<div class="pt\1"><a href="submission.html">\2</a></div>', doc)
+    # the time is plain text, not a link
+    doc = re.sub(r'<a class="when" href="[^"]*">(.*?)</a>', r'<span class="when">\1</span>', doc)
+    return doc
+
+
 def build(path):
     text = path.read_text(encoding="utf-8")
     title = re.search(r"<!-- title: (.*?) -->", text).group(1)
@@ -214,6 +226,7 @@ def build(path):
 </body>
 </html>
 """
+    html_doc = post_process(html_doc)
     (OUT / path.name).write_text(html_doc, encoding="utf-8")
     print("built", path.name)
 
