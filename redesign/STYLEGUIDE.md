@@ -154,7 +154,7 @@ a blog, a file…) highlights nothing, on desktop and phone.
 | composer | Panel with title field, `bez HTML`, a formatting row, textarea, `náhľad` and `pridať`. Posting spends K, but the cost is **not** shown in the composer (only in the wallet ledger). |
 | mail | Conversations list plus a stream; each message shows where the sender was. |
 | filter bar | Field + scope (text / názov / user) + `filtrovať`, above the children of any node. Results: flat posts with their place (`v Re[n]: …`) and the match highlighted; one line `N od X` + `zrušiť filter`. |
-| pager | `novšie` · page numbers (current in a green block) · `staršie` · `skoč na prvé nové` (red). |
+| pager | `novšie` · page numbers (current in a green block) · `staršie`. Above it, right-aligned, the line `vybrané K+ :: put do… :: delete_hardlink` for checked posts. |
 | segmented control | For view and sort switches (threads/chronological, 24 h/3 days…). |
 
 ---

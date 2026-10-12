@@ -29,32 +29,38 @@ def who(u, right):
 
 
 # ── stats ────────────────────────────────────────────────────────────────
-days = [("29.9.", 812), ("30.9.", 790), ("1.10.", 845), ("2.10.", 901), ("3.10.", 760), ("4.10.", 512), ("5.10.", 498),
-        ("6.10.", 870), ("7.10.", 905), ("8.10.", 880), ("9.10.", 932), ("10.10.", 799), ("11.10.", 560), ("12.10.", 1104)]
-top = max(v for _, v in days)
-bars = "\n".join(f'      <li><span class="bar" style="--v:{v / top:.3f}" title="{v} návštev"></span><span class="d">{d}</span></li>' for d, v in days)
-visitors = "\n".join(who(u, f"{n}×") for u, n in (("anima", 412), ("bgdny", 388), ("polly", 301), ("kvasar", 287), ("ode", 240), ("sova", 199)))
-kgivers = "\n".join(who(u, f'<span class="k">{n} K</span>') for u, n in (("drienka", 14), ("kremeň", 11), ("lemur", 9), ("anima", 7), ("paprika", 5)))
-stats = head("stats") + f"""  <dl class="bignums">
-    <div><dt>children</dt><dd>700</dd></div>
-    <div><dt>descendants</dt><dd>4 310 058</dd></div>
-    <div><dt>K</dt><dd class="k">120 K</dd></div>
-    <div><dt>návštevy dnes</dt><dd>1 104</dd></div>
-  </dl>
-  <section class="statsec">
-    <h2>návštevy, posledných 14 dní</h2>
-    <ol class="bars">
-{bars}
-    </ol>
-  </section>
-  <div class="statcols">
-    <section class="statsec"><h2>najčastejšie tu</h2><ol class="whos">
-{visitors}
-    </ol></section>
-    <section class="statsec"><h2>najviac K dali</h2><ol class="whos">
-{kgivers}
-    </ol></section>
-  </div>"""
+# As on kyberia (/id/{n}/1961037, by_visit, by_K): the node's visitor list. One row per person:
+# last visit, (N) NEW = items new for them here, booked = has it in bookmarks, K = gave the node K, visit count.
+# Three orderings of the same list: by last visit (default), by visits, by K (only those who gave K).
+VISITS = [  # (user, last visit, new for them, booked, gave K, visits)
+    ("slobo", "12.10.2026 22:44", 0, True, False, 666), ("anima", "12.10.2026 22:22", 0, True, True, 241),
+    ("bgdny", "12.10.2026 21:56", 0, False, False, 188), ("kvasar", "12.10.2026 21:27", 0, True, True, 1169),
+    ("polly", "12.10.2026 21:23", 0, True, False, 892), ("ode", "12.10.2026 21:23", 2, False, False, 159),
+    ("sova", "12.10.2026 20:09", 4, True, False, 83), ("lemur", "12.10.2026 18:40", 0, False, True, 412),
+    ("drienka", "12.10.2026 07:12", 11, True, True, 1890), ("kremeň", "11.10.2026 23:02", 17, False, True, 774),
+    ("hmlovina", "11.10.2026 14:03", 23, True, True, 979), ("paprika", "10.10.2026 09:30", 41, False, False, 120),
+    ("mrazik", "08.10.2026 19:45", 66, False, False, 64), ("ihla", "03.10.2026 10:43", 120, True, True, 551),
+    ("tichá_voda", "17.09.2026 13:42", 318, False, True, 240), ("k22", "22.04.2026 19:55", 2904, False, False, 3191),
+    ("rezbár", "22.04.2025 14:12", 9120, False, False, 2678),
+]
+
+
+def visit_row(u, last, new, booked, k, visits, rank=None):
+    flags = "".join(f'<span class="flag">{f}</span>' for f, on in (("booked", booked), ("K", k)) if on)
+    nn = f'<span class="new">{new} new</span>' if new else '<span class="none">0 new</span>'
+    r = f'<span class="rank">{rank}</span>' if rank else ""
+    return (f'      <li>{r}<img class="av s" src="{icon(u)}" alt="" width="25" height="25"><a href="user.html">{e(u)}</a>'
+            f'<span class="when">{last}</span>{nn}<span class="flags">{flags}</span><span class="cnt">{visits} visitz</span></li>')
+
+
+rows = "\n".join(visit_row(*v) for v in VISITS)
+stats = head("stats") + f"""  <div class="filters">
+    <span class="seg" role="group" aria-label="zoradiť"><a href="#" aria-current="true">posledná návšteva</a><a href="#">návštevy</a><a href="#">K</a></span>
+  </div>
+  <ol class="visits">
+{rows}
+  </ol>
+  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">ďalší</a></nav>"""
 write("stats.html", "stats :: kyberia", stats)
 
 # ── source: the node's raw HTML ──────────────────────────────────────────

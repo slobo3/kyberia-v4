@@ -188,12 +188,12 @@ number** (name shown on lookup). User settings (setup) are a separate page.
 
 ## 5. K (appreciation)
 
-- **K+** button on every node and in the discussion toolbar (bulk, using the checkboxes).
+- **K+** button on every node and under the discussion as a quiet line "vybrané K+ :: put do… :: delete_hardlink" (acts on the checked posts).
 - One K per user per node. Received K shows next to the node everywhere (`205 K`, red).
 - **K wallet, old style (decided):** every user has a wallet. It is refilled by a **daily
   allowance** and grows by every **K received** on your nodes. Giving K spends one from the
-  wallet. Shown on bookmarks as a **daily ledger**: K včera, + denný príspevok, + dostal si dnes,
-  − rozdal si dnes, − minul si na príspevky, = K teraz (and the current balance in the top bar). No transfers,
+  wallet. Shown on bookmarks as a **daily ledger**: K pred 24 h, + denný príspevok, + dostal si za 24 h,
+  − rozdal si za 24 h, − minul si na príspevky za 24 h, = K teraz (a rolling 24 h window, same as "tvoje K za 24 h") (and the current balance in the top bar). No transfers,
   treasury, 🦆/🐘 or crypto. Allowance size and whether unspent allowance accumulates: **[decide;
   match the old rules]**.
 - **Posting spends K (decided).** Creating a node (post, reply, forum, friend post) costs K from the
@@ -232,7 +232,7 @@ number** (name shown on lookup). User settings (setup) are a separate page.
 - Left sidebar: **Friends** online (avatar, `[where]`, idle time, login).
 - Customize bookmarks: create/rename/delete categories and move bookmarks between them.
 - **tvoje K za 24 h (decided):** the sidebar starts with my nodes that received K in the last 24 h: node,
-  `+N K`, and the icons of who gave it (newest first). The sum equals the ledger's "dostal si dnes".
+  `+N K`, and the icons of who gave it (newest first). The sum equals the ledger's "dostal si za 24 h". No row lines in bookmarks or this list.
 
 ### 6.3 `last` (`/last`)
 Global feed of the newest submissions across the site (respecting my read rights and ignores).
@@ -260,7 +260,7 @@ uses the same layout: **left node column** (starting with the node image) + cont
 the page). No coordinate trail. **Exception: main** has its own front-page layout.
 The node column shows only: node image, `node`, `template`, `parent`, `owner`, `viewers` (plain names, not
 avatars), `created`, `updated`, `permissions` (your rights :: access) and links `stats :: source :: commanders :: dendrites & axones`
-(stats: visits over time, frequent visitors, who gave K, counts; source: the node's raw HTML, read-only;
+(stats: the visitor list, one row per person with last visit, N new for them, booked, K given and visit count, sortable by last visit, visits or K; source: the node's raw HTML, read-only;
 commanders: owner, masters, operators, current silences with links to their justification). Below that, page-specific
 sections (friends online, K wallet, fook list…). Dropped as cruft: permissions box,
 visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
@@ -320,8 +320,7 @@ Every node has a **filter** (part of the node anatomy: details → content → a
 - **Threaded:** a page holds N **top-level threads** with their complete sub-threads (a thread is never
   split across pages). **Flat / filter / feeds:** a page holds N posts.
 - N = the user's setup "na stranu" (default 50). Default order newest first (setup can flip it).
-- Controls: **novšie · page numbers · staršie**, plus **skoč na prvé nové** (opens the page with the first
-  post newer than the reader's last visit and scrolls to it). URL `?page=N`.
+- Controls: **novšie · page numbers · staršie**. URL `?page=N`.
 - Implementation: keyset pagination on `(created_at, id)`; page numbers come from a cheap count of
   top-level children (threaded) or the filtered set (flat).
 

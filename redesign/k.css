@@ -261,7 +261,7 @@ aside.side { font-size: var(--fs-s); padding-top: 8px; }
 .bm { list-style: none; margin: 0; padding: 0; }
 .bm li {
   display: grid; grid-template-columns: minmax(0, 1fr) 96px 64px 64px 110px; gap: 12px; align-items: baseline;
-  padding: 7px 0; border-bottom: 1px solid var(--rule); font-size: var(--fs-s);
+  padding: 7px 0; font-size: var(--fs-s);
 }
 .bm .name { font-size: var(--fs); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bm .name a { color: var(--mute); }
@@ -750,7 +750,8 @@ mark { background: none; color: var(--white); font-weight: 800; text-decoration:
 .pager .pages { display: inline-flex; gap: 2px; }
 .pager .pages a { display: inline-grid; place-items: center; min-width: 30px; height: 30px; color: var(--green); border-radius: var(--radius); }
 .pager .pages a[aria-current] { background: var(--green); color: var(--void); font-weight: 700; }
-.pager .firstnew { color: var(--red); margin-left: 8px; }
+.bulk { margin: 14px 0 0; text-align: right; font-size: var(--fs-s); color: var(--mute); }
+.bulk a { color: var(--white); }
 
 /* blogs: icon + entry at full width; diary entries in full */
 .entries.list .entry { display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 0 16px; }
@@ -814,7 +815,7 @@ span.when { color: var(--mute); }
 
 /* bookmarks: my nodes that got K in the last 24 h */
 .mykay { list-style: none; margin: 0; padding: 0; }
-.mykay li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 6px 0; border-bottom: 1px solid var(--rule); font-size: var(--fs-s); }
+.mykay li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 6px 0; font-size: var(--fs-s); }
 .mykay li > a { color: var(--white); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .mykay .k { text-align: right; }
 .mykay .givers { grid-column: 1 / -1; display: flex; gap: 2px; }
@@ -827,6 +828,17 @@ img.av.xs { --s: 16px; }
 .adder { display: inline-flex; gap: 6px; align-items: center; }
 .adder .field.num.id { width: 110px; }
 .whos li.none { display: block; color: var(--mute); }
+
+/* stats = the node's visitor list (last visit, new for them, booked, K, visits) */
+.visits { list-style: none; margin: 0; padding: 0; }
+.visits li { display: grid; grid-template-columns: 25px minmax(0, 1fr) 150px 80px 110px 100px; gap: 12px; align-items: center;
+  padding: 6px 0; border-bottom: 1px solid var(--rule); font-size: var(--fs-s); }
+.visits li > a { color: var(--white); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.visits .when { color: var(--mute); }
+.visits .new, .visits .none { text-align: right; }
+.visits .flags { display: flex; gap: 8px; }
+.visits .flags .flag { color: var(--green); font-weight: 700; }
+.visits .cnt { color: var(--green); text-align: right; }
 
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
@@ -1065,4 +1077,11 @@ img.av.xs { --s: 16px; }
   .bars { gap: 3px; }
   .bars .d { font-size: 9px; writing-mode: vertical-rl; transform: rotate(180deg); }
   .bignums { gap: 10px 24px; }
+}
+
+@media (max-width: 720px) {
+  .visits li { grid-template-columns: 25px minmax(0, 1fr) auto; row-gap: 2px; }
+  .visits .when, .visits .flags { grid-column: 2 / -1; }
+  .visits .new, .visits .none { grid-column: 3; grid-row: 1; }
+  .visits .cnt { grid-column: 2 / -1; text-align: left; }
 }
