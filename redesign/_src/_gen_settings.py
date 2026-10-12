@@ -55,7 +55,8 @@ conf_body = f"""  <div class="head">
     row("template", '<select class="field"><option>forum</option><option>forum flat</option><option>nodeshell</option><option>submission</option><option>blog</option><option>data</option></select>', "zmeniť", "zmení len zobrazenie: obsah, deti, K aj práva ostanú"),
 ])}
 {section("umiestnenie", [
-    row("parent", '<input class="field" value="Compz &amp; Net (63540)">', "presunúť", "presunie nódu aj so všetkými deťmi"),
+    row("parent", '<input class="field num id" value="63540" inputmode="numeric" aria-label="číslo nódy, kam presunúť">'
+                  '<p class="nodetitle"><a href="kyberia.html">Compz &amp; Net</a></p>', "presunúť"),
 ])}
 {section("prístup", [
     row("system", '<span class="radios"><label><input type="radio" name="acc" checked> public</label><label><input type="radio" name="acc"> moderated</label><label><input type="radio" name="acc"> private</label><label><input type="radio" name="acc"> closed</label></span>'),

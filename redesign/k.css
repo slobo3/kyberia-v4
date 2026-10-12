@@ -773,6 +773,11 @@ span.when { color: var(--mute); }
 .entry .bimg figcaption { margin-top: 5px; font-size: var(--fs-xs); color: var(--mute); }
 .entry .bthumb { display: block; width: 100%; max-width: 320px; height: auto; margin: 8px 0; image-rendering: pixelated; border: 1px solid var(--rule-2); }
 
+/* configure: node number field with the node's title under it */
+.setctl .field.num.id { width: 120px; font-family: var(--mono); }
+.setctl .nodetitle { margin: 6px 0 0; font-size: var(--fs-s); }
+.setctl .nodetitle a { color: var(--white); }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }
