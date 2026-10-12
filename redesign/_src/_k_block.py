@@ -20,5 +20,5 @@ def k_item(rank, user, where, section, title, kind, media, text, k, when):
     <div class="by">v <a class="parent" href="forum.html">{e(where)}</a> {SEP} od <a href="user.html">{e(user)}</a> {SEP} <a class="when" href="submission.html">{e(when)}</a></div>
     {body}
   </div>
-  <div class="score"><span class="k">{k} K</span><button class="btn">K+</button><button class="btn ghost">fook</button></div>
+  <div class="score"><span class="k">{k} K</span><button class="btn">K+</button></div>
 </li>"""

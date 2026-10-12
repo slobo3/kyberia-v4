@@ -143,38 +143,46 @@ Keep it, safely:
 
 ## 4. Permissions & moderation
 
-Each node view shows a permissions box:
-```
-you:    r, w        ← your effective rights here
-system: moderated   ← node.system_access
-net:    yes         ← node.external_access
-```
+### 4.1 Two layers
 
-**[inferred] semantics** (confirm with long-time users):
+1. **System access** of the node (`system_access`): `public` / `moderated` / `private`, plus
+   **external access** (`external_access`, visible to logged-out visitors: "net: yes").
+2. **Rights lists** on the node, observed on kyberia's *commanders* view (`/id/{n}/2224463`). Each list
+   holds users, shown as `name [user node id]`:
 
-| system_access | read | write (add children) |
+| list | meaning | who edits it |
 |---|---|---|
-| `public` | all members | all members |
-| `moderated` | all members | members, but masters/operators can hide/move/silence |
-| `private` | only users on the node's access list | access list |
+| `masters` | run the node: its configuration and these lists | owner, masters |
+| `ops` | moderate: silence, ban, move/hide posts | owner, masters |
+| `access` | may enter (read + write) when the node is `private` | owner, masters |
+| `execute` | may run the node's template/code **[inferred: the exact power needs confirming]** | owner, masters |
+| `bans` | no access to the node | owner, masters, ops |
+| `silence` | can read, cannot write in the node | owner, masters, ops |
 
-Per-node, per-user access rows: `node_access(node_id, user_id, read, write, master, operator, silence, ban)`.
-
-- **owner**: full control of the node and its configuration.
-- **master**: can grant access, silence and moderate inside the subtree.
-- **operator**: like master, with less power **[inferred]**.
-- **silence**: user can't write in this node/subtree. The site rules say silence must be
-  justified in a public log (`101 silence justification arXiv`). **MVP: write an audit row
-  for every silence and show the log on the node.**
-- **ban**: site-wide, admin only.
-- Rights inherit down the tree unless a node overrides them **[inferred]**.
+- **Membership lasts until removed.** There are no time limits on silence or bans.
+- The **owner** is a single user (`owner_id`), with full control. The owner can hand the node over
+  (`set_creator`).
+- **Effective rights** ("you: r, w, …" in the node details) are computed from: system access → owner →
+  lists (bans and silence override, masters and ops add powers) → inheritance from ancestors
+  **[inferred: whether and how lists inherit down the subtree must be confirmed]**.
+- Site-wide ban is separate (admin only).
 - "Sirotka" (orphan) is shown in red in the post header when a post's parent is gone or
   inaccessible **[inferred]**.
 
-Configure page (`/id/{id}/conf`, original `/id/{id}/1961033`) for owners: name, image,
-system_access, external_access, template/type, nl2br ("apply on all own nodes" option),
-parent (move), external_link, creator, content body (big textarea), access list
-management, and for user nodes: password, email, mail notify, mood, listing amount and order.
+### 4.2 Data
+
+```sql
+node_rights(node_id, list text /* masters|ops|access|execute|bans|silence */, user_id,
+            added_by, added_at, pk(node_id, list, user_id))
+```
+
+### 4.3 Configure (`/id/{n}/conf`)
+
+One form, one save. Order: **obsah** (content, bez HTML, nl2br) → názov (styled-title preview) →
+obrázok → template (forum, forum flat, nodeshell, submission, blog, data…) → umiestnenie (parent by
+**node number**, its title shown under the field) → prístup (system access, external access) →
+**práva**: the six lists as chips `name [id]` with ×, each with an add field that takes a **user
+number** (name shown on lookup). User settings (setup) are a separate page.
 
 ---
 
@@ -340,7 +348,7 @@ Every node has a **filter** (part of the node anatomy: details → content → a
 3. Node view with sidebar meta (owner, parent, template/type, coordinates, permissions,
    created/updated, K, children/descendants), child listing, threaded/flat discussion, add form.
 4. Create child nodes, reply, preview, edit own, configure (subset in §4).
-5. Permissions: system_access + access list + masters + silence (with log) + ban.
+5. Permissions: system_access + external access + the six rights lists (masters, ops, access, execute, bans, silence).
 6. Visit tracking and NEW/descendant/changed markers.
 7. Bookmarks with categories; bookmarks page with friends sidebar.
 8. `last`, `re:`/`RE` (replies to me), `sub` (my submissions by month/year/parent creator, with new-reply counts),
@@ -402,9 +410,7 @@ users(node_id pk -> nodes, login citext unique, password_hash, email, mood,
       status text /* pending|active|banned */, last_action_at, current_node_id,
       k_allowance int, k_allowance_reset_at)
 
-node_access(node_id, user_id, can_read, can_write, is_master, is_operator,
-            silenced_until, pk(node_id,user_id))
-moderation_log(id, node_id, actor_id, target_user_id, action, reason, created_at)
+node_rights(node_id, list, user_id, added_by, added_at, pk(node_id,list,user_id))  -- see §4.2
 synapses(src_id, dst_id, created_by, created_at, pk(src_id,dst_id))
 k_votes(user_id, node_id, created_at, pk(user_id,node_id))
 node_visits(user_id, node_id, last_visit_at, visits, pk(user_id,node_id))

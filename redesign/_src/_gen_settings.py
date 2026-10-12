@@ -32,19 +32,40 @@ def section(title, rows):
 
 
 # ── conf: configure a node you own ────────────────────────────────────────
-rights = "\n".join(f"""          <tr><td><img class="av s" src="{icon(u)}" alt="" width="25" height="25"> {u}</td>
-            <td><input type="checkbox" checked aria-label="read"></td><td><input type="checkbox"{w} aria-label="write"></td>
-            <td><input type="checkbox"{m} aria-label="master"></td><td><input type="checkbox"{o} aria-label="operator"></td>
-            <td>{s}</td></tr>""" for u, w, m, o, s in (
-    ("kvasar", " checked", " checked", "", "—"),
-    ("lemur", " checked", "", " checked", "—"),
-    ("mrak", "", "", "", '<span class="new">silence do 13.10. 01:02</span>'),
-))
+# Rights on kyberia are named lists on the node (as seen on /commanders): masters, ops, access, execute,
+# bans, silence. Each holds users by number; membership lasts until removed (no time limits).
+from _content import USER_ID  # noqa: E402
+LISTS = [
+    ("masters", "spravujú nódu: nastavenia aj tieto zoznamy", ["kvasar"]),
+    ("ops", "moderujú: silence, bans, presúvanie príspevkov", ["lemur", "tichá_voda"]),
+    ("access", "smú dnu, keď je nóda private", []),
+    ("execute", "smú spúšťať template tejto nódy", []),
+    ("bans", "nemajú do nódy prístup", ["vlnka"]),
+    ("silence", "čítajú, ale nepíšu", ["mrak"]),
+]
+
+
+def chips(users):
+    if not users:
+        return '<span class="none">nikto</span>'
+    return "".join(f'<span class="tag"><img class="av xs" src="{icon(u)}" alt="">{e(u)} <span class="uid">[{USER_ID[u]}]</span>'
+                   f'<button class="btn ghost" type="button" aria-label="odobrať {e(u)}">×</button></span>' for u in users)
+
+
+def list_row(name, hint, users):
+    adder = (f'<span class="adder"><input class="field num id" placeholder="číslo" inputmode="numeric" aria-label="číslo používateľa do {name}">'
+             f'<button class="btn ghost" type="button">pridať</button></span>')
+    return row(name, f'<div class="tags">{chips(users)}</div>{adder}', hint=hint)
+
+
 conf_body = f"""  <div class="head">
     <h1>configure</h1>
     <p class="crumbs">nóda <a href="forum.html"><b>kyberia v4</b>: redizajn</a></p>
   </div>
   <div class="settings">
+{section("obsah", [
+    row("text", '<textarea class="field" rows="8">Tu sa rieši redizajn kyberie: farby ostávajú, písmo a rozostupy sú nové. Návrhy, bugy a nápady píšte sem.</textarea><span class="radios"><label class="check"><input type="checkbox"> bez HTML</label><label class="check"><input type="checkbox" checked> nl2br</label></span>'),
+])}
 {section("názov", [
     row("názov", '<input class="field" value="&lt;b&gt;kyberia v4&lt;/b&gt;: redizajn">', hint='náhľad: <span class="preview"><b>kyberia v4</b>: redizajn</span> :: povolené &lt;b&gt;, &lt;i&gt;, &lt;font color/size&gt;…'),
 ])}
@@ -62,18 +83,7 @@ conf_body = f"""  <div class="head">
     row("system", '<span class="radios"><label><input type="radio" name="acc" checked> public</label><label><input type="radio" name="acc"> moderated</label><label><input type="radio" name="acc"> private</label></span>'),
     row("external access", '<label class="check"><input type="checkbox"> viditeľná aj pre neprihlásených</label>'),
 ])}
-{section("práva", [
-    row("ľudia", f'''<table class="rights">
-          <thead><tr><th>kto</th><th>read</th><th>write</th><th>master</th><th>operator</th><th>silence</th></tr></thead>
-          <tbody>
-{rights}
-          </tbody>
-        </table>''', ""),
-    row("pridať", '<input class="field num id" value="7004009" inputmode="numeric" aria-label="číslo používateľa"><p class="nodetitle"><a href="user.html">tichá_voda</a></p>', "pridať"),
-])}
-{section("obsah", [
-    row("text", '<textarea class="field" rows="8">Tu sa rieši redizajn kyberie: farby ostávajú, písmo a rozostupy sú nové. Návrhy, bugy a nápady píšte sem.</textarea><span class="radios"><label class="check"><input type="checkbox"> bez HTML</label><label class="check"><input type="checkbox" checked> nl2br</label></span>'),
-])}
+{section("práva", [list_row(n, h, us) for n, h, us in LISTS])}
   </div>
   <div class="savebar"><a class="btn ghost" href="forum.html">zrušiť</a><button class="btn primary" type="submit">uložiť zmeny</button></div>"""
 write("conf.html",

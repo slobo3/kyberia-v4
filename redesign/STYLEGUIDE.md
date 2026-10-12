@@ -184,7 +184,9 @@ In the showcase every link opens the example page of the target node's template:
 
 ## 4b4. Settings forms
 
-Configure and setup are **one form, one save**: a single `uložiť zmeny` (with `zrušiť`) pinned to the bottom of the
+Configure starts with **obsah**. Rights are kyberia's **six lists** (masters, ops, access, execute, bans,
+silence) shown as chips `name [number]` with ×; people are added by **user number**. No time limits, no
+justification fields. Configure and setup are **one form, one save**: a single `uložiť zmeny` (with `zrušiť`) pinned to the bottom of the
 screen while scrolling. Rows have no buttons of their own, except separate actions (`pridať` a person, `zmeniť heslo`).
 Moving a node takes the target **node number**; the target's title is shown under the field.
 

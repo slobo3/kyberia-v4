@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>configure :: kyberia v4 :: kyberia.sk</title>
-<link rel="stylesheet" href="k.css?v=7ff6b99e">
+<link rel="stylesheet" href="k.css?v=b109cba7">
 </head>
 <body>
 <a class="skip" href="#obsah">preskočiť na obsah</a>
@@ -48,6 +48,14 @@
     <p class="crumbs">nóda <a href="forum.html"><b>kyberia v4</b>: redizajn</a></p>
   </div>
   <div class="settings">
+    <section class="setsec">
+      <h2>obsah</h2>
+      <div class="setrow">
+        <div class="setlabel">text</div>
+        <div class="setctl"><textarea class="field" rows="8">Tu sa rieši redizajn kyberie: farby ostávajú, písmo a rozostupy sú nové. Návrhy, bugy a nápady píšte sem.</textarea><span class="radios"><label class="check"><input type="checkbox"> bez HTML</label><label class="check"><input type="checkbox" checked> nl2br</label></span></div>
+        <div class="setact"></div>
+      </div>
+    </section>
     <section class="setsec">
       <h2>názov</h2>
       <div class="setrow">
@@ -96,37 +104,33 @@
     <section class="setsec">
       <h2>práva</h2>
       <div class="setrow">
-        <div class="setlabel">ľudia</div>
-        <div class="setctl"><table class="rights">
-          <thead><tr><th>kto</th><th>read</th><th>write</th><th>master</th><th>operator</th><th>silence</th></tr></thead>
-          <tbody>
-          <tr><td><img class="av s" src="img/u/kvasar.gif" alt="" width="25" height="25"> kvasar</td>
-            <td><input type="checkbox" checked aria-label="read"></td><td><input type="checkbox" checked aria-label="write"></td>
-            <td><input type="checkbox" checked aria-label="master"></td><td><input type="checkbox" aria-label="operator"></td>
-            <td>—</td></tr>
-          <tr><td><img class="av s" src="img/u/lemur.gif" alt="" width="25" height="25"> lemur</td>
-            <td><input type="checkbox" checked aria-label="read"></td><td><input type="checkbox" checked aria-label="write"></td>
-            <td><input type="checkbox" aria-label="master"></td><td><input type="checkbox" checked aria-label="operator"></td>
-            <td>—</td></tr>
-          <tr><td><img class="av s" src="img/u/mrak.gif" alt="" width="25" height="25"> mrak</td>
-            <td><input type="checkbox" checked aria-label="read"></td><td><input type="checkbox" aria-label="write"></td>
-            <td><input type="checkbox" aria-label="master"></td><td><input type="checkbox" aria-label="operator"></td>
-            <td><span class="new">silence do 13.10. 01:02</span></td></tr>
-          </tbody>
-        </table></div>
+        <div class="setlabel">masters</div>
+        <div class="setctl"><div class="tags"><span class="tag"><img class="av xs" src="img/u/kvasar.gif" alt="">kvasar <span class="uid">[7004003]</span><button class="btn ghost" type="button" aria-label="odobrať kvasar">×</button></span></div><span class="adder"><input class="field num id" placeholder="číslo" inputmode="numeric" aria-label="číslo používateľa do masters"><button class="btn ghost" type="button">pridať</button></span><p class="hint">spravujú nódu: nastavenia aj tieto zoznamy</p></div>
         <div class="setact"></div>
       </div>
       <div class="setrow">
-        <div class="setlabel">pridať</div>
-        <div class="setctl"><input class="field num id" value="7004009" inputmode="numeric" aria-label="číslo používateľa"><p class="nodetitle"><a href="user.html">tichá_voda</a></p></div>
-        <div class="setact"><button class="btn" type="button">pridať</button></div>
+        <div class="setlabel">ops</div>
+        <div class="setctl"><div class="tags"><span class="tag"><img class="av xs" src="img/u/lemur.gif" alt="">lemur <span class="uid">[7004005]</span><button class="btn ghost" type="button" aria-label="odobrať lemur">×</button></span><span class="tag"><img class="av xs" src="img/u/ticha_voda.gif" alt="">tichá_voda <span class="uid">[7004008]</span><button class="btn ghost" type="button" aria-label="odobrať tichá_voda">×</button></span></div><span class="adder"><input class="field num id" placeholder="číslo" inputmode="numeric" aria-label="číslo používateľa do ops"><button class="btn ghost" type="button">pridať</button></span><p class="hint">moderujú: silence, bans, presúvanie príspevkov</p></div>
+        <div class="setact"></div>
       </div>
-    </section>
-    <section class="setsec">
-      <h2>obsah</h2>
       <div class="setrow">
-        <div class="setlabel">text</div>
-        <div class="setctl"><textarea class="field" rows="8">Tu sa rieši redizajn kyberie: farby ostávajú, písmo a rozostupy sú nové. Návrhy, bugy a nápady píšte sem.</textarea><span class="radios"><label class="check"><input type="checkbox"> bez HTML</label><label class="check"><input type="checkbox" checked> nl2br</label></span></div>
+        <div class="setlabel">access</div>
+        <div class="setctl"><div class="tags"><span class="none">nikto</span></div><span class="adder"><input class="field num id" placeholder="číslo" inputmode="numeric" aria-label="číslo používateľa do access"><button class="btn ghost" type="button">pridať</button></span><p class="hint">smú dnu, keď je nóda private</p></div>
+        <div class="setact"></div>
+      </div>
+      <div class="setrow">
+        <div class="setlabel">execute</div>
+        <div class="setctl"><div class="tags"><span class="none">nikto</span></div><span class="adder"><input class="field num id" placeholder="číslo" inputmode="numeric" aria-label="číslo používateľa do execute"><button class="btn ghost" type="button">pridať</button></span><p class="hint">smú spúšťať template tejto nódy</p></div>
+        <div class="setact"></div>
+      </div>
+      <div class="setrow">
+        <div class="setlabel">bans</div>
+        <div class="setctl"><div class="tags"><span class="tag"><img class="av xs" src="img/u/vlnka.gif" alt="">vlnka <span class="uid">[7004015]</span><button class="btn ghost" type="button" aria-label="odobrať vlnka">×</button></span></div><span class="adder"><input class="field num id" placeholder="číslo" inputmode="numeric" aria-label="číslo používateľa do bans"><button class="btn ghost" type="button">pridať</button></span><p class="hint">nemajú do nódy prístup</p></div>
+        <div class="setact"></div>
+      </div>
+      <div class="setrow">
+        <div class="setlabel">silence</div>
+        <div class="setctl"><div class="tags"><span class="tag"><img class="av xs" src="img/u/mrak.gif" alt="">mrak <span class="uid">[7004029]</span><button class="btn ghost" type="button" aria-label="odobrať mrak">×</button></span></div><span class="adder"><input class="field num id" placeholder="číslo" inputmode="numeric" aria-label="číslo používateľa do silence"><button class="btn ghost" type="button">pridať</button></span><p class="hint">čítajú, ale nepíšu</p></div>
         <div class="setact"></div>
       </div>
     </section>

@@ -48,7 +48,7 @@ FLAME = [
     ("sklo", "00:26", None, True, "Nikto nechce Discord. Chcem len prečítať, čo píšem, bez lupy."),
     ("kvasar", "00:41", None, True, "Kúp si okuliare. Alebo sa spýtaj ozveny, tá ti to zopakuje."),
     ("tichá_voda", "01:02", "23 K", True,
-     'Obom vám dávam silence na 24 h v tejto nóde. Odôvodnenie je v <a href="forum.html">101 silence justification arXiv</a>. Choďte von, je pekne.'),
+     'Obom vám dávam silence v tejto nóde, kým sa neupokojíte. Choďte von, je pekne.'),
     ("ozvena", "01:47", "31 K", True, 'ticho<br>je tiež odpoveď<br><span class="whisper">// dobrú noc</span>'),
 ]
 

@@ -820,6 +820,14 @@ span.when { color: var(--mute); }
 .mykay .givers { grid-column: 1 / -1; display: flex; gap: 2px; }
 img.av.xs { --s: 16px; }
 
+/* rights lists (configure) + commanders: people as "name [number]" */
+.tag img.av.xs { margin-right: 6px; }
+.uid { color: var(--mute); font-family: var(--mono); font-size: var(--fs-xs); margin-left: 4px; }
+.none { color: var(--mute); font-size: var(--fs-s); }
+.adder { display: inline-flex; gap: 6px; align-items: center; }
+.adder .field.num.id { width: 110px; }
+.whos li.none { display: block; color: var(--mute); }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }

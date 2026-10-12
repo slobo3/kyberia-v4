@@ -50,7 +50,7 @@ POSTS = [
     ("ode", 2, "18:02", "L:teratúra", "L:teratúra", "Čo čítame v októbri", 22, False, 27, "Mesačné vlákno. Jedna kniha, dve vety prečo, žiadne spoilery bez varovania."),
     ("lemur", 3, "12:30", "Compz & Net", "Compz & Net", "Self-hosting v roku 2026: čo nám beží doma", 19, False, 89, "Zdieľajte setup: hardvér, čo na ňom beží, koľko to žerie, a jedna vec, ktorú by ste dnes urobili inak."),
     ("kvasar", 3, "22:47", "Halušky", "Halušky", "najlepší langoš na Slovensku", 12, False, 63, "Hlasujte, ale Zlaté piesky sa nerátajú, tam sme boli všetci a všetci vieme."),
-    ("tichá_voda", 4, "10:15", "101 silence justification arXiv", "kyberia", "silence: Re[18] Kyberia session 2026", 23, False, 4, "Dvaja užívatelia, 24 h, dôvod: osobné útoky od úrovne 9. Bez ďalších opatrení."),
+    ("tichá_voda", 4, "10:15", "101 silence justification arXiv", "kyberia", "silence: Re[18] Kyberia session 2026", 23, False, 4, "Dvaja užívatelia, silence v nóde Kyberia session 2026, dôvod: osobné útoky od úrovne 9. Zruším, keď sa ozvú."),
     ("rybár", 4, "15:55", "Foto bazár", "Photo & Visual", "predám: Nikon FM2, čierny", 2, False, 5, "Plne funkčný, nové tesnenia. Osobne v BA, cena dohodou, nie výmena za drony."),
     ("bubon", 5, "21:12", "Slúchadlá a HiFi", "Audio", "otvorené slúchadlá do 200 eur", 7, False, 26, "Hľadám niečo na večerné počúvanie, nie do MHD. Sennheiser alebo niečo nové?"),
     ("hmlovina", 6, "19:30", "Close reading group", "Filozofia, text & jazyk", "november: Wittgenstein, Tractatus", 17, False, 11, "Čítame po kapitolách, stretnutie každý štvrtok online. Kto ide, napíšte pod to."),
@@ -98,7 +98,7 @@ MAIL = [
     ("sklo", "máš ešte tú starú Nikon FM2?", False, "2.10.", 0),
     ("drienka", "tá fotka z Apollo mosta ide na main?", False, "1.10.", 0),
     ("lemur", "aký router máš na tom self-hostingu?", True, "29.9.", 0),
-    ("tichá_voda", "silence je len na 24 h, neboj", False, "28.9.", 0),
+    ("tichá_voda", "silence ti zruším, keď sa upokojíte", False, "28.9.", 0),
     ("ode", "Tokarczuk ti donesiem v nedeľu", False, "25.9.", 0),
     ("mráz", "ten bug s bookmarkami som videl, pozriem", False, "22.9.", 0),
     ("hobra", "zoznam pesničiek na session", True, "20.9.", 0),
@@ -164,3 +164,8 @@ K_ITEMS = [
     ("lemur", "Compz & Net", "Compz & Net", "Self-hosting v roku 2026: čo nám beží doma", "text", None,
      "Starý Thinkpad pod posteľou, Nextcloud, Jellyfin, Pi-hole a záložný disk, ktorý som raz za rok zabudol pripojiť. Žerie to 11 W, beží to päť rokov a jediný výpadok bol, keď mačka vytiahla kábel. Čo by som urobil inak: zálohy automaticky od prvého dňa, nie od prvej straty dát.", 15, "09.10.2026 12:30"),
 ]
+
+
+# user node numbers (invented): users are referenced by number, shown as "name [number]"
+USER_ID = {u: 7004001 + i for i, u in enumerate(USERS)}
+USER_ID.update({"slobo": 5001001, "ozvena": 4401337, "lúč": 4401400, "fiktivny_admin": 1000001})

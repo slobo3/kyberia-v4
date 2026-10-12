@@ -69,22 +69,29 @@ source = head("source") + f"""  <dl class="kv srcmeta">
   <pre class="source"><code>{e(topic)}</code></pre>"""
 write("source.html", "source :: kyberia", source)
 
-# ── commanders: who runs this node ───────────────────────────────────────
-masters = "\n".join(who(u, "master") for u in ("tichá_voda", "kompas"))
-operators = "\n".join(who(u, "operator") for u in ("mráz", "plachta", "hmlovina"))
-silenced = "\n".join(f'<li><img class="av s" src="{icon(u)}" alt="" width="25" height="25"><a href="user.html">{u}</a>'
-                     f'<span>do {until} {SEP} <a href="forum.html">odôvodnenie</a></span></li>'
-                     for u, until in (("kvasar", "13.10. 01:02"), ("sklo", "13.10. 01:02")))
-commanders = head("commanders") + f"""  <section class="statsec"><h2>owner</h2><ol class="whos">
-{who("fiktivny_admin", "owner") if False else '<li><span class="av s ph" aria-hidden="true">f</span><a href="user.html">fiktivny_admin</a><span>owner</span></li>'}
-  </ol></section>
-  <section class="statsec"><h2>masters</h2><ol class="whos">
-{masters}
-  </ol></section>
-  <section class="statsec"><h2>operators</h2><ol class="whos">
-{operators}
-  </ol></section>
-  <section class="statsec"><h2>silence</h2><ol class="whos">
-{silenced}
-  </ol></section>"""
+# ── commanders: the node's rights lists, as on kyberia (masters, ops, execute, access, bans, silence) ──
+from _content import USER_ID  # noqa: E402
+CMD = [
+    ("masters", ["tichá_voda", "kompas", "hmlovina"]),
+    ("ops", ["mráz", "plachta", "ode", "sova"]),
+    ("execute", []),
+    ("access", []),
+    ("bans", ["vlnka"]),
+    ("silence", ["kvasar", "sklo"]),
+]
+
+
+def member(u):
+    return (f'<li><img class="av s" src="{icon(u)}" alt="" width="25" height="25"><a href="user.html">{e(u)}</a>'
+            f'<span class="uid">[{USER_ID[u]}]</span></li>')
+
+
+owner = ('<li><span class="av s ph" aria-hidden="true">f</span><a href="user.html">fiktivny_admin</a>'
+         f'<span class="uid">[{USER_ID["fiktivny_admin"]}]</span></li>')
+NL = "\n"
+blocks = [f'  <section class="statsec"><h2>owner::</h2><ol class="whos">{NL}{owner}{NL}  </ol></section>']
+for name, users in CMD:
+    items = NL.join(member(u) for u in users) if users else '<li class="none">nikto</li>'
+    blocks.append(f'  <section class="statsec"><h2>{name}::</h2><ol class="whos">{NL}{items}{NL}  </ol></section>')
+commanders = head("commanders") + NL.join(blocks)
 write("commanders.html", "commanders :: kyberia", commanders)

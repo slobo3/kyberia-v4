@@ -80,7 +80,7 @@ OVERVIEW = [
      "Prvé stretnutie čitateľskej skupiny. Prišlo nás šesť, prečítali sme dve strany a hádali sa dve hodiny o tom, čo znamená prvá veta. Nikto nemal pravdu, všetci odchádzali spokojní. Na budúci týždeň ďalšie dve strany, ak sa dovtedy nepohádame…",
      None),
     ("tichá_voda", "prečo dávam silence", "28.09.2026 22:05", 266, 23,
-     "Pýtate sa ma to často, tak to napíšem raz. Silence nie je trest, je to pauza. Dávam ho, keď sa dvaja ľudia prestanú baviť o téme a začnú sa baviť o sebe navzájom. Vždy na krátko, vždy s odôvodnením v arXive, a vždy obom, nie jednému…",
+     "Pýtate sa ma to často, tak to napíšem raz. Silence nie je trest, je to pauza. Dávam ho, keď sa dvaja ľudia prestanú baviť o téme a začnú sa baviť o sebe navzájom. Nikdy navždy a vždy obom, nie jednému. Keď sa upokojíte, zruším ho…",
      None),
     ("drienka", "susedov kocúr", "07.09.2026 19:20", 301, 9,
      "",
