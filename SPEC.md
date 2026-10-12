@@ -261,7 +261,7 @@ Every page — including system pages (bookmarks /id/19, mail /id/24, last, peop
 uses the same layout: **left node column** (starting with the node image) + content (title, then
 the page). No coordinate trail. **Exception: main** has its own front-page layout.
 The node column shows only: node image, `node`, `template`, `parent`, `owner`, `viewers` (plain names, not
-avatars), `created`, `updated`, `permissions` (your rights :: access) and links `stats :: source :: commanders :: dendrites & axones`
+avatars), `created`, `updated`, `permissions` (your rights :: access) and links `stats :: source :: commanders :: dendrites & axones :: filter`
 (stats: the visitor list, one row per person with last visit, N new for them, booked, K given and visit count, sortable by last visit, visits or K; source: the node's raw HTML, read-only;
 commanders: owner and the six lists masters, ops, execute, access, bans, silence). Below that, page-specific
 sections (friends online, K wallet, fook list…). Dropped as cruft: permissions box,
@@ -304,7 +304,7 @@ visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
 
 ### 7.4 Filter (decided)
 
-Every node has a **filter** (part of the node anatomy: details → content → add form → filter → children).
+Every node has a **filter**, opened from the node links like stats and source (`… dendrites & axones :: filter`); there is no filter bar in the discussion itself.
 
 - One field + scope: **text** (title + content), **title**, or **user** (author).
 - Searches **all sub-nodes at any depth**, not only direct children. On a nodeshell it covers the whole

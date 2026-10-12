@@ -152,7 +152,7 @@ def node_column(node, extra, acts=""):
         </dl>
         <p class="nodeacts">{acts or DEFAULT_ACTS}</p>
       </section>
-      <p class="nodelinks"><a href="stats.html">stats</a><a href="source.html">source</a><a href="commanders.html">commanders</a><a href="synapses.html">dendrites &amp; axones</a></p>
+      <p class="nodelinks"><a href="stats.html">stats</a><a href="source.html">source</a><a href="commanders.html">commanders</a><a href="synapses.html">dendrites &amp; axones</a><a href="forum-filter.html">filter</a></p>
 {extra}
     </aside>"""
 

@@ -87,7 +87,7 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
 ```
 
 - The node column shows only node, template, parent, owner, viewers (names, not avatars), and
-  `stats :: source :: commanders :: dendrites & axones` (the last opens one page with both lists) (white links). Page-specific sections go underneath. Permissions, visitor
+  `stats :: source :: commanders :: dendrites & axones :: filter` (dendrites & axones is one page with both lists; filter is the flat, filterable view of all sub-nodes) (white links). Page-specific sections go underneath. Permissions, visitor
   counts, tiamat, K-filters, neurons and polls are not shown.
 - The node column sits at the top of the page and scrolls away with it (not sticky). Under 1000px it splits: the **basics** (node image on the left, node/template/
   parent/owner/viewers on the right) go **above** the content; the links and page extras go below it.

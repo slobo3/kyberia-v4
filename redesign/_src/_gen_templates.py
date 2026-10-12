@@ -93,7 +93,6 @@ for i, (t, when, views, subs, blocks) in enumerate(DRIENKA):
   <section class="topic prose blogpost">
     {"".join(block(b) for b in blocks)}
   </section>
-  <div class="thread-bar"><h2>{subs} reakcií</h2></div>
   <ol class="thread">
 {thread}
   </ol>{more}
@@ -127,7 +126,6 @@ body = f"""  <div class="head">
     </dl>
   </section>
 {composer("napísať k súboru", "tvoja reakcia…")}
-  <div class="thread-bar"><h2>1 reakcia</h2></div>
   <ol class="thread">
 {comments}
   </ol>"""
