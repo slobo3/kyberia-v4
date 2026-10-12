@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>specimen :: Something smarter than us is going to emerge</title>
+<link rel="stylesheet" href="kyberia.css">
+<style>
+  /* specimen-only helpers */
+  .av { display:block; width:50px; height:50px; background:#1d2a14; }
+  .av.s { width:23px; height:23px; display:inline-block; }
+  .av.m { width:34px; height:34px; }
+  .spec-h { color:#fff; border-top:1px dotted #444; margin:40px 0 10px; padding-top:6px; font-weight:bold; }
+</style>
+</head>
+<body>
+
+<!-- 3.1 top bar -->
+<div class="t1">
+  [ <a href="#">main</a> - <a href="#">kyberia</a> - <a href="#">bookmarks</a> ]:[
+  <a href="#">mail</a> <span class="mailnew">📬 2</span> - <a href="#">last</a> - <a href="#">re:</a> - <a href="#">people</a> ]:[
+  <a href="#">k</a> / <a href="#">kNEW</a> - <a href="#">forumz</a> ]:[
+  <a href="#">userinfo</a> [<a href="#">setup</a>] - <a href="#">search</a> <input placeholder="Quick..."> ]
+  <button>logout</button>
+</div>
+
+<!-- node view: forum with thread -->
+<div class="layout">
+  <div class="left">
+    <table class="sidebar_info">
+      <tr><td colspan="2" class="nodeimg"><span class="av" style="width:100px;height:100px;margin:0 auto 6px"></span></td></tr>
+      <tr><td>node:</td><td><a href="#">Hudobné okienko</a></td></tr>
+      <tr><td>template:</td><td><a href="#">4</a></td></tr>
+      <tr><td>parent:</td><td><a href="#">Hudba</a></td></tr>
+      <tr><td>owner:</td><td><a href="#">fiktivny_user</a></td></tr>
+      <tr><td>viewed by:</td><td class="viewed"><span class="av s"></span> <span class="av s"></span></td></tr>
+      <tr><td>created:</td><td>25.09.2007 - 18:42:42</td></tr>
+      <tr><td>updated:</td><td>12.10.2026 - 20:05:24</td></tr>
+    </table>
+    <div><div class="bordered sidebox"><span class="label">cwbe coordinatez</span>:<br>
+      <a href="#">101</a><br><a href="#">63528</a><br><a href="#">9000001</a><br><br>ABSOLUT<br><a href="#">K</a>YBERIA</div></div>
+    <div><div class="bordered sidebox perm"><div class="label" style="text-align:center">permissions</div>
+      you: &nbsp; r, w,<br>system: public<br>net: &nbsp; &nbsp; yes</div></div>
+    <div>total descendants::412<br>total children::57<br><span class="r">4 NEW</span><br><span class="r">205 K</span></div>
+    <div class="ops"><button>K+</button><button>book</button><button>fook</button></div>
+    <div>show[ <a href="#">2</a> | <a href="#">3</a> ] <a href="#">flat</a></div>
+    <table class="visitors bordered">
+      <tr><td>alfa</td><td>0</td></tr><tr><td>beta_user</td><td>0</td></tr>
+      <tr><td>gama</td><td>2</td></tr><tr><td>delta</td><td>14</td></tr>
+    </table>
+  </div>
+
+  <div class="center">
+    <div id="topic" class="bordered">
+      Fórum o hudbe, ktorú práve počúvate. <a href="#">pravidlá</a> platia aj tu.
+      <br><span class="most_important">ODKAZ MASTEROM :: silence prosím odôvodnite</span>
+    </div>
+
+    <form class="addform">
+      title or keywords:: <input style="width:140px"> <label><input type="checkbox"> NO HTML</label>
+      <div class="row"><textarea rows="8"></textarea></div>
+      <div class="row">
+        <button>add</button><button>preview</button><input class="num" value="4">
+        <select><option>helpful</option><option>tag user</option><option>link</option><option>image</option><option>bold</option><option>italic</option></select>
+        <button>&lt;</button><button>&lt;&lt;</button><input class="num" value="200"><button>&gt;&gt;</button><button>&gt;</button>
+        <button>filter_by</button><select><option>title/content</option><option>title</option><option>content</option><option>user</option></select>
+      </div>
+      <div class="row">
+        <button>K+</button><button>delete_hardlink</button>&nbsp;<button>put</button> into <input style="width:80px"><select style="width:110px"><option></option></select><button>go_to</button>
+      </div>
+    </form>
+
+    <div class="thread">
+      <div class="post" data-level="1" style="--indent:0">
+        <div class="vector">- 000001010006352809000001</div>
+        <div class="row">
+          <div class="avatar"><span class="av"></span></div>
+          <div class="node_content">
+            <div class="node_header"><a class="node_login" href="#">alfa</a><input type="checkbox">29.03.2018 - 18:41:15 level: 1 <a href="#">UP</a> <span class="node_header_new">NEW</span>
+              <div class="node_header_title">čo počúvate dnes</div></div>
+            <div class="node_body">Dnes celý deň <a href="#">Aphex Twin</a>. Odporúčam starý live set z roku 1996.</div>
+          </div>
+        </div>
+      </div>
+      <div class="post" data-level="2" style="--indent:1">
+        <div class="vector">- 00000101000635280900000109000002</div>
+        <div class="row">
+          <div class="avatar"><span class="av"></span></div>
+          <div class="node_content">
+            <div class="node_header"><a class="node_login" href="#">beta_user</a><input type="checkbox">23.11.2020 - 13:20:30 (modif: 23.11.2020 - 13:25:02) level: 2 <a href="#">UP</a>
+              <div class="node_header_title">Re: čo počúvate dnes</div></div>
+            <div class="node_body">1. <b>Selected Ambient Works</b><br>2. ešte raz to isté</div>
+          </div>
+        </div>
+      </div>
+      <div class="post" data-level="1" style="--indent:0">
+        <div class="vector">- 000001010006352809000003</div>
+        <div class="row">
+          <div class="avatar"><span class="av"></span></div>
+          <div class="node_content">
+            <div class="node_header"><a class="node_login" href="#">gama</a><input type="checkbox">31.01.2017 - 05:32:38 level: 6 <a href="#">UP</a> <span class="node_header_sirotka">SIROTKA</span>
+              <div class="node_header_title">Re[6]: niečo staršie</div></div>
+            <div class="node_body">tá pôvodná noda už neexistuje.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pager"><button>&lt;</button> <button>&lt;&lt;</button> <button>&gt;&gt;</button> <button>&gt;</button></div>
+
+    <div class="spec-h">3.5 child listing (nodeshell view)</div>
+    <ul class="children">
+      <li><input type="checkbox">nodeshell:: <a class="name" href="#">Compz &amp; Net</a> :: (236 children ) <span class="r">NEW DESCENDANT</span> <span class="r">11 K</span> (<a href="#">mráz</a>)</li>
+      <li><input type="checkbox">nodeshell:: <a class="name" href="#">Drogy</a> :: (6 children ) (<a href="#">zakladateľ</a>)</li>
+      <li><input type="checkbox">forum:: <a class="name" href="#">101 silence justification arXiv</a> :: (4 children ) <span class="r">7 K</span> (<a href="#">zakladateľ</a>)</li>
+      <li><input type="checkbox">submission:: <a class="name" href="#">Citadela</a> :: (51 children ) <span class="r">13 K</span> (<a href="#">zakladateľ</a>)</li>
+      <li><input type="checkbox">link:: <a class="name" href="#">kniznica/library</a> :: (<a href="#">hmlovina</a>)</li>
+    </ul>
+  </div>
+
+  <div class="right">
+    <input placeholder="Search some node names..." style="width:150px">
+    <div style="margin-top:60px">
+      dendrite <a href="#">kniznica/library</a><br>
+      dendrite <a href="#">Audio</a><br>
+      axone <a href="#">main</a>
+    </div>
+  </div>
+</div>
+
+<div class="spec-h" style="margin-left:19%">3.7 feed item (last / re: / k)</div>
+<div class="feed" style="margin-left:19%;max-width:900px">
+  <div class="item">
+    <div class="avatar"><span class="av m"></span><span class="kcount">12 K</span><button>K</button></div>
+    <div class="box">
+      <div class="head">Re[2]: čo počúvate dnes <span class="meta">in</span> <a href="#">Re: čo počúvate dnes</a><br>
+        <span class="meta">author: <a href="#">delta</a> [lokacia :: <a href="#">bookmarks</a>] 20:05:24 - 12.10.2026</span> <span class="r">NEW</span></div>
+      <div class="body">krátka odpoveď v tele príspevku.</div>
+    </div>
+  </div>
+</div>
+
+<div class="spec-h" style="margin-left:19%">3.8 bookmarks</div>
+<div class="layout wide">
+  <div class="left" style="text-align:left">
+    <a href="#">customize bookmarks</a>
+    <div class="friends-head">Friends</div>
+    <div class="friend"><span class="av s"></span><div><a href="#">[main]</a><br>140m44s | alfa</div></div>
+    <div class="friend"><span class="av s"></span><div><a href="#">[bookmarks]</a><br>10m49s | beta_user</div></div>
+  </div>
+  <div>
+    <div class="bm-cat">kategoria::<span class="cname">#2 Politika</span> :: <span class="r">741 NEW</span></div>
+    <ul class="bm-list">
+      <li class="has-new"><input type="checkbox"><a href="#">Regionálna politická scéna</a> :: <span class="r">4 NEW Child</span> :: <span class="flag">descdnt</span> :: [<a href="#">mirex</a>]</li>
+      <li class="has-new"><input type="checkbox"><a href="#">Slovenská politická scéna</a> :: <span class="r">658 NEW Child</span> :: <span class="flag">descdnt</span> :: <span class="flag">changed</span> :: [<a href="#">vlnka</a>]</li>
+      <li><input type="checkbox"><a href="#">Homofóbia</a> :: [<a href="#">k22</a>]</li>
+    </ul>
+    <div class="bm-cat">kategoria::<span class="cname">#5 Notepads</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  © kyberia.sk v4 - specimen<br>
+  provider(s) of this <b>digital community</b> guarant Thee nothing<br>
+  page generation took 0.00412 sec
+</div>
+</body>
+</html>

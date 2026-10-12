@@ -1,0 +1,4 @@
+# screenshots of the members-only live site: never publish
+design/reference/
+__pycache__/
+*.pyc
