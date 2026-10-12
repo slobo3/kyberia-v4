@@ -223,6 +223,8 @@ management, and for user nodes: password, email, mail notify, mood, listing amou
   and `descdnt`/`changed` in green. Nodes with new stuff are rendered bold.
 - Left sidebar: **Friends** online (avatar, `[where]`, idle time, login).
 - Customize bookmarks: create/rename/delete categories and move bookmarks between them.
+- **tvoje K za 24 h (decided):** the sidebar starts with my nodes that received K in the last 24 h: node,
+  `+N K`, and the icons of who gave it (newest first). The sum equals the ledger's "dostal si dnes".
 
 ### 6.3 `last` (`/last`)
 Global feed of the newest submissions across the site (respecting my read rights and ignores).
