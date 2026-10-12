@@ -79,6 +79,8 @@ def user_link(name):
 
 
 def node_column(node, extra):
+    if node.get("details") == "no":  # e.g. mail, bookmarks, RE, fr: no node details, only page sections
+        return f'<aside class="side nodecol" aria-label="nóda">\n{extra}\n    </aside>' if extra.strip() else ""
     pid, pname, phref = (node.get("parent") or "||").split("|")
     parent = f'<a href="{phref}">{e(pname)}</a>' if pname else "—"
     viewers = ", ".join(user_link(v) for v in node.get("viewers", "").split(",") if v)
@@ -155,10 +157,13 @@ def build(path):
         side = strip_cruft_sections(side)
         content = re.sub(r"\s*<div class=\"meta sub\">.*?</div>", "", content, flags=re.S)  # node data lives in the column now
         content = re.sub(r'\s*<ol class="coords".*?</ol>', "", content, flags=re.S)  # no coordinate trail (decided)
+        column = node_column(node, side.rstrip())
         wide = " wide" if 'class="mail' in content else ""
+        if not column:
+            wide += " solo"  # no left column at all
         page = f"""{header(nav)}<main class="wrap" id="obsah">
   <div class="shell{wide}">
-    {node_column(node, side.rstrip())}
+    {column}
     <div class="content">
 {content.strip()}
     </div>

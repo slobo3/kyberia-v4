@@ -209,6 +209,7 @@ The node column shows only: `node`, `template`, `parent`, `owner`, `viewers` (pl
 avatars), and links `stats :: source :: commanders :: dendrites & axones`. Below that, page-specific
 sections (friends online, K wallet, fook list…). Dropped as cruft: permissions box,
 visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
+**Exceptions:** main has its own layout; mail, bookmarks, RE and fr show no node details at all.
 
 ### 7.1 Node view layout (forum / submission)
 1. Node header content (`#topic` box).
