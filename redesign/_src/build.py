@@ -83,6 +83,13 @@ def node_column(node, extra):
         return f'<aside class="side nodecol" aria-label="nóda">\n{extra}\n    </aside>' if extra.strip() else ""
     pid, pname, phref = (node.get("parent") or "||").split("|")
     parent = f'<a href="{phref}">{e(pname)}</a>' if pname else "—"
+    dates = "".join(f"<dt>{k}</dt><dd>{e(node[k])}</dd>" for k in ("created", "updated") if node.get(k))
+    if node.get("perms"):
+        dates += f'<dt>permissions</dt><dd>{e(node["perms"])}</dd>'
+    if node.get("view"):  # discussion nodes: threaded / flat
+        cur = node["view"]
+        links = "".join(f'<a href="#"{" aria-current=\"true\"" if v == cur else ""}>{v}</a>' for v in ("threaded", "flat"))
+        dates += f'<dt>view</dt><dd class="views">{links}</dd>'
     viewers = ", ".join(user_link(v) for v in node.get("viewers", "").split(",") if v)
     if node.get("template") == "system":
         image = ""  # system nodes don't need images
@@ -102,6 +109,7 @@ def node_column(node, extra):
           <dt>parent</dt><dd>{parent}</dd>
           <dt>owner</dt><dd>{user_link(node["owner"])}</dd>
           <dt>viewers</dt><dd class="viewers">{viewers}</dd>
+          {dates}
         </dl>
       </section>
       <p class="nodelinks"><a href="#">stats</a><a href="#">source</a><a href="#">commanders</a><a href="synapses.html">dendrites &amp; axones</a></p>

@@ -439,9 +439,9 @@ mark { background: none; color: var(--white); font-weight: 700; }
 .shell { display: grid; grid-template-columns: 220px minmax(0, 940px); gap: 0 48px; align-items: start; }
 .shell.wide { grid-template-columns: 220px minmax(0, 1fr); }
 .shell > .content { min-width: 0; }
-.nodecol { padding-top: 34px; position: sticky; top: 64px; max-height: calc(100vh - 80px); overflow: auto; scrollbar-width: thin; }
+.nodecol { padding-top: 34px; }  /* stays at the top of the page, scrolls away with it (not sticky) */
 .nodecol .nodeinfo { padding-top: 0; }
-.nodecol .kv { grid-template-columns: 62px minmax(0, 1fr); row-gap: 5px; }
+.nodecol .kv { grid-template-columns: max-content minmax(0, 1fr); column-gap: 14px; row-gap: 5px; }
 .nodecol .kv dd { overflow-wrap: anywhere; }
 .nodecol .kv dd a { color: var(--white); }
 .nodecol .viewers { line-height: 1.5; }
@@ -599,6 +599,11 @@ html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or
 .post .ph a.when { color: var(--mute); }
 .post .ph a.when:hover { color: var(--white); text-decoration: underline; }
 
+/* node details: view switch (threaded :: flat) */
+.nodecol .kv dd.views a { color: var(--green); }
+.nodecol .kv dd.views a[aria-current] { color: var(--white); font-weight: 700; }
+.nodecol .kv dd.views a + a::before { content: "::"; color: var(--mute); margin: 0 .4em; font-weight: 400; }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }
@@ -723,7 +728,7 @@ html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or
   .nodecol > .nodehead.noimg { grid-template-columns: minmax(0, 1fr); }
   .nodecol > .nodehead .nodeimg { width: 72px; height: auto; margin: 0; }
   .nodecol > .nodehead .nodeimg.tile { height: 72px; }
-  .nodecol > .nodehead .kv { grid-template-columns: 62px minmax(0, 1fr); row-gap: 3px; font-size: var(--fs-s); }
+  .nodecol > .nodehead .kv { grid-template-columns: max-content minmax(0, 1fr); column-gap: 12px; row-gap: 3px; font-size: var(--fs-s); }
   .nodecol > :not(.nodehead) { order: 2; }
   .nodecol > .nodelinks { margin: 30px 0 0; padding-top: 16px; border-top: 1px solid var(--rule-2); font-size: var(--fs-s); }
   .nodecol > section:not(.nodehead) { font-size: var(--fs-s); }

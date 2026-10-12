@@ -72,7 +72,10 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
 │ template  nodeshell │ │ main │ kyberia                                         │
 │ parent    main      │ │                                                        │
 │ owner     admin     │ │ kyberia                          ← h1, green, 800      │
-│ viewers   a, b, c   │ │ 120 K [K+] [book] [fook]          ← node pages only     │
+│ viewers   a, b, c   │
+│ created / updated   │
+│ permissions         │
+│ view  threaded::flat│ │ 120 K [K+] [book] [fook]          ← node pages only     │
 │ stats::source::     │ │                                                        │
 │ commanders::dendr.. │ │ …page content…                                         │
 │ ─────────────────── │ │                                                        │
@@ -86,7 +89,7 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
 - The node column shows only node, template, parent, owner, viewers (names, not avatars), and
   `stats :: source :: commanders :: dendrites & axones` (the last opens one page with both lists) (white links). Page-specific sections go underneath. Permissions, visitor
   counts, tiamat, K-filters, neurons and polls are not shown.
-- The node column is sticky on desktop. Under 1000px it splits: the **basics** (node image on the left, node/template/
+- The node column sits at the top of the page and scrolls away with it (not sticky). Under 1000px it splits: the **basics** (node image on the left, node/template/
   parent/owner/viewers on the right) go **above** the content; the links and page extras go below it.
 - ****system nodes** (mail, bookmarks, RE, fr, last, people, K, search…) show no node details** (no node/template/parent/owner/viewers, no stats links).
   If they have page sections (bookmarks: friends online + wallet; fr: friends) those keep the left column;

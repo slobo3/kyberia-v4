@@ -205,8 +205,8 @@ Replies to *my* nodes (children of anything I own), newest first. Same item layo
 Every page — including system pages (bookmarks /id/19, mail /id/24, last, people, K, search…) —
 uses the same layout: **left node column** (starting with the node image) + content (title, then
 the page). No coordinate trail. **Exception: main** has its own front-page layout.
-The node column shows only: `node`, `template`, `parent`, `owner`, `viewers` (plain names, not
-avatars), and links `stats :: source :: commanders :: dendrites & axones`. Below that, page-specific
+The node column shows only: node image, `node`, `template`, `parent`, `owner`, `viewers` (plain names, not
+avatars), `created`, `updated`, `permissions` (your rights :: access), `view` (threaded :: flat, discussion nodes), and links `stats :: source :: commanders :: dendrites & axones`. Below that, page-specific
 sections (friends online, K wallet, fook list…). Dropped as cruft: permissions box,
 visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
 **Exceptions:** main has its own layout; **system nodes** (mail, bookmarks, RE, fr, last, people, K, search…) show no node details at all.
