@@ -588,6 +588,8 @@ html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or
 
 .post .pa { flex-wrap: wrap; }  /* deep threads on phones: never wider than the screen */
 
+.post .ph .pick { margin: 0 8px 0 -2px; align-self: center; }  /* vybrať: in the post header, no label */
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }
