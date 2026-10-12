@@ -106,7 +106,7 @@ side = """      <section>
                 for u, k in (("anima", 31), ("polly", 18), ("drienka", 14), ("kremeň", 11), ("paprika", 9), ("lemur", 7))) + """
         </ul>
       </section>"""
-write("k.html", page("K", "K", "id=15; name=K; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo,lemur,anima", body, side))
+write("k.html", page("K", "K", "id=15; name=K; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo,lemur,anima", body))
 
 # ── people ─────────────────────────────────────────────────────────────────
 others = [u for u in USERS if u not in FRIENDS]

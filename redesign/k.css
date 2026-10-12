@@ -646,7 +646,7 @@ font[size="4"], font[size="5"], font[size="6"], font[size="7"] { font-size: 1.3e
 .bm .name a b, .bm .name a strong { font-weight: 800; }
 
 /* bookmarks: hint of the category tool */
-.bmtools { display: flex; gap: 2px; margin: 0 0 4px -8px; }
+.bmtools { display: flex; gap: 2px; margin: 26px 0 0 -8px; }
 .cat > header .tools a { font-size: var(--fs-xs); color: var(--mute); }
 .cat > header .tools a:hover { color: var(--white); }
 .cat > header .tools { opacity: 0; transition: opacity .15s; }

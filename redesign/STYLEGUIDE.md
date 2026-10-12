@@ -155,7 +155,7 @@ link, because a template is a node too.
 
 `K+ :: book|unbook :: fook :: put do…`. Toggles say what clicking will do: a bookmarked node shows
 **unbook** (highlighted), an unbookmarked one shows **book**. Bookmarks hint at the category tool with
-`+ nová kategória :: usporiadať` above the list and a quiet `upraviť` on each category (on hover).
+`+ nová kategória :: usporiadať` below the list and a quiet `upraviť` on each category (on hover).
 
 ## 4c. Styled titles
 
