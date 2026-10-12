@@ -109,6 +109,17 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
 
 ---
 
+## 4b. Icons & images (kyberia's soul)
+
+- **User icons** are the users' own GIFs (pixel art, often animated), shown at **native size**:
+  50×50 in posts, feeds, people and main; 25×25 in small lists. Always `image-rendering: pixelated`,
+  no rounding, no frames. The showcase icons are invented (`_src/_gen_images.py`).
+- **Node images** illustrate content: the lead story and every entry on main, and the top of the
+  node column. **System nodes (bookmarks, mail, last, people, K, fr, RE, search) have no image.**
+- **main** opens with the animated **banner**, a rework of the historical kyberia banner
+  (`_src/_gen_banner.py`): the original logo, a circuit-board frame, faint UI text, glitch tears.
+- **Friends online** are shown on main as a row of their icons with names and locations.
+
 ## 5. Voice
 
 Lowercase, kyberia jargon kept as is: `::`, `nodeshell::`, `descdnt`, `changed`, `K+`, `book`,

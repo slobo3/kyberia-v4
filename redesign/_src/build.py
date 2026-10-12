@@ -53,7 +53,7 @@ def header(active):
     {"".join(groups)}
   </nav>
   <form class="search-top" action="search.html" role="search"><input class="jump" name="q" type="search" placeholder="search" aria-label="search"></form>
-  <div class="me"><a href="k.html" class="g" title="K wallet">5 849 K</a><a href="user.html">slobo</a><span class="av s" style="--h:95" aria-hidden="true">s</span></div>
+  <div class="me"><a href="k.html" class="g" title="K wallet">5 849 K</a><a href="user.html">slobo</a><img class="av s" src="img/u/slobo.gif" alt="" width="25" height="25"></div>
 </div></header>
 """
 
@@ -83,7 +83,9 @@ def node_column(node, extra):
     pid, pname, phref = (node.get("parent") or "||").split("|")
     parent = f'<a href="{phref}">{e(pname)}</a>' if pname else "—"
     viewers = ", ".join(user_link(v) for v in node.get("viewers", "").split(",") if v)
-    if node.get("img"):
+    if node.get("template") == "system":
+        image = ""  # system nodes don't need images
+    elif node.get("img"):
         image = f'<img class="nodeimg" src="{node["img"]}" alt="">'
     else:
         hue = int(node["id"]) * 47 % 360

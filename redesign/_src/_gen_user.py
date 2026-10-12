@@ -3,6 +3,9 @@ import html
 import io
 import os
 import re
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _content import icon  # noqa: E402
 
 e = html.escape
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # run from anywhere; paths are relative to redesign/
@@ -62,7 +65,7 @@ def post(level, user, time, k, new, text, topic="Kyberia session 2026"):
     nn = ' <span class="sep">::</span> <span class="new">NEW</span>' if new else ""
     cls = " silence" if user == "tichá_voda" else ""
     return f"""<article class="post{cls}">
-  <span class="av" style="--h:{HUE[user]}" aria-hidden="true">{user[0]}</span>
+  <img class="av" src="{icon(user)}" alt="" width="50" height="50">
   <div>
     <div class="ph"><a class="who" href="user.html">{e(user)}</a>{role} {day} {time} <span class="sep">::</span> <span class="lvl">level {level}</span>{up}{kk}{nn}</div>
     {title}
@@ -102,7 +105,7 @@ def friend_post(user, when, k, new, text):
     kk = f' <span class="sep">::</span> <span class="k">{k}</span>' if k else ""
     nn = ' <span class="sep">::</span> <span class="new">NEW</span>' if new else ""
     return f"""<li><article class="post">
-  <span class="av" style="--h:{HUE[user]}" aria-hidden="true">{user[0]}</span>
+  <img class="av" src="{icon(user)}" alt="" width="50" height="50">
   <div>
     <div class="ph"><a class="who" href="user.html">{e(user)}</a> {when}{kk}{nn}</div>
     <div class="pb"><p>{text}</p></div>
@@ -114,7 +117,7 @@ thread = '<ol class="thread friends">\n' + "\n".join(friend_post(*x) for x in FR
 
 PAGE = f"""<!-- title: ozvena -->
 <!-- nav: people -->
-<!-- node: id=4401337; name=ozvena; template=user; parent=||; owner=ozvena; viewers=slobo,kvasar,sklo,drienka; img=img/ozvena.svg -->
+<!-- node: id=4401337; name=ozvena; template=user; parent=||; owner=ozvena; viewers=slobo,kvasar,sklo,drienka; img=img/u/ozvena.gif -->
 <main class="wrap" id="obsah">
   <div class="cols">
     <div>
@@ -175,15 +178,15 @@ PAGE = f"""<!-- title: ozvena -->
       <section>
         <h2>friends</h2>
         <ul class="who-list">
-          <li><span class="av s" style="--h:170">l</span><span class="u">lúč</span><span class="idle"></span></li>
+          <li><img class="av s" src="{icon('lúč')}" alt=""><span class="u">lúč</span><span class="idle"></span></li>
         </ul>
       </section>
       <section>
         <h2>visitors</h2>
         <ul class="who-list">
-          <li><span class="av s" style="--h:95">s</span><span class="u">slobo</span><span class="idle">teraz</span></li>
-          <li><span class="av s" style="--h:20">k</span><span class="u">kvasar</span><span class="idle">dnes</span></li>
-          <li><span class="av s" style="--h:230">s</span><span class="u">sklo</span><span class="idle">dnes</span></li>
+          <li><img class="av s" src="{icon('slobo')}" alt=""><span class="u">slobo</span><span class="idle">teraz</span></li>
+          <li><img class="av s" src="{icon('kvasar')}" alt=""><span class="u">kvasar</span><span class="idle">dnes</span></li>
+          <li><img class="av s" src="{icon('sklo')}" alt=""><span class="u">sklo</span><span class="idle">dnes</span></li>
         </ul>
       </section>
     </aside>

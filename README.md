@@ -24,6 +24,11 @@ Pages are written in `redesign/_src/` and assembled by a tiny build script. It a
 top bar, the node column and the footer:
 
 ```sh
-python redesign/_src/_gen_user.py   # regenerates the user page + the flamewar
-python redesign/_src/build.py       # writes redesign/*.html
+pip install pillow                      # only needed for the image generators
+python redesign/_src/_gen_images.py     # invented user icons (GIFs) + node images for main
+python redesign/_src/_gen_banner.py     # animated main banner
+python redesign/_src/_gen_feeds.py      # last, fr, RE, K, people, mail  (content in _src/_content.py)
+python redesign/_src/_gen_main.py       # main
+python redesign/_src/_gen_user.py       # user page + the flamewar
+python redesign/_src/build.py           # writes redesign/*.html
 ```
