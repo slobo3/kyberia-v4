@@ -148,7 +148,9 @@ msgs = []
 for frm, day, time, where, text, new in reversed(THREAD):
     nn = ' <span class="new">NEW</span>' if new else ""
     me = " me" if frm == "slobo" else ""
-    msgs.append(f'        <li class="msg{me}"><div class="mh"><a class="who" href="user.html">{frm}</a> {day} {time} {sep()} z {e(where)}{nn}</div>'
+    who = f'<a class="who" href="user.html">{frm}</a>'
+    meta = f'{nn} {day} {time} {sep()} z {e(where)} {who}' if me else f'{who} {day} {time} {sep()} z {e(where)}{nn}'
+    msgs.append(f'        <li class="msg{me}"><div class="mh">{meta}</div>'
                 f'<p class="mb">{e(text)}</p></li>')
 body = head("mail") + f"""  <div class="mail">
     <nav class="convos" aria-label="konverzácie">

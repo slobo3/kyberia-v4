@@ -628,3 +628,7 @@ img.nodeimg[src*="img/u/"] { width: 100px; height: 100px; max-width: none; image
   .thread.deep ol ol ol ol .post { grid-template-columns: minmax(0, 1fr); }
   .thread.deep ol ol ol ol .post img.av { display: none; }
 }
+/* mail: own messages on the right (messaging-app convention), theirs on the left */
+.mail .msg.me { text-align: right; }
+.mail .msg.me .mb { margin-left: auto; text-align: right; }
+.mail .msg.me .mh .who { margin: 0 0 0 4px; }
