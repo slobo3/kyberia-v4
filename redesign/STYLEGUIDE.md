@@ -146,7 +146,7 @@ link, because a template is a node too.
   node column. **System nodes (bookmarks, mail, last, people, K, fr, RE, search) have no image.**
 - **main** opens with the animated **banner**, a rework of the historical kyberia banner
   (`_src/_gen_banner.py`): the original logo, a circuit-board frame, faint UI text, horizontal tears. No tagline, no flashing blocks.
-- **Friends online** are shown on main as a row of their icons with names and locations.
+- **Friends online** are shown on main as a collage of their icons (no text; name + location on hover), top of the right column.
 
 ## 5. Voice
 
