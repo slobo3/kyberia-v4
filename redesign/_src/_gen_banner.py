@@ -53,7 +53,6 @@ def base_layer(rng):
     d.line([(160, 0), (160, 168)], fill=DIM)
     d.line([(420, 196), (420, H)], fill=DIM)
     d.line([(W - 330, 0), (W - 330, 22), (W - 1, 22)], fill=DIM)
-    d.rectangle([0, 176, 290, 186], fill=(40, 40, 40))
     d.text((W - 320, 4), "mail:", fill=GREEN, font=font(SANS, 14))
     # tagline + the classic answer
     d.text((W - 300, 60), "I say fook", fill=WHITE, font=font(SANS, 18))
