@@ -220,8 +220,15 @@ aside.side { font-size: var(--fs-s); padding-top: 8px; }
 .seg a[aria-current]:hover { color: var(--void); }
 
 .thread, .thread ol { list-style: none; margin: 0; padding: 0; }
-.thread ol { margin-left: 19px; padding-left: 26px; }  /* nesting by indent only, no guide lines */
-.post { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 0 14px; padding: 18px 0 6px; }
+/* thread geometry lives in variables, so the dotted elbows can follow it on every breakpoint and depth:
+   --av icon column, --gap icon→text, --ml/--pl the reply list's margin/padding (the line sits at --ml: the centre of the parent icon; deep compact levels sit a bit left of it),
+   --cml the margin of a post's own replies, --top the post's top padding */
+.thread { --dot: #4d5249; --av: 50px; --gap: 14px; --ml: 25px; --pl: 20px; --top: 18px; }
+.thread li { --cml: 25px; --drop: calc(var(--av) + 4px); }  /* drop resolves per post, with its own icon size */
+.thread ol { margin-left: var(--ml); padding-left: var(--pl); }
+.post { display: grid; grid-template-columns: var(--av, 50px) minmax(0, 1fr); gap: 0 var(--gap, 14px); padding: var(--top, 18px) 0 6px; }
+.post img.av { --s: var(--av, 50px); }
+.post > div { grid-column: 2; min-width: 0; }  /* text stays in its column even when the icon is hidden */
 .post .ph { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 4px; font-size: var(--fs-s); color: var(--mute); }
 .post .ph .who { color: var(--white); font-weight: 700; font-size: var(--fs); margin-right: 6px; }
 .post .pt { font-weight: 700; color: var(--green); margin: 2px 0 4px; }
@@ -420,9 +427,20 @@ h1 a, h2 a, h3 a, .art a, .rows .name a, .bm .name a, .feed .where a.parent, blo
 .whisper { color: var(--mute); }
 
 /* deep threads (flamewars): full indent for 4 levels, then compact so level 20 still fits */
-.thread.deep ol ol ol ol { margin-left: 6px; padding-left: 12px; }
-.thread.deep ol ol ol ol .post { grid-template-columns: 28px minmax(0, 1fr); gap: 0 10px; }
-.thread.deep ol ol ol ol .post .av { --s: 28px; }
+.thread.deep ol ol ol ol { --ml: 12px; --pl: 6px; }
+.thread.deep ol ol ol > li { --cml: 12px; }
+
+/* dotted elbows: from under the parent's icon, down, then right into the reply's header line */
+.thread ol { --opl: var(--pl); }  /* resolved here, so a reply's elbow knows its own list's padding */
+.thread ol > li { position: relative; }
+.thread ol > li > .post .ph { position: relative; }
+.thread ol > li > .post .ph::before { content: ""; position: absolute; right: 100%; bottom: -1px;
+  width: calc(var(--opl) + var(--av) + var(--gap)); height: 1px; background: linear-gradient(to right, var(--dot) 1px, transparent 1px) 0 0 / 4px 1px repeat-x; }
+.thread ol > li > .post .ph::after { content: ""; position: absolute; bottom: -1px; left: calc(-1 * (var(--opl) + var(--av) + var(--gap)));
+  height: calc(100% + 1px + var(--top)); width: 1px; background: linear-gradient(to bottom, var(--dot) 1px, transparent 1px) 0 0 / 1px 4px repeat-y; }
+.thread ol > li:not(:last-child)::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--opl)); width: 1px; background: linear-gradient(to bottom, var(--dot) 1px, transparent 1px) 0 0 / 1px 4px repeat-y; }
+.thread li:has(> ol) > .post { position: relative; }
+.thread li:has(> ol) > .post::after { content: ""; position: absolute; left: var(--cml); top: calc(var(--top) + var(--drop)); bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--dot) 1px, transparent 1px) 0 0 / 1px 4px repeat-y; }
 
 /* search */
 .search-top { display: contents; }
@@ -531,12 +549,9 @@ img.nodeimg { width: auto; height: auto; max-width: 123px; object-fit: initial; 
 img.av { --s: 50px; width: var(--s); height: var(--s); flex: 0 0 var(--s); display: block; object-fit: cover; image-rendering: pixelated; border-radius: 0; background: #000; }
 img.av.s { --s: 25px; }
 img.av.l { --s: 100px; }
-.post { grid-template-columns: 50px minmax(0, 1fr); }
 .feed > li { grid-template-columns: 50px minmax(0, 1fr) auto; }
 .people li { grid-template-columns: 50px minmax(0, 1fr); }
 .who-list li { grid-template-columns: 25px minmax(0, 1fr) auto; }
-.thread.deep ol ol ol ol .post { grid-template-columns: 50px minmax(0, 1fr); }
-.thread.deep ol ol ol ol .post img.av { --s: 50px; }
 img.nodeimg[src*="img/u/"] { width: 100px; height: 100px; max-width: none; image-rendering: pixelated; }
 
 /* ── main: banner, friends online, illustrated stories ────────────── */
@@ -861,9 +876,8 @@ img.av.xs { --s: 16px; }
   .rows li > input, .rows .cnt, .rows .owner { display: none; }
   .bm li { grid-template-columns: minmax(0, 1fr) auto; }
   .bm .flag, .bm .owner, .bm .dim { display: none; }
-  .thread ol { margin-left: 8px; padding-left: 12px; }
-  .post { grid-template-columns: 28px minmax(0, 1fr); gap: 0 10px; }
-  .post .av { --s: 28px; }
+  .thread { --gap: 10px; --ml: 25px; --pl: 0px; }
+  .thread li { --cml: 25px; }
     .mail { grid-template-columns: 1fr; border: 0; }
   .convos { border-right: 0; }
   .stream { display: none; }
@@ -890,9 +904,11 @@ img.av.xs { --s: 16px; }
   .userinfo > div { padding: 0 1em 3em !important; }
   .userinfo [style*="padding-left:18em"] { padding-left: 2em !important; }
   .userinfo [style*="margin-left:-5em"] { margin-left: 0 !important; }
-  .thread.deep ol ol ol ol { margin-left: 2px; padding-left: 5px; }
-  .thread.deep ol ol ol ol .post { grid-template-columns: minmax(0, 1fr); }
-  .thread.deep ol ol ol ol .post .av { display: none; }
+  /* phones: icons stay (25px from level 4), indent stops after level 8 so level 20 still reads */
+  .thread.deep ol ol ol ol { --av: 25px; --gap: 8px; --ml: 12px; --pl: 0px; }
+  .thread.deep ol ol ol > li { --cml: 12px; }
+  .thread.deep ol ol ol ol ol ol ol ol ol { --ml: 0px; --pl: 0px; }
+  .thread.deep ol ol ol ol ol ol ol ol > li { --cml: 0px; }
 }
 @media (max-width: 1000px) {
   .shell, .shell.wide { grid-template-columns: minmax(0, 1fr); }
@@ -921,12 +937,10 @@ img.av.xs { --s: 16px; }
   .leadstory .k { grid-column: 2; grid-row: auto; }
 }
 @media (max-width: 720px) {
-  .post { grid-template-columns: 50px minmax(0, 1fr); }
   .feed > li { grid-template-columns: 50px minmax(0, 1fr); }
   .feed .av { --s: 50px; }
-  .thread.deep ol ol ol ol .post { grid-template-columns: minmax(0, 1fr); }
-  .thread.deep ol ol ol ol .post img.av { display: none; }
 }
+
 @media (max-width: 720px) { .top-in, .wrap, .foot { padding-left: 14px; padding-right: 14px; } }
 
 /* phone rules for the newer parts (main, icons, node column) */
@@ -950,7 +964,6 @@ img.av.xs { --s: 16px; }
   .feed .score { grid-column: 2; }
   .people { grid-template-columns: minmax(0, 1fr); }
   .people li { grid-template-columns: 50px minmax(0, 1fr); }
-  .post { grid-template-columns: 50px minmax(0, 1fr); gap: 0 10px; }
   .content .mail { grid-template-columns: minmax(0, 1fr); }
   .mail .convos { border-right: 0; }
   .mail .stream { padding-left: 0; order: -1; }
