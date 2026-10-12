@@ -145,7 +145,7 @@ for frm, day, time, where, text, new in reversed(THREAD):
                 f'<p class="mb">{e(text)}</p></li>')
 body = head("mail") + f"""  <div class="mail">
     <nav class="convos" aria-label="konverzácie">
-      <input class="field" type="search" placeholder="komu napísať" aria-label="komu napísať">
+      <a class="btn primary newmail" href="mail-new.html">+ nová správa</a>
       <ul>
 {chr(10).join(convs)}
       </ul>

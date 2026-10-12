@@ -64,7 +64,7 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
 
 ```
 ┌ top bar ─────────────────────────────────────────────────────────────────────────┐
-│ kyberia.sk  [ main kyberia sub fr RE bookmarks ] [ mail last people ] [ K ]       │
+│ kyberia.sk  [ main kyberia fr RE bookmarks ] [ mail last people blogs ] [ K ]       │
 │                                                     [search]  5 849 K  slobo     │
 └───────────────────────────────────────────────────────────────────────────────────┘
 ┌ node column (220px) ┐ ┌ content (≤ 940px) ──────────────────────────────────────┐

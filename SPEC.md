@@ -315,7 +315,8 @@ visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
 6. Visit tracking and NEW/descendant/changed markers.
 7. Bookmarks with categories; bookmarks page with friends sidebar.
 8. `last`, `re:`/`RE` (replies to me), `sub` (my submissions by month/year/parent creator, with new-reply counts),
-   `fr` (friends' submissions), `k`, `kNEW`, `people`, search, quick node search.
+   `fr` (friends' submissions), `k`, `kNEW`, `people`, **`blogs`** (newest diary entries from everyone; a key
+   node, in the main menu), search, quick node search.
 9. Mail.
 10. Friends, ignore, ignore_mail, mood, avatar upload.
 11. `put` / `delete_hardlink`, dendrites/axones.

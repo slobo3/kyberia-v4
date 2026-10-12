@@ -30,7 +30,7 @@ CSS_VER = hashlib.sha1((OUT / "k.css").read_bytes()).hexdigest()[:8]  # cache-bu
 NAV = [
     [("main", "main.html"), ("kyberia", "kyberia.html"), ("fr", "fr.html"),
      ("RE", "re.html"), ("bookmarks", "bookmarks.html")],
-    [("mail", "mail.html"), ("last", "last.html"), ("people", "people.html")],
+    [("mail", "mail.html"), ("last", "last.html"), ("people", "people.html"), ("blogs", "blogs.html")],
     [("K", "k.html")],
 ]
 BADGES = {"mail": '<span class="new">2</span>', "RE": '<span class="new">3</span>'}
@@ -61,14 +61,14 @@ def header(active, title=""):
     {"".join(groups)}
   </nav>
   <form class="search-top" action="search.html" role="search"><label for="q-top" class="loupe" title="search">{LOUPE}</label><input id="q-top" class="jump" name="q" type="search" placeholder="search" aria-label="search"></form>
-  <div class="me"><a href="user.html">slobo</a><a href="#" class="g">setup</a><a href="#" class="btn ghost logout">logout</a></div>
+  <div class="me"><a href="user.html">slobo</a><a href="setup.html" class="g">setup</a><a href="#" class="btn ghost logout">logout</a></div>
   <span class="here" aria-hidden="true">{here}</span>
   <span class="mquick"><a href="mail.html">mail<span class="new">2</span></a><a href="re.html">RE<span class="new">3</span></a></span>
   <details class="mmenu"><summary aria-label="menu"><svg viewBox="0 0 20 16" width="20" height="16" aria-hidden="true"><rect y="0" width="20" height="2"/><rect y="7" width="20" height="2"/><rect y="14" width="20" height="2"/></svg></summary>
     <nav class="mnav" aria-label="menu">
       {"".join(mgroups)}
       <div class="grp"><a href="user.html">userinfo <span class="who-me">[slobo]</span></a><a href="search.html">search</a></div>
-      <div class="mme"><a href="#">setup</a><a href="#" class="btn ghost logout">logout</a></div>
+      <div class="mme"><a href="setup.html">setup</a><a href="#" class="btn ghost logout">logout</a></div>
     </nav>
   </details>
 </div></header>
