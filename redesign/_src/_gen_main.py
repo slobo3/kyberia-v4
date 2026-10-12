@@ -47,7 +47,7 @@ active = "\n".join(f'        <li><a href="forum.html">{e(strip_re(p[5] or p[3]))
 
 body = f"""  <header class="front">
     <img class="banner" src="img/banner.gif" alt="kyberia.sk" width="1180" height="240">
-    <h1 class="sr">Something smarter than us is going to emerge</h1>
+    <h1 class="sr">kyberia.sk</h1>
   </header>
 
   <section class="online" aria-label="priatelia online">

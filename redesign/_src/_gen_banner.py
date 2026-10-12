@@ -56,8 +56,6 @@ def base_layer(rng):
     d.rectangle([0, 176, 290, 186], fill=(40, 40, 40))
     d.text((W - 320, 4), "mail:", fill=GREEN, font=font(SANS, 14))
     # tagline + the classic answer
-    d.text((180, 70), "Something smarter than us", fill=WHITE, font=font(BOLD, 34))
-    d.text((180, 110), "is going to emerge", fill=WHITE, font=font(BOLD, 34))
     d.text((W - 300, 60), "I say fook", fill=WHITE, font=font(SANS, 18))
     d.text((W - 300, 84), "ako sa máš, kyberia.sk?", fill=GREEN, font=font(SANS, 14))
     # the logo, unmodified
@@ -75,14 +73,6 @@ def glitch(base, rng, strength):
         x0 = rng.randint(150, W - 300)
         band = base.crop((x0, y, min(W, x0 + rng.randint(120, 520)), y + h))
         img.paste(band, (max(0, x0 + rng.randint(-90, 90)), y))
-    for _ in range(int(9 * strength)):  # light-green blocks, the signature of the original
-        x = rng.randint(380, W - 240)
-        y = rng.randint(10, H - 70)
-        w, h = rng.randint(30, 260), rng.randint(6, 46)
-        d.rectangle([x, y, x + w, y + h], fill=rng.choice((LIGHT, PALE, GREEN, LIGHT)))
-        for yy in range(y, y + h, 3):  # scanline breakup inside the block
-            if rng.random() < .35:
-                d.line([(x + rng.randint(0, w // 2), yy), (x + w, yy)], fill=BLACK)
     return img
 
 
