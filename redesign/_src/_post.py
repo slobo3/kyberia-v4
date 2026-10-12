@@ -16,7 +16,7 @@ from _content import icon
 
 e = html.escape
 SEP = '<span class="sep">::</span>'
-ACTS = '<span class="pa"><button class="act" type="button">odpovedať</button><button class="act" type="button">K+</button></span>'
+ACTS = '<span class="pa"><button class="act re-act" type="button" aria-label="odpovedať" title="odpovedať">↵</button><button class="act" type="button">K+</button></span>'
 AUTO_TITLE = re.compile(r"^\s*Re(\[\d+\])?:", re.I)
 
 
