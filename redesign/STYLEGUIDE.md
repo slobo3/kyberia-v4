@@ -134,7 +134,7 @@ link, because a template is a node too.
 | thread | Nested lists with a dark-green guide line. Full indent for 4 levels, then compact, so a 20-deep flamewar still fits. |
 | user page | Avatar, coordinate trail, name, `K` + actions (`mail`, `book`, `K+`, `ignore`, `ignore_mail`), tabs, userinfo frame, then **friends**: flat, chronological, newest first. Posting there makes you a friend. |
 | feed item | Used by last, RE, fr, sub, K and search: where (green, parent white bold) · title · who/when · text · score column. |
-| composer | Panel with title field, `bez HTML`, a formatting row, textarea, `náhľad` and `pridať`. |
+| composer | Panel with title field, `bez HTML`, a formatting row, textarea, `náhľad` and `pridať`. The K cost (`−1 K`, red) sits right before `pridať`: **posting spends K**. |
 | mail | Conversations list plus a stream; each message shows where the sender was. |
 | segmented control | For view and sort switches (threads/chronological, 24 h/3 days…). |
 
@@ -150,6 +150,12 @@ link, because a template is a node too.
 - **main** opens with the animated **banner**, a rework of the historical kyberia banner
   (`_src/_gen_banner.py`): the original logo, a circuit-board frame, faint UI text, horizontal tears. No tagline, no flashing blocks.
 - **Friends online** are shown on main as a collage of their icons (no text; name + location on hover), top of the right column.
+
+## 4c. Styled titles
+
+Node names may carry the author's inline HTML (`<b>`, `<font color>`, `<font size>`…, see SPEC §2.4).
+Render it as written, inside the normal title style. Sizes are capped (≤ 1.3em) and line-height is fixed,
+so a styled title never breaks a listing row. Default title colours still apply to unstyled parts.
 
 ## 5. Voice
 

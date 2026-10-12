@@ -52,7 +52,7 @@ def header(active):
     {"".join(groups)}
   </nav>
   <form class="search-top" action="search.html" role="search"><input class="jump" name="q" type="search" placeholder="search" aria-label="search"></form>
-  <div class="me"><a href="k.html" class="g" title="K wallet">5 849 K</a><a href="user.html">slobo</a><img class="av s" src="img/u/slobo.gif" alt="" width="25" height="25"><a href="#" class="g">setup</a><a href="#" class="btn ghost logout">logout</a></div>
+  <div class="me"><a href="k.html" class="g" title="K wallet">5 846 K</a><a href="user.html">slobo</a><img class="av s" src="img/u/slobo.gif" alt="" width="25" height="25"><a href="#" class="g">setup</a><a href="#" class="btn ghost logout">logout</a></div>
 </div></header>
 """
 

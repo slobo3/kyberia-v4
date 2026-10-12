@@ -41,7 +41,7 @@ skins, polls, stats.
 | field | notes |
 |---|---|
 | `id` | integer, global, monotonically increasing. URL is `/id/{id}`. Node `1` is the root ("vrchol hierarchie"), the only node without a parent. |
-| `name` | title. For replies, auto-defaults to `Re: <parent name>`, then `Re[2]:`, `Re[3]:`… by depth. |
+| `name` | title. For replies, auto-defaults to `Re: <parent name>`, then `Re[2]:`, `Re[3]:`… by depth. **May contain limited inline HTML** (§2.4), a beloved kyberia habit (`<b>R</b>egionálna…`, `<font color=yellow>Nikon</font>`). |
 | `content` | HTML body (sanitised) or plain text (`NO HTML` checkbox). `nl2br` flag per node. |
 | `template_id` | the node's **template** (§2.2), itself a node. Decides how the node and its children render and which operations are offered. **Not a fixed type:** it can be changed via configure. |
 | `parent_id` | the primary parent. |
@@ -100,6 +100,20 @@ Listings print the child's template as a lowercase prefix: `nodeshell:: Hudba ::
 - Store as `synapse(src_id, dst_id, created_by, created_at)`.
 
 ---
+
+### 2.4 HTML in node names (decided)
+
+People style their forum titles: a bold first letter, a coloured word, a big **BLACK_MARKET**.
+Keep it, safely:
+
+- **Allowlist:** `b`, `strong`, `i`, `em`, `u`, `s`, `sup`, `sub`, `font` (`color`, `size` only), `span`
+  (`style` with `color` only). Everything else is stripped on save; no links, images, scripts or layout.
+- **Sizes are capped:** `font size` 1–4 renders as 0.85 / 0.95 / 1.15 / 1.3 em (5+ is clamped to 4), so
+  listings and bookmarks keep their rhythm.
+- **Colours are free** (it's the author's voice), but the UI may lighten too-dark colours for contrast.
+- **Plain-text twin:** store `name_html` and derive `name_text` (tags stripped) for the browser tab
+  title, search, mail notifications, `Re:` titles, sorting and the quick node search.
+- Where it renders: listings, bookmarks, node titles, feeds, main. Not in the top bar or tab title.
 
 ## 3. Users, identity, presence
 
@@ -170,9 +184,13 @@ management, and for user nodes: password, email, mail notify, mood, listing amou
 - **K wallet, old style (decided):** every user has a wallet. It is refilled by a **daily
   allowance** and grows by every **K received** on your nodes. Giving K spends one from the
   wallet. Shown on bookmarks as a **daily ledger**: K včera, + denný príspevok, + dostal si dnes,
-  − rozdal si dnes, = K teraz (and the current balance in the top bar). No transfers,
+  − rozdal si dnes, − minul si na príspevky, = K teraz (and the current balance in the top bar). No transfers,
   treasury, 🦆/🐘 or crypto. Allowance size and whether unspent allowance accumulates: **[decide;
   match the old rules]**.
+- **Posting spends K (decided).** Creating a node (post, reply, forum, friend post) costs K from the
+  wallet: **1 K per node** in the MVP (configurable per template later). The composer shows the cost next
+  to the add button (`−1 K pridať`); with an empty wallet you can't post. The daily ledger shows it as
+  "minul si na príspevky".
 - **K page** (`/k`): nodes ordered by K received, created in the last N days (`newly
   CREATED K valued nodes`, interval input in days). Shown as full posts with a red K count +
   `K` badge on the left.
@@ -335,7 +353,7 @@ Keep the system aliases (`/id/19`, `/id/24`, …) as redirects so old links work
 ## 11. Data model (Postgres sketch)
 
 ```sql
-nodes(id bigint pk, name text, content text, template_id bigint /* -> nodes.id */, parent_id bigint,
+nodes(id bigint pk, name_html text, name_text text, content text, template_id bigint /* -> nodes.id */, parent_id bigint,
       path bigint[] /* vector */, depth int, owner_id bigint,
       system_access text, external_access bool, nl2br bool, no_html bool,
       image text, external_link text,

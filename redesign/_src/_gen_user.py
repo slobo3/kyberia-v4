@@ -150,7 +150,7 @@ PAGE = f"""<!-- title: ozvena -->
           <label class="check"><input type="checkbox"> bez HTML</label>
         </div>
         <textarea class="field" placeholder="napíš ozvena…" aria-label="text"></textarea>
-        <div class="send"><span></span><span><button type="button" class="btn">náhľad</button> <button type="submit" class="btn primary">pridať</button></span></div>
+        <div class="send"><span></span><span><button type="button" class="btn">náhľad</button> <span class="cost" title="pridanie stojí 1 K">−1 K</span> <button type="submit" class="btn primary">pridať</button></span></div>
       </form>
 
       <div class="thread-bar">
