@@ -90,18 +90,13 @@ write("submission.html",
       f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
 
 # ── blog: a user's diary (denník); entries newest first ───────────────────
-ENTRIES = [
-    ("hmla nad Dunajom", "12.10.2026 07:12", 242, 3, 28, "Šiesta ráno z Apollo mosta. Dvadsať minút čakania na správne svetlo a jedna fotka, kým sa hmla zdvihla. Studené ruky, analóg, Portra 400, a pocit, že mesto ešte spí len pre mňa."),
-    ("prvý film z novej Nikon FM2", "05.10.2026 21:40", 180, 6, 12, "Kúpila som ju v Foto bazári od človeka, ktorý ju mal v skrini dvadsať rokov. Prvých 36 políčok: tri ostré, päť krivých, zvyšok sú moje topánky. Je to láska."),
-    ("Petržalka v novembri", "28.09.2026 18:05", 95, 2, 7, "Panelové domy v hmle vyzerajú ako lode. Prešla som od Draždiaka až k Chorvátskemu ramenu a fotila len okná, v ktorých sa svieti."),
-    ("prečo stále analóg", "14.09.2026 22:30", 412, 19, 41, "Lebo každé políčko niečo stojí. Lebo nevidím výsledok hneď. Lebo keď sa film vráti z labu, je to ako list od seba samej spred dvoch týždňov."),
-    ("Dunaj pri Devíne", "01.09.2026 06:50", 133, 4, 9, "Zase hmla, zase skoro ráno. Tentoraz s statívom a s kamarátkou, ktorá zaspala v aute. Fotky budú vo fotke dňa."),
-]
-entries = "\n".join(f"""    <article class="entry">
+from _blogdata import DRIENKA  # noqa: E402
+# blog entries on kyberia are long: show them in full, no K numbers in the entry meta
+entries = "\n".join(f"""    <article class="entry full">
       <h2><a href="submission.html">{e(t)}</a></h2>
-      <div class="m"><a href="user.html">drienka</a> {SEP} <a class="when" href="submission.html">{when}</a> {SEP} videné {views}× {SEP} {subs} reakcií {SEP} <span class="k">{k} K</span></div>
-      <p>{e(x)}</p>
-    </article>""" for t, when, views, subs, k, x in ENTRIES)
+      <div class="m"><a href="user.html">drienka</a> {SEP} <a class="when" href="submission.html">{when}</a> {SEP} videné {views}× {SEP} <a href="submission.html">{subs} reakcií</a></div>
+      {"".join(f"<p>{e(par)}</p>" for par in pars)}
+    </article>""" for t, when, views, subs, pars in DRIENKA)
 body = f"""  <div class="head">
     <h1>denník: drienka</h1>
     <div class="actions">

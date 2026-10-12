@@ -752,6 +752,16 @@ mark { background: none; color: var(--white); font-weight: 800; text-decoration:
 .pager .pages a[aria-current] { background: var(--green); color: var(--void); font-weight: 700; }
 .pager .firstnew { color: var(--red); margin-left: 8px; }
 
+/* blogs: icon + entry at full width; diary entries in full */
+.entries.list .entry { display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 0 16px; }
+.entries.list .entry img.av { margin-top: 4px; }
+.entry p { max-width: none; }
+.entry .m a { color: var(--white); }
+.entry .m a.when { color: var(--mute); }
+.entry.full p { margin: 0 0 .9em; }
+.entry.full p:last-child { margin-bottom: 0; }
+.entry h2 { font-size: var(--fs-l); }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }
