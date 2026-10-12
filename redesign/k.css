@@ -686,6 +686,16 @@ font[size="4"], font[size="5"], font[size="6"], font[size="7"] { font-size: 1.3e
 /* phone header parts: hidden on desktop */
 .top .here, .top .msearch, .top .mquick, .top .mmenu { display: none; }
 
+/* top bar search: a magnifying glass that rolls out a field */
+.search-top { display: flex; align-items: center; margin-left: auto; }
+.search-top .loupe { display: grid; place-items: center; width: 32px; height: 32px; color: var(--white); cursor: pointer; border-radius: var(--radius); }
+.search-top .loupe:hover { color: var(--green); }
+.search-top .jump { width: 0; padding: 0; border-color: transparent; background: transparent; opacity: 0;
+  transition: width .22s ease, padding .22s ease, opacity .18s ease, border-color .22s ease; }
+.search-top:focus-within .jump, .search-top .jump:not(:placeholder-shown) { width: 230px; padding: 0 10px; opacity: 1; border-color: var(--green); background: var(--void); }
+.search-top:focus-within .loupe { color: var(--green); }
+.top .me { margin-left: 8px; }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }
@@ -847,4 +857,26 @@ font[size="4"], font[size="5"], font[size="6"], font[size="7"] { font-size: 1.3e
   .top .mnav .mme a { color: var(--white); }
   .top .mnav .mme a.g { color: var(--green); font-weight: 700; }
   .top .mnav .mme .logout { margin-left: auto; }
+}
+
+/* phones: the menu is an overlay over the page (fixed, full height under the bar) */
+@media (max-width: 720px) {
+  .top .mnav { position: fixed; top: 48px; left: 0; right: 0; bottom: 0; overflow-y: auto;
+    background: rgba(0, 0, 0, .94); border-bottom: 0; padding: 18px 16px 40px; z-index: 80; }
+  .top .mnav .grp { padding: 10px 0; }
+  .top .mnav .grp a { font-size: var(--fs-l); padding: 10px 12px; }
+  .top .mnav .mme { margin-top: 18px; padding-top: 18px; font-size: var(--fs-l); flex-wrap: wrap; row-gap: 12px; }
+}
+
+/* phones: the menu is vertical, one item per line; groups separated by a rule; opaque overlay */
+@media (max-width: 720px) {
+  .top .mnav { background: var(--void); padding: 6px 16px 40px; }
+  .top .mnav .grp { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .top .mnav .grp::before, .top .mnav .grp::after { content: none; }
+  .top .mnav .grp a { display: flex; justify-content: space-between; align-items: center; padding: 12px 6px; font-size: var(--fs-l); border-radius: var(--radius); }
+  .top .mnav .grp a .new { margin-left: auto; }
+  .top .mnav .grp a[aria-current] .new { color: var(--void); }
+  .top .mnav .mme { flex-direction: column; align-items: stretch; gap: 0; border-top: 0; margin-top: 8px; padding-top: 0; }
+  .top .mnav .mme a { padding: 12px 6px; }
+  .top .mnav .mme .logout { margin: 10px 0 0; align-self: flex-start; }
 }

@@ -57,8 +57,8 @@ def header(active, title=""):
   <nav class="nav" aria-label="hlavná navigácia">
     {"".join(groups)}
   </nav>
-  <form class="search-top" action="search.html" role="search"><input class="jump" name="q" type="search" placeholder="search" aria-label="search"></form>
-  <div class="me"><a href="k.html" class="g" title="K wallet">5 846 K</a><a href="user.html">slobo</a><img class="av s" src="img/u/slobo.gif" alt="" width="25" height="25"><a href="#" class="g">setup</a><a href="#" class="btn ghost logout">logout</a></div>
+  <form class="search-top" action="search.html" role="search"><label for="q-top" class="loupe" title="search">{LOUPE}</label><input id="q-top" class="jump" name="q" type="search" placeholder="search" aria-label="search"></form>
+  <div class="me"><a href="user.html">slobo</a><a href="#" class="g">setup</a><a href="#" class="btn ghost logout">logout</a></div>
   <span class="here" aria-hidden="true">{here}</span>
   <span class="mquick"><a href="mail.html">mail<span class="new">2</span></a><a href="re.html">RE<span class="new">3</span></a></span>
   <details class="mmenu"><summary aria-label="menu"><svg viewBox="0 0 20 16" width="20" height="16" aria-hidden="true"><rect y="0" width="20" height="2"/><rect y="7" width="20" height="2"/><rect y="14" width="20" height="2"/></svg></summary>

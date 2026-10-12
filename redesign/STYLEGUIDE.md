@@ -128,8 +128,12 @@ link, because a template is a node too.
 ## 3c. Top bar on phones
 
 One slim bar, no bottom bar: **page name** (green, truncated) · **mail N · RE N** (badges always visible) ·
-**☰** (opens the menu). The menu is a fold-out (`<details>`, no JS) with the full bracketed menu one group
-per line, then `K :: slobo :: search :: setup … logout`.
+**☰** (opens the menu). The menu is an opaque overlay over the page (`<details>`, no JS): a **vertical list**,
+one item per row, groups separated by a rule, current page in a green block, badges right-aligned; then
+`K`, `slobo`, `search`, `setup`, `logout`.
+
+Desktop top bar: the bracketed menu, then **⌕** (a magnifying glass that rolls out a search field on click
+and folds back when empty and unfocused), then `slobo :: setup :: logout`. No icon, no K count.
 Desktop keeps the one-line bracketed bar.
 
 ## 4. Components
