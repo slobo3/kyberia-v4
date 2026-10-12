@@ -48,48 +48,32 @@ def write(name, text):
     print("wrote", name)
 
 
-# ── submission: one post as a node, with its replies ──────────────────────
-replies = (
-    post("cín", "12.10.2026 10:02", "Viedeň to počíta v nákladoch na zdravotníctvo, nie v rozpočte zelene. Preto im to vychádza. U nás to platí iný úrad.", "Re: Prečo sa mestské stromy oplatia…", k=6, level=1,
-         children=post("anima", "12.10.2026 10:20", "Presne. Kto platí stromy a kto ušetrí na horúčavách, sú dve rôzne kapitoly. Nikto to nespojí.", "Re[2]: Prečo sa mestské stromy oplatia…", k=3, level=2))
-    + "\n" + post("mrak", "12.10.2026 11:45", "A koľko z tých stromov prežije prvé tri roky bez polievania? To je tá časť, ktorá sa v štúdiách nespomína.", "Re: Prečo sa mestské stromy oplatia…", level=1, new=True)
-    + "\n" + post("lemur", "12.10.2026 13:30", "Na našom sídlisku vysadili javory pred piatimi rokmi. Teraz je tam v lete o dva stupne menej, meral som to cez Arduino.", "Re: Prečo sa mestské stromy oplatia…", k=11, level=1, new=True)
-)
+# ── submission: one discussion reply opened as its own node (click a post's title in diskusia) ──
+# kvasar's reply in Kyberia session 2026: the title is the node name, the text is its content, its replies below.
+replies = post("bgdny", "12.10.2026 21:03", "Dohodnuté. Langoš je povinný.", "Re[2]: Kyberia session 2026", k=2, level=1)
 body = f"""  <div class="head">
-    <h1>Prečo sa mestské stromy oplatia viac ako klimatizácia</h1>
+    <h1>Re: Kyberia session 2026</h1>
     <div class="actions">
-      <span class="k ksum">64 K</span>
       <button class="btn">K+</button>
       <button class="btn">book</button>
       <button class="btn">fook</button>
-      <button class="btn ghost">put do…</button>
     </div>
   </div>
   <section class="topic prose">
-    <p>Pred rokom som začala zbierať štúdie o tom, čo robia stromy s teplotou v meste. Väčšina hovorí to isté: vzrastlý strom ochladí okolie o dva až štyri stupne a v uliciach, kde sa ľudia pohybujú, to robí väčší rozdiel než akákoľvek klimatizácia.</p>
-    <h2>Tri štúdie, ktoré stoja za prečítanie</h2>
-    <ol>
-      <li><b>Viedeň, 2022:</b> mapa ulíc s teplotou povrchu v júli. Ulice so stromami o 6 °C chladnejšie na úrovni chodníka.</li>
-      <li><b>Barcelona, 2023:</b> superbloky a nové výsadby. Menej hospitalizácií počas vĺn horúčav.</li>
-      <li><b>Rotterdam, 2024:</b> náklady na údržbu na strom a rok, porovnané s cenou chladenia budov.</li>
-    </ol>
-    <p>Prečo to radnice aj tak počítajú zle? Lebo strom je v rozpočte zelene, ale úspora je v zdravotníctve a v účtoch za elektrinu. Nikto neporovnáva tie dve tabuľky naraz.</p>
-    <blockquote>Najlacnejšia klimatizácia v meste je tá, ktorá rastie sama.</blockquote>
-    <p>Pridávam mapu ulíc v Bratislave, kde by stromy pomohli najviac. Návrhy na doplnenie vítané.</p>
+    <p>Beriem jedno miesto, ďakujem. Platím benzín aj langoš.</p>
   </section>
-{composer("odpovedať na príspevok", "tvoja reakcia…")}
-  <div class="thread-bar"><h2>48 reakcií</h2></div>
+  <div class="thread-bar"><h2>1 reakcia</h2></div>
   <ol class="thread">
 {replies}
   </ol>
-  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>"""
+{composer("odpovedať na príspevok", "tvoja reakcia…")}"""
 write("submission.html",
-      "<!-- title: Prečo sa mestské stromy oplatia viac ako klimatizácia -->\n<!-- nav: node -->\n"
-      "<!-- node: id=9185501; name=Prečo sa mestské stromy oplatia…; template=submission; parent=63611|Veda a technológie|kyberia.html; "
-      "owner=anima; viewers=slobo,cín,mrak,lemur; img=img/n/main0.gif; created=12.10.2026 09:14; updated=12.10.2026 09:31; perms=r, w :: public -->\n"
+      "<!-- title: Re: Kyberia session 2026 -->\n<!-- nav: node -->\n"
+      "<!-- node: id=9184840; name=Re: Kyberia session 2026; template=submission; parent=9184811|Kyberia session 2026|forum.html; "
+      "owner=kvasar; viewers=slobo,bgdny,kvasar; img=img/u/kvasar.gif; created=12.10.2026 20:52; updated=12.10.2026 20:52; perms=r, w :: public -->\n"
       f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
 
-# ── blog: a user's diary (denník) is a forum; each entry is a forum post (child node), shown in full ──
+# ── blog: each blog is its own node (template blog) under its author; blogs lists the newest ──
 from _blogdata import DRIENKA, IMG, POSTPAGE, REPLIES as BLOG_REPLIES  # noqa: E402
 
 
@@ -99,34 +83,8 @@ def block(b):
     return f"<p>{e(b[1])}</p>"
 
 
-entries = "\n".join(f"""    <article class="entry full">
-      <h2><a href="{POSTPAGE[t]}">{e(t)}</a></h2>
-      <div class="m"><a href="user.html">drienka</a> {SEP} <a class="when" href="{POSTPAGE[t]}">{when}</a> {SEP} videné {views}× {SEP} <a href="{POSTPAGE[t]}">{subs} reakcií</a></div>
-      {"".join(block(b) for b in blocks)}
-      <div class="pa"><a class="btn ghost" href="{POSTPAGE[t]}">odpovedať</a></div>
-    </article>""" for t, when, views, subs, blocks in DRIENKA)
-body = f"""  <div class="head">
-    <h1>denník: drienka</h1>
-    <div class="actions">
-      <span class="k ksum">97 K</span>
-      <button class="btn">K+</button>
-      <button class="btn">book</button>
-      <button class="btn">fook</button>
-    </div>
-  </div>
-{composer("pridať zápis do denníka", "o čom dnes…", "názov zápisu")}
-  <div class="entries">
-{entries}
-  </div>
-  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie zápisy</a></nav>"""
-write("blog.html",
-      "<!-- title: denník: drienka -->\n<!-- nav: node -->\n"
-      "<!-- node: id=7004120; name=denník: drienka; template=forum; parent=7004001|drienka|user.html; owner=drienka; "
-      "viewers=slobo,ihla,ode; img=img/u/drienka.gif; created=14.03.2019 20:10; updated=12.10.2026 07:12; perms=r :: public -->\n"
-      f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
-
-# each diary entry on its own: a forum post node (template submission). The title is the node name and the
-# node column carries owner and dates, so the page is just the text, then the replies at the bottom.
+# The title is the node name and the node column carries owner and dates, so the page is just the text and
+# photos, then the replies, then the reply form.
 for i, (t, when, views, subs, blocks) in enumerate(DRIENKA):
     reps = BLOG_REPLIES.get(t, [])
     items = []  # level-2 replies nest under the reply before them
@@ -152,10 +110,10 @@ for i, (t, when, views, subs, blocks) in enumerate(DRIENKA):
   <ol class="thread">
 {thread}
   </ol>{more}
-{composer("odpovedať na zápis", "tvoja reakcia…")}"""
+{composer("odpovedať na blog", "tvoja reakcia…")}"""
     write(POSTPAGE[t],
           f"<!-- title: {t} -->\n<!-- nav: node -->\n"
-          f"<!-- node: id={9184100 - i * 1731}; name={t}; template=submission; parent=7004120|denník: drienka|blog.html; owner=drienka; "
+          f"<!-- node: id={9184100 - i * 1731}; name={t}; template=blog; parent=7004001|drienka|user.html; owner=drienka; "
           f"viewers=slobo,ihla,ode; img=img/u/drienka.gif; created={when}; updated={when}; perms=r :: public -->\n"
           f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
 

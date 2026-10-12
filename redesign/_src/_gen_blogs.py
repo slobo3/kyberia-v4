@@ -1,4 +1,4 @@
-"""Write blogs.html: the newest diary (denník) entries from everyone. A system node, like v2's /id/21.
+"""Write blogs.html: the newest blogs from everyone. A system node, like v2's /id/21.
 Excerpts ~250 chars at full width (as on real kyberia); no K numbers (same rule as main)."""
 import html
 import io
@@ -17,7 +17,7 @@ items = "\n".join(f"""    <article class="entry">
       <img class="av" src="{icon(u)}" alt="" width="50" height="50">
       <div>
         <h2><a href="{POSTPAGE.get(t, "submission.html")}">{e(t)}</a></h2>
-        <div class="m"><a href="blog.html">denník: {e(u)}</a> {SEP} <a class="when" href="{POSTPAGE.get(t, "submission.html")}">{when}</a> {SEP} videné {v}× {SEP} <a href="{POSTPAGE.get(t, "submission.html")}">{r} reakcií</a></div>
+        <div class="m"><a href="user.html">{e(u)}</a> {SEP} <a class="when" href="{POSTPAGE.get(t, "submission.html")}">{when}</a> {SEP} videné {v}× {SEP} <a href="{POSTPAGE.get(t, "submission.html")}">{r} reakcií</a></div>
         {f'<img class="bthumb" src="{img}" alt="" width="320" height="210">' if img else ""}
         {f"<p>{e(x)}</p>" if x else ""}
       </div>

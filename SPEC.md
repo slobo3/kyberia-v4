@@ -80,7 +80,7 @@ behave differently is the node's **template**:
 | `submission` | its replies as a thread | a reply |
 | `user` | friend posts: flat, chronological, newest first | a friend post; posting makes you a friend |
 | `friend` | (a friend post itself; renders like a post) | — |
-| (denník) | no own template: a diary **is a forum** whose posts are the entries, shown in full, newest first. Each entry is a post node (`submission`) with its own page: the title is the node name, then the text, replies at the bottom | a new entry ("pridať zápis") |
+| `blog` | a blog: one node with text and photos (the title is the node name), its replies below, the reply form at the bottom. Hangs under its author or any forum; `blogs` lists the newest | a reply |
 | `system:*` | bookmarks, mail, last, RE, fr, people, K, search: their special views; no node details | per page (mail: a message) |
 | `article` | **MVP: a submission with a "promotable to main" flag** | — |
 | `data` | an uploaded file with its own access rights: preview, file details, download, then a discussion. **Post-MVP.** | a reply |

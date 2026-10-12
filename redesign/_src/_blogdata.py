@@ -1,4 +1,4 @@
-"""Invented diary (denník) texts. Real kyberia blog entries range from a single photo to 10k+ characters;
+"""Invented blog texts. Real kyberia blog entries range from a single photo to 10k+ characters;
 most are 1-2k, some are long essays/travelogues. The blogs overview shows ~250 chars (+ photo if any)."""
 
 P = "p"      # paragraph

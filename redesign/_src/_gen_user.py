@@ -135,7 +135,7 @@ PAGE = f"""<!-- title: ozvena -->
       </div>
 
       <nav class="tabs" aria-label="nódy používateľa">
-        <a href="#" aria-current="page">userinfo</a><a href="#">submissions</a><a href="#">forums</a><a href="#">nodeshells</a><a href="#">articles</a><a href="blog.html">blogs</a><a href="data.html">datas</a><a href="#">K</a><a href="#">friends</a><a href="#">movement</a><a href="#">bookmarks</a>
+        <a href="#" aria-current="page">userinfo</a><a href="#">submissions</a><a href="#">forums</a><a href="#">nodeshells</a><a href="#">articles</a><a href="blogs.html">blogs</a><a href="data.html">datas</a><a href="#">K</a><a href="#">friends</a><a href="#">movement</a><a href="#">bookmarks</a>
       </nav>
 
       <section class="userinfo" aria-label="userinfo">
