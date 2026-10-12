@@ -16,6 +16,8 @@ pages in this folder are the specimens.
 3. **No subtitles.** No explainer text under titles, and no summary counters ("9 friends :: 14 new").
    Assume people will figure it out.
 4. **Every page is a node.** Every page uses the same skeleton (§3), including bookmarks, mail and K.
+   The one exception is **main**: the front page has its own layout (logo, tagline, lead story, lists).
+6. **The kyberia logo is holy.** Use the original node-101 GIF, unmodified. Never redraw or reinterpret it.
 5. **User HTML is sacred.** A userinfo or post renders the author's own HTML as written, in a frame.
 
 ---
@@ -85,7 +87,8 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
   `stats :: source :: commanders :: dendrites & axones` (the last opens one page with both lists) (white links). Page-specific sections go underneath. Permissions, visitor
   counts, tiamat, K-filters, neurons and polls are not shown.
 - The node column is sticky on desktop and moves below the content under 1000px.
-- The coordinate trail is the signature element: ids in mono above the names. The current node is bold.
+- No coordinate trail above titles (dropped). The title starts the page.
+- The node column starts with the **node image** (v2's node image; user avatar on user pages).
 
 ---
 
@@ -120,6 +123,6 @@ what they do (`pridať`, `poslať`, `náhľad`). Footer:
 1. Is any text a green other than `#6DAE42`? Is gray used outside meta?
 2. Are any titles white, or any node links green or gray?
 3. Is there a subtitle, an explainer or a counter line under a title?
-4. Does the page use the shared skeleton (node column, trail, title)?
+4. Does the page use the shared skeleton (node image + node column, title), unless it's main?
 5. Is K written as `N K`, in red, with no icon?
 6. Is it readable on a 390px phone: no horizontal scroll, node column below the content?

@@ -522,3 +522,32 @@ mark { background: none; color: var(--white); font-weight: 700; }
 .nodecol .nodecol .nodelinks a { color: var(--white); }  /* links: white, always */
 /* real node images (like the kyberia logo) keep their own proportions */
 img.nodeimg { width: auto; height: auto; max-width: 123px; object-fit: initial; border-radius: 0; }
+
+/* ── main: the front page (the one page that doesn't rhyme) ─────────── */
+.front-page { max-width: 1180px; }
+.front { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 40px; align-items: end; padding: 44px 0 34px; border-bottom: 1px solid var(--rule-2); }
+.front .logo { width: 123px; height: auto; image-rendering: pixelated; }
+.front h1 { font-size: clamp(34px, 5.4vw, 68px); line-height: .98; letter-spacing: -0.03em; max-width: 14ch; }
+.leadstory { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 32px; padding: 30px 0 32px; border-bottom: 1px solid var(--rule-2); }
+.leadstory .m { grid-column: 1; font-size: var(--fs-s); color: var(--mute); }
+.leadstory .m a { color: var(--white); font-weight: 700; }
+.leadstory h2 { grid-column: 1; font-size: clamp(26px, 3vw, 36px); line-height: 1.1; }
+.leadstory h2 a { color: var(--green); }
+.leadstory p { grid-column: 1; max-width: 62ch; margin: 6px 0 0; font-size: var(--fs-l); line-height: 1.5; }
+.leadstory .k { grid-column: 2; grid-row: 1 / span 3; align-self: center; font-size: var(--fs-xxl); }
+.frontcols { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 0 56px; padding-top: 6px; }
+.frontcols .day a { color: var(--green); }
+.frontcols .mainlist { border-top: 0; margin-top: 0; }
+.compact { list-style: none; margin: 0 0 18px; padding: 0; }
+.compact li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--rule); font-size: var(--fs-s); }
+.compact li a { color: var(--white); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.compact.ranked { counter-reset: r; }
+.compact.ranked li { grid-template-columns: 20px minmax(0, 1fr) auto; }
+.compact.ranked li::before { counter-increment: r; content: counter(r); color: var(--mute); font: 400 var(--fs-xs) var(--mono); }
+@media (max-width: 1000px) {
+  .frontcols { grid-template-columns: minmax(0, 1fr); }
+  .front { grid-template-columns: 72px minmax(0, 1fr); gap: 0 18px; padding: 24px 0 22px; }
+  .front .logo { width: 72px; }
+  .leadstory { grid-template-columns: minmax(0, 1fr); }
+  .leadstory .k { grid-column: 1; grid-row: auto; font-size: var(--fs-xl); }
+}

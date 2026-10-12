@@ -138,6 +138,10 @@ def build(path):
 
     if nav == "none":
         page = body
+    elif "<!-- layout: free -->" in text:  # main: its own layout, no node column
+        body = body.replace("<!-- layout: free -->\n", "")
+        body = re.sub(r'\s*<ol class="coords".*?</ol>', "", body, flags=re.S)
+        page = f"{header(nav)}{body.strip()}\n{FOOTER}"
     else:
         node = parse_node(text)
         side_m = re.search(r"<!-- side -->(.*?)<!-- /side -->\n?", body, flags=re.S)
@@ -147,8 +151,7 @@ def build(path):
             content, side = split_old_format(body)
         side = strip_cruft_sections(side)
         content = re.sub(r"\s*<div class=\"meta sub\">.*?</div>", "", content, flags=re.S)  # node data lives in the column now
-        if 'class="coords"' not in content:
-            content = re.sub(r'(<div class="head[^"]*">\s*)', lambda m: m.group(1) + coords(node), content, count=1)
+        content = re.sub(r'\s*<ol class="coords".*?</ol>', "", content, flags=re.S)  # no coordinate trail (decided)
         wide = " wide" if 'class="mail' in content else ""
         page = f"""{header(nav)}<main class="wrap" id="obsah">
   <div class="shell{wide}">
