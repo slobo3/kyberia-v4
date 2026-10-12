@@ -109,3 +109,17 @@ DAYS = ["dnes, pondelok 12. októbra", "včera, nedeľa 11. októbra", "sobota 1
         "štvrtok 8. októbra", "streda 7. októbra", "utorok 6. októbra"]
 DATE = {0: "12.10.2026", 1: "11.10.2026", 2: "10.10.2026", 3: "09.10.2026", 4: "08.10.2026", 5: "07.10.2026",
         6: "06.10.2026", 9: "03.10.2026", 13: "29.09.2026", 14: "28.09.2026"}
+
+# open mail conversation with kvasar, oldest first: (from, day label, time, where they wrote from, text, new)
+THREAD_WITH = "kvasar"
+THREAD = [
+    ("kvasar", "2.10.", "21:14", "Halušky", "Robíš ešte tú anketu o langošoch? Mám kandidáta z Liptova.", False),
+    ("slobo", "2.10.", "21:30", "bookmarks", "Robím. Pošli adresu, overíme v sobotu.", False),
+    ("kvasar", "2.10.", "21:32", "mail", "Liptovský Mikuláš, pri stanici. Cesnak je tam povinný, nie voliteľný.", False),
+    ("slobo", "5.10.", "10:02", "Compz & Net", "Mimochodom, nevieš, kto u nás rieši BUGLIST? Bookmarks mi po polnoci visia.", False),
+    ("kvasar", "5.10.", "10:20", "BUGLIST", "mráz. Napíš mu priamo, do BUGLIST-u sa pozerá raz za týždeň.", False),
+    ("kvasar", "včera", "22:14", "Kyberia session 2026", "Ideš v sobotu? Vraj vezieš ľudí z Trnavy.", False),
+    ("slobo", "včera", "22:30", "bookmarks", "Ja nie, to je bgdny. Ale idem, uvidíme sa tam.", False),
+    ("kvasar", "dnes", "20:50", "mail", "Aha, pomýlil som si vás. Napísal som mu do fóra.", True),
+    ("kvasar", "dnes", "20:52", "mail", "Beriem jedno miesto, platím benzín aj langoš. Ty si dáš čo?", True),
+]

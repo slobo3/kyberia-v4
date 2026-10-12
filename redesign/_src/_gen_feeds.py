@@ -6,7 +6,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _content import DATE, DAYS, FRIENDS, IDLE, LOCATION, MAIL, MAIN, POSTS, REPLIES, USERS  # noqa: E402
+from _content import DATE, DAYS, FRIENDS, IDLE, LOCATION, MAIL, MAIN, POSTS, REPLIES, THREAD, THREAD_WITH, USERS  # noqa: E402
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 e = html.escape
@@ -137,17 +137,38 @@ body += '  <section class="block">\n    <h2 class="day">priatelia</h2>\n    <ul 
 body += '  <section class="block">\n    <h2 class="day">ostatní</h2>\n    <ul class="people">\n' + "\n".join(person(u, i, False) for i, u in enumerate(others)) + '\n    </ul>\n    <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">ďalších 391</a></nav>\n  </section>'
 write("people.html", page("people", "people", "id=27; name=people; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo,mrazik,lemur", body))
 
-# ── mail: conversation list ────────────────────────────────────────────────
-m = io.open("mail.html", encoding="utf-8").read()
-lis = []
+# ── mail: conversations on the left, the open one on the right (newest first) ──
+convs = []
 for i, (u, last, mine, when, unread) in enumerate(MAIL):
-    cur = ' aria-current="true"' if i == 0 else ""
-    cls = ' class="unread"' if unread else ""
-    badge = f'<span class="new">{unread}</span>' if unread else ""
-    on = "av on" if u in FRIENDS[:5] else "av"
-    lis.append(f'        <li{cls}><a href="#"{cur}>\n          {av(u, on)}\n          <span><span class="u">{u}</span><span class="last">{"ty: " if mine else ""}{e(last)}</span></span>\n          <span class="t">{when}{badge}</span>\n        </a></li>')
-m = re.sub(r'(<div class="convos">.*?<ul>\n).*?(\n      </ul>)', lambda mm: mm.group(1) + "\n".join(lis) + mm.group(2), m, count=1, flags=re.S)
-write("mail.html", m)
+    cur = ' aria-current="true"' if u == THREAD_WITH else ""
+    badge = f' <span class="new">{unread}</span>' if unread else ""
+    convs.append(f'        <li><a href="#"{cur}><span class="u">{u}</span><span class="t">{when}{badge}</span>'
+                 f'<span class="last">{"ty: " if mine else ""}{e(last)}</span></a></li>')
+msgs = []
+for frm, day, time, where, text, new in reversed(THREAD):
+    nn = ' <span class="new">NEW</span>' if new else ""
+    me = " me" if frm == "slobo" else ""
+    msgs.append(f'        <li class="msg{me}"><div class="mh"><a class="who" href="user.html">{frm}</a> {day} {time} {sep()} z {e(where)}{nn}</div>'
+                f'<p class="mb">{e(text)}</p></li>')
+body = head("mail") + f"""  <div class="mail">
+    <nav class="convos" aria-label="konverzácie">
+      <input class="field" type="search" placeholder="komu napísať" aria-label="komu napísať">
+      <ul>
+{chr(10).join(convs)}
+      </ul>
+    </nav>
+    <section class="stream" aria-label="konverzácia s {THREAD_WITH}">
+      <header><a class="u" href="user.html">{THREAD_WITH}</a> <span class="loc">online {sep()} teraz v mail</span></header>
+      <form class="reply" aria-label="napísať {THREAD_WITH}">
+        <textarea class="field" placeholder="napíš {THREAD_WITH}…" aria-label="správa"></textarea>
+        <button class="btn primary" type="submit">poslať</button>
+      </form>
+      <ol class="msgs">
+{chr(10).join(msgs)}
+      </ol>
+    </section>
+  </div>"""
+write("mail.html", page("mail", "mail", "id=24; name=mail; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo,kvasar,kremeň", body))
 
 # ── main: the front page (doesn't rhyme on purpose) ────────────────────────
 lead = MAIN[0]
