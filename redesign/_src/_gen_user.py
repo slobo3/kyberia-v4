@@ -116,7 +116,7 @@ def friend_post(user, when, k, new, text):
 thread = '<ol class="thread friends">\n' + "\n".join(friend_post(*x) for x in FRIENDS) + "\n</ol>"
 
 PAGE = f"""<!-- title: ozvena -->
-<!-- nav: people -->
+<!-- nav: node -->
 <!-- node: id=4401337; name=ozvena; template=user; parent=||; owner=ozvena; viewers=slobo,kvasar,sklo,drienka; img=img/u/ozvena.gif; created=03.02.2003 18:12; updated=07.07.2025 20:24; perms=r, w :: public -->
 <main class="wrap" id="obsah">
   <div class="cols">

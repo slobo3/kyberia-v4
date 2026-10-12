@@ -43,14 +43,17 @@ LOUPE = ('<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><ci
 
 
 def header(active, title=""):
-    groups, mgroups = [], []
+    groups, linksets = [], []
     for grp in NAV:
         links = []
         for label, href in grp:
             cur = ' aria-current="page"' if label == active else ""
             links.append(f'<a href="{href}"{cur}>{label}{BADGES.get(label, "")}</a>')
         groups.append('<span class="grp">' + "".join(links) + "</span>")
-        mgroups.append('<div class="grp">' + "".join(links) + "</div>")
+        linksets.append(links)
+    # phone menu: K joins the mail/last/people group (a group of one wastes two dividers)
+    mobile_sets = linksets[:1] + [sum(linksets[1:], [])]
+    mgroups = ['<div class="grp">' + "".join(ls) + "</div>" for ls in mobile_sets]
     here = e(title or active)
     return f"""<a class="skip" href="#obsah">preskočiť na obsah</a>
 <header class="top"><div class="top-in">

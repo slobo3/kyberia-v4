@@ -136,6 +136,9 @@ Desktop top bar: the bracketed menu, then **⌕** (a magnifying glass that rolls
 and folds back when empty and unfocused), then `slobo :: setup :: logout`. No icon, no K count.
 Desktop keeps the one-line bracketed bar.
 
+Highlighting: a menu item is highlighted **only on its own page**. Any other node (a forum, a post, a user,
+a blog, a file…) highlights nothing, on desktop and phone.
+
 ## 4. Components
 
 | component | notes |

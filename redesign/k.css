@@ -906,3 +906,11 @@ font[size="4"], font[size="5"], font[size="6"], font[size="7"] { font-size: 1.3e
 @media (max-width: 720px) {
   .top .mnav .grp a .who-me { color: var(--green); margin-left: 6px; margin-right: auto; font-weight: 400; }
 }
+
+/* phone menu fixes: top bar stays bright above the dimming; logout is a plain link aligned with setup */
+@media (max-width: 720px) {
+  .top .here, .top .mquick, .top .mmenu > summary { position: relative; z-index: 90; }
+  .top .mnav .mme { align-items: baseline; }
+  .top .mnav .mme .logout { border: 0; height: auto; padding: 6px 8px; font: 400 var(--fs-s) var(--sans); color: var(--white); background: none; }
+  .top .mnav .mme .logout:hover { color: var(--green); }
+}

@@ -84,7 +84,7 @@ body = f"""  <div class="head">
   </ol>
   <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>"""
 write("submission.html",
-      "<!-- title: Prečo sa mestské stromy oplatia viac ako klimatizácia -->\n<!-- nav: kyberia -->\n"
+      "<!-- title: Prečo sa mestské stromy oplatia viac ako klimatizácia -->\n<!-- nav: node -->\n"
       "<!-- node: id=9185501; name=Prečo sa mestské stromy oplatia…; template=submission; parent=63611|Veda a technológie|kyberia.html; "
       "owner=anima; viewers=slobo,cín,mrak,lemur; img=img/n/main0.gif; created=12.10.2026 09:14; updated=12.10.2026 09:31; perms=r, w :: public; view=threaded -->\n"
       f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
@@ -118,7 +118,7 @@ body = f"""  <div class="head">
   </div>
   <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie zápisy</a></nav>"""
 write("blog.html",
-      "<!-- title: denník: drienka -->\n<!-- nav: people -->\n"
+      "<!-- title: denník: drienka -->\n<!-- nav: node -->\n"
       "<!-- node: id=7004120; name=denník: drienka; template=blog; parent=7004001|drienka|user.html; owner=drienka; "
       "viewers=slobo,ihla,ode; img=img/u/drienka.gif; created=14.03.2019 20:10; updated=12.10.2026 07:12; perms=r :: public -->\n"
       f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
@@ -155,7 +155,7 @@ body = f"""  <div class="head">
 {comments}
   </ol>"""
 write("data.html",
-      "<!-- title: hmla_nad_dunajom.tif -->\n<!-- nav: people -->\n"
+      "<!-- title: hmla_nad_dunajom.tif -->\n<!-- nav: node -->\n"
       "<!-- node: id=9184101; name=hmla_nad_dunajom.tif; template=data; parent=7004120|denník: drienka|blog.html; owner=drienka; "
       "viewers=slobo,ihla,ode; img=img/n/main12.gif; created=12.10.2026 07:15; updated=12.10.2026 07:15; perms=r :: friends -->\n"
       f'<main class="wrap" id="obsah">\n{body}\n</main>\n')
