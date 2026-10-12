@@ -169,7 +169,8 @@ management, and for user nodes: password, email, mail notify, mood, listing amou
 - One K per user per node. Received K shows next to the node everywhere (`205 K`, red).
 - **K wallet, old style (decided):** every user has a wallet. It is refilled by a **daily
   allowance** and grows by every **K received** on your nodes. Giving K spends one from the
-  wallet. The balance is shown as `K_wallet` (bookmarks sidebar, configure page). No transfers,
+  wallet. Shown on bookmarks as a **daily ledger**: K včera, + denný príspevok, + dostal si dnes,
+  − rozdal si dnes, = K teraz (and the current balance in the top bar). No transfers,
   treasury, 🦆/🐘 or crypto. Allowance size and whether unspent allowance accumulates: **[decide;
   match the old rules]**.
 - **K page** (`/k`): nodes ordered by K received, created in the last N days (`newly

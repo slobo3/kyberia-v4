@@ -623,6 +623,14 @@ html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or
 .shell.sys > .content > .filters:first-child, .shell.sys > .content > h1.sr + .filters { padding-top: 0; }
 .shell.sys > .content > h1.sr + .cat, .shell.sys > .content > h1.sr + .day, .shell.sys > .content > h1.sr + .block { margin-top: 0; }
 
+/* K wallet ledger (bookmarks) */
+.ledger { width: 100%; border-collapse: collapse; font-size: var(--fs-s); font-variant-numeric: tabular-nums; }
+.ledger th { text-align: left; font-weight: 400; color: var(--mute); padding: 3px 0; }
+.ledger td { text-align: right; color: var(--green); padding: 3px 0; white-space: nowrap; }
+.ledger td.plus { color: var(--green); }
+.ledger td.minus { color: var(--red); }
+.ledger tr.total th, .ledger tr.total td { border-top: 1px solid var(--rule-2); padding-top: 7px; font-weight: 800; color: var(--green); font-size: var(--fs-l); }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }
