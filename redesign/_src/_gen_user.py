@@ -1,9 +1,11 @@
 """Generates _src/user.html (ozvena' profile + a 20-deep flamewar). Run from redesign/."""
 import html
 import io
+import os
 import re
 
 e = html.escape
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # run from anywhere; paths are relative to redesign/
 
 USERINFO = """<div style="background-color:#161616;padding:2em 6em 6em 6em;"><center>
 <font color="#ffffff"><b>~</b></font><br><br>
@@ -117,7 +119,7 @@ PAGE = f"""<!-- title: ozvena -->
   <div class="cols">
     <div>
       <div class="prof">
-        <span class="av l avimg" style="--h:15" aria-hidden="true">a</span>
+        <span class="av l avimg" style="--h:15" aria-hidden="true">o</span>
         <div>
           <ol class="coords" aria-label="cwbe coordinatez"><li><span class="id">4401337</span><span class="n">ozvena</span></li></ol>
           <h1>ozvena</h1>
