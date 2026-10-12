@@ -79,7 +79,7 @@ def user_link(name):
 
 
 def node_column(node, extra):
-    if node.get("details") == "no":  # e.g. mail, bookmarks, RE, fr: no node details, only page sections
+    if node.get("details") == "no" or node.get("template") == "system":  # system nodes: no node details, only page sections
         return f'<aside class="side nodecol" aria-label="nóda">\n{extra}\n    </aside>' if extra.strip() else ""
     pid, pname, phref = (node.get("parent") or "||").split("|")
     parent = f'<a href="{phref}">{e(pname)}</a>' if pname else "—"

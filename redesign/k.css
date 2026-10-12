@@ -586,6 +586,8 @@ html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or
 /* pages whose column only has page sections (bookmarks, fr): start level with the title */
 .nodecol > section:first-child { padding-top: 0; border-top: 0; }
 
+.post .pa { flex-wrap: wrap; }  /* deep threads on phones: never wider than the screen */
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }
