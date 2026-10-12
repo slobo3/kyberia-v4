@@ -70,7 +70,7 @@ def post(level, user, time, k, new, text, topic="Kyberia session 2026"):
     <div class="ph"><a class="who" href="user.html">{e(user)}</a>{role} {day} {time} <span class="sep">::</span> <span class="lvl">level {level}</span>{up}{kk}{nn}</div>
     {title}
     <div class="pb"><p>{text}</p></div>
-    <div class="pa"><button class="btn ghost">odpovedať</button><button class="btn ghost">K+</button><button class="btn ghost">put</button></div>
+    <div class="pa"><button class="btn ghost">odpovedať</button><button class="btn ghost">K+</button><button class="btn ghost">put</button><label class="check"><input type="checkbox"> vybrať</label></div>
   </div>
 </article>"""
 
@@ -109,7 +109,7 @@ def friend_post(user, when, k, new, text):
   <div>
     <div class="ph"><a class="who" href="user.html">{e(user)}</a> {when}{kk}{nn}</div>
     <div class="pb"><p>{text}</p></div>
-    <div class="pa"><button class="btn ghost">K+</button></div>
+    <div class="pa"><button class="btn ghost">K+</button><label class="check"><input type="checkbox"> vybrať</label></div>
   </div>
 </article></li>"""
 

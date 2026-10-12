@@ -574,6 +574,11 @@ img.nodeimg[src*="img/u/"] { width: 100px; height: 100px; max-width: none; image
 
 html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or not */
 
+
+/* node column = nodehead (basics) + the rest */
+.nodehead .nodeimg { margin: 0 0 18px; }
+.nodecol > .nodelinks { margin: 12px 0 14px; }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }
@@ -688,4 +693,19 @@ html { scrollbar-gutter: stable; }  /* same centring on every page, scrollbar or
   .rows li, .rows.syn li { grid-template-columns: minmax(0, 1fr) auto auto; }
   .tabs a { padding: 8px 9px; }
   .userinfo > div { padding: 0 1em 3em !important; }
+}
+
+/* phones: basics on top (image left, info right), content, then the rest at the bottom */
+@media (max-width: 1000px) {
+  .nodecol { display: contents; }
+  .shell > .content { order: 1; }
+  .nodecol > .nodehead { order: 0; display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 0 16px; align-items: start; padding: 18px 0 16px; border-bottom: 1px solid var(--rule-2); }
+  .nodecol > .nodehead.noimg { grid-template-columns: minmax(0, 1fr); }
+  .nodecol > .nodehead .nodeimg { width: 72px; height: auto; margin: 0; }
+  .nodecol > .nodehead .nodeimg.tile { height: 72px; }
+  .nodecol > .nodehead .kv { grid-template-columns: 62px minmax(0, 1fr); row-gap: 3px; font-size: var(--fs-s); }
+  .nodecol > :not(.nodehead) { order: 2; }
+  .nodecol > .nodelinks { margin: 30px 0 0; padding-top: 16px; border-top: 1px solid var(--rule-2); font-size: var(--fs-s); }
+  .nodecol > section:not(.nodehead) { font-size: var(--fs-s); }
+  .content > .head:first-child, .content > .prof:first-child { padding-top: 18px; }
 }

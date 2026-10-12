@@ -89,9 +89,11 @@ def node_column(node, extra):
     else:
         hue = int(node["id"]) * 47 % 360
         image = f'<span class="nodeimg tile" style="--h:{hue}" aria-hidden="true">{e(node["name"][0])}</span>'
+    # nodehead = the basics (image + node/template/parent/owner/viewers): top of the column on desktop,
+    # top of the page on phones. Everything after it goes below the content on phones.
     return f"""<aside class="side nodecol" aria-label="nóda">
-      {image}
-      <section class="nodeinfo">
+      <section class="nodeinfo nodehead{' noimg' if not image else ''}">
+        {image}
         <dl class="kv">
           <dt>node</dt><dd>{e(node["name"])}</dd>
           <dt>template</dt><dd>{e(node["template"])}</dd>
@@ -99,8 +101,8 @@ def node_column(node, extra):
           <dt>owner</dt><dd>{user_link(node["owner"])}</dd>
           <dt>viewers</dt><dd class="viewers">{viewers}</dd>
         </dl>
-        <p class="nodelinks"><a href="#">stats</a><a href="#">source</a><a href="#">commanders</a><a href="synapses.html">dendrites &amp; axones</a></p>
       </section>
+      <p class="nodelinks"><a href="#">stats</a><a href="#">source</a><a href="#">commanders</a><a href="synapses.html">dendrites &amp; axones</a></p>
 {extra}
     </aside>"""
 
