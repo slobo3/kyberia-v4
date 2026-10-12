@@ -223,7 +223,7 @@ aside.side { font-size: var(--fs-s); padding-top: 8px; }
 /* thread geometry lives in variables, so the dotted elbows can follow it on every breakpoint and depth:
    --av icon column, --gap icon→text, --ml/--pl the reply list's margin/padding (the line sits at --ml: the centre of the parent icon; deep compact levels sit a bit left of it),
    --cml the margin of a post's own replies, --top the post's top padding */
-.thread { --dot: #4d5249; --av: 50px; --gap: 14px; --ml: 25px; --pl: 20px; --top: 18px; }
+.thread { --dot: var(--rule); --av: 50px; --gap: 14px; --ml: 25px; --pl: 20px; --top: 18px; }
 .thread li { --cml: 25px; --drop: calc(var(--av) + 4px); }  /* drop resolves per post, with its own icon size */
 .thread ol { margin-left: var(--ml); padding-left: var(--pl); }
 .post { display: grid; grid-template-columns: var(--av, 50px) minmax(0, 1fr); gap: 0 var(--gap, 14px); padding: var(--top, 18px) 0 6px; }
@@ -430,17 +430,17 @@ h1 a, h2 a, h3 a, .art a, .rows .name a, .bm .name a, .feed .where a.parent, blo
 .thread.deep ol ol ol ol { --ml: 12px; --pl: 6px; }
 .thread.deep ol ol ol > li { --cml: 12px; }
 
-/* dotted elbows: from under the parent's icon, down, then right into the reply's header line */
+/* elbows: from under the parent's icon, down, then right into the reply's header line (same colour as that line) */
 .thread ol { --opl: var(--pl); }  /* resolved here, so a reply's elbow knows its own list's padding */
 .thread ol > li { position: relative; }
 .thread ol > li > .post .ph { position: relative; }
 .thread ol > li > .post .ph::before { content: ""; position: absolute; right: 100%; bottom: -1px;
-  width: calc(var(--opl) + var(--av) + var(--gap)); height: 1px; background: linear-gradient(to right, var(--dot) 1px, transparent 1px) 0 0 / 4px 1px repeat-x; }
+  width: calc(var(--opl) + var(--av) + var(--gap)); height: 1px; background: var(--dot); }
 .thread ol > li > .post .ph::after { content: ""; position: absolute; bottom: -1px; left: calc(-1 * (var(--opl) + var(--av) + var(--gap)));
-  height: calc(100% + 1px + var(--top)); width: 1px; background: linear-gradient(to bottom, var(--dot) 1px, transparent 1px) 0 0 / 1px 4px repeat-y; }
-.thread ol > li:not(:last-child)::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--opl)); width: 1px; background: linear-gradient(to bottom, var(--dot) 1px, transparent 1px) 0 0 / 1px 4px repeat-y; }
+  height: calc(100% + 1px + var(--top)); width: 1px; background: var(--dot); }
+.thread ol > li:not(:last-child)::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--opl)); width: 1px; background: var(--dot); }
 .thread li:has(> ol) > .post { position: relative; }
-.thread li:has(> ol) > .post::after { content: ""; position: absolute; left: var(--cml); top: calc(var(--top) + var(--drop)); bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--dot) 1px, transparent 1px) 0 0 / 1px 4px repeat-y; }
+.thread li:has(> ol) > .post::after { content: ""; position: absolute; left: var(--cml); top: calc(var(--top) + var(--drop)); bottom: 0; width: 1px; background: var(--dot); }
 
 /* search */
 .search-top { display: contents; }
