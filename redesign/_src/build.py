@@ -38,14 +38,20 @@ BADGES = {"mail": '<span class="new">2</span>', "RE": '<span class="new">3</span
 CRUFT = ("permissions", "node", "visitors")
 
 
-def header(active):
-    groups = []
+LOUPE = ('<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" '
+         'stroke="currentColor" stroke-width="2"/><line x1="12.5" y1="12.5" x2="18" y2="18" stroke="currentColor" stroke-width="2"/></svg>')
+
+
+def header(active, title=""):
+    groups, mgroups = [], []
     for grp in NAV:
         links = []
         for label, href in grp:
             cur = ' aria-current="page"' if label == active else ""
             links.append(f'<a href="{href}"{cur}>{label}{BADGES.get(label, "")}</a>')
         groups.append('<span class="grp">' + "".join(links) + "</span>")
+        mgroups.append('<div class="grp">' + "".join(links) + "</div>")
+    here = e(title or active)
     return f"""<a class="skip" href="#obsah">preskočiť na obsah</a>
 <header class="top"><div class="top-in">
   <nav class="nav" aria-label="hlavná navigácia">
@@ -53,6 +59,17 @@ def header(active):
   </nav>
   <form class="search-top" action="search.html" role="search"><input class="jump" name="q" type="search" placeholder="search" aria-label="search"></form>
   <div class="me"><a href="k.html" class="g" title="K wallet">5 846 K</a><a href="user.html">slobo</a><img class="av s" src="img/u/slobo.gif" alt="" width="25" height="25"><a href="#" class="g">setup</a><a href="#" class="btn ghost logout">logout</a></div>
+  <span class="here" aria-hidden="true">{here}</span>
+  <details class="msearch"><summary aria-label="search">{LOUPE}</summary>
+    <form action="search.html" role="search"><input class="jump" name="q" type="search" placeholder="search" aria-label="search"></form>
+  </details>
+  <span class="mquick"><a href="mail.html">mail<span class="new">2</span></a><a href="re.html">RE<span class="new">3</span></a></span>
+  <details class="mmenu"><summary aria-label="menu"><img class="av s" src="img/u/slobo.gif" alt="" width="25" height="25"></summary>
+    <nav class="mnav" aria-label="menu">
+      {"".join(mgroups)}
+      <div class="mme"><a href="bookmarks.html" class="g">5 846 K</a><a href="user.html">slobo</a><a href="#">setup</a><a href="#" class="btn ghost logout">logout</a></div>
+    </nav>
+  </details>
 </div></header>
 """
 
@@ -154,7 +171,7 @@ def build(path):
     elif "<!-- layout: free -->" in text:  # main: its own layout, no node column
         body = body.replace("<!-- layout: free -->\n", "")
         body = re.sub(r'\s*<ol class="coords".*?</ol>', "", body, flags=re.S)
-        page = f"{header(nav)}{body.strip()}\n{FOOTER}"
+        page = f"{header(nav, title)}{body.strip()}\n{FOOTER}"
     else:
         node = parse_node(text)
         side_m = re.search(r"<!-- side -->(.*?)<!-- /side -->\n?", body, flags=re.S)
@@ -173,7 +190,7 @@ def build(path):
             wide += " solo"  # no left column at all
         if node.get("template") == "system":
             wide += " sys"
-        page = f"""{header(nav)}<main class="wrap" id="obsah">
+        page = f"""{header(nav, title)}<main class="wrap" id="obsah">
   <div class="shell{wide}">
     {column}
     <div class="content">

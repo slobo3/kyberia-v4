@@ -125,6 +125,13 @@ Design consequences: the same components (node details, composer, post, listing 
 under every template. A template never invents its own chrome. `template` in the node details is a
 link, because a template is a node too.
 
+## 3c. Top bar on phones
+
+One slim bar, no bottom bar: **page name** (green, truncated) · **⌕** (opens a full-width search) ·
+**mail N · RE N** (badges always visible) · **your icon** (opens the menu). The menu is a fold-out
+(`<details>`, no JS) with the full bracketed menu one group per line, then `K :: slobo :: setup … logout`.
+Desktop keeps the one-line bracketed bar.
+
 ## 4. Components
 
 | component | notes |
