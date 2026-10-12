@@ -60,7 +60,7 @@ def post(level, user, time, k, new, text, topic="Kyberia session 2026"):
         n = "" if level == 2 else f"[{level - 1}]"
         title = f'<div class="pt re">Re{n}: {topic}</div>'
     role = ' <span class="role">operator</span>' if user == "tichá_voda" else ""
-    up = "" if level == 1 else ' <span class="sep">::</span> <a href="#">UP</a>'
+    up = ""  # no UP links (decided)
     kk = f' <span class="sep">::</span> <span class="k">{k}</span>' if k else ""
     nn = ' <span class="sep">::</span> <span class="new">NEW</span>' if new else ""
     cls = " silence" if user == "tichá_voda" else ""
