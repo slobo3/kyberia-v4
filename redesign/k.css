@@ -880,3 +880,9 @@ font[size="4"], font[size="5"], font[size="6"], font[size="7"] { font-size: 1.3e
   .top .mnav .mme a { padding: 12px 6px; }
   .top .mnav .mme .logout { margin: 10px 0 0; align-self: flex-start; }
 }
+
+/* phones: menu is a panel narrower than the page (right side), page dimmed behind it */
+@media (max-width: 720px) {
+  .top .mnav { left: auto; right: 0; width: min(320px, 82vw); border-left: 1px solid var(--green);
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .6); }
+}

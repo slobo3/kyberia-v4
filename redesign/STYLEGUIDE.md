@@ -128,7 +128,7 @@ link, because a template is a node too.
 ## 3c. Top bar on phones
 
 One slim bar, no bottom bar: **page name** (green, truncated) · **mail N · RE N** (badges always visible) ·
-**☰** (opens the menu). The menu is an opaque overlay over the page (`<details>`, no JS): a **vertical list**,
+**☰** (opens the menu). The menu is a panel on the right, narrower than the page (~80%, max 320px, green edge, page dimmed behind it; `<details>`, no JS): a **vertical list**,
 one item per row, groups separated by a rule, current page in a green block, badges right-aligned; then
 `K`, `slobo`, `search`, `setup`, `logout`.
 
