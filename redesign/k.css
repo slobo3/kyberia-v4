@@ -231,7 +231,9 @@ aside.side { font-size: var(--fs-s); padding-top: 8px; }
 .post .pw a { color: var(--white); }
 /* per-post actions: small text actions at the right end of the header (node actions are buttons) */
 .post .ph .pa { display: inline-flex; gap: 12px; margin-left: auto; }
-.act { padding: 0; border: 0; background: none; font: 500 var(--fs-s) var(--sans); color: var(--green); cursor: pointer; }
+.act { padding: 0; border: 0; background: none; font: 400 var(--fs-s) var(--sans); color: var(--mute); cursor: pointer; }
+/* a hairline between the post header and its content */
+.post .ph { padding-bottom: 5px; margin-bottom: 6px; border-bottom: 1px solid var(--rule); }
 .act:hover, .act:focus-visible { color: var(--white); text-decoration: underline; }
 .post .orphan { color: var(--red); font-weight: 700; }
 .post .pb blockquote { margin: 4px 0 8px; padding-left: 12px; border-left: 2px solid var(--rule-3); color: var(--mute); font-style: italic; }
