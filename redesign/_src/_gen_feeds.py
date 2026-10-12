@@ -92,7 +92,7 @@ from _k_block import k_item  # noqa: E402
 ranked = sorted(K_ITEMS, key=lambda it: -it[7])
 body = head("K")
 body += ('  <div class="filters">\n    <span class="seg" role="group" aria-label="obdobie"><a href="#" aria-current="true">24 h</a><a href="#">3 dni</a><a href="#">týždeň</a><a href="#">mesiac</a></span>\n'
-         '    <span class="seg" role="group" aria-label="výber"><a href="#" aria-current="true">všetko</a><a href="#">kNEW</a></span>\n  </div>\n')
+         '    <span class="seg" role="group" aria-label="výber"><a href="#" aria-current="true">najviac K</a><a href="#">najnovšie K</a></span>\n  </div>\n')
 body += '  <ol class="feed klist">\n' + "\n".join(k_item(i + 1, *it) for i, it in enumerate(ranked)) + "\n  </ol>"
 side = """      <section>
         <h2>fook</h2>

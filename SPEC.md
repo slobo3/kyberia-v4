@@ -206,8 +206,9 @@ number** (name shown on lookup). User settings (setup) are a separate page.
 - **K page** (`/k`): nodes ordered by K received, created in the last N days (`newly
   CREATED K valued nodes`, interval input in days). Shown as full posts with a red K count +
   `K` badge on the left.
-- Variants in the nav: `kNEW` (only nodes I haven't seen), `kNSFW` (NSFW-tagged nodes), `noImg`
-  (same list with images hidden). **MVP: `k` and `kNEW` only.**
+- One K page, no variants in the nav. The old `kNEW` is just the list of recently K-ed nodes, so it
+  is a switch on the K page: **najviac K** (default, ordered by K received) | **najnovšie K** (newest K
+  first). `kNSFW` and `noImg` dropped.
 
 ---
 
@@ -351,7 +352,7 @@ Every node has a **filter** (part of the node anatomy: details → content → a
 6. Visit tracking and NEW/descendant/changed markers.
 7. Bookmarks with categories; bookmarks page with friends sidebar.
 8. `last`, `re:`/`RE` (replies to me), `sub` (my submissions by month/year/parent creator, with new-reply counts),
-   `fr` (friends' submissions), `k`, `kNEW`, `people`, **`blogs`** (newest diary entries from everyone; a key
+   `fr` (friends' submissions), `k` (najviac K | najnovšie K), `people`, **`blogs`** (newest diary entries from everyone; a key
    node, in the main menu), search, quick node search.
 9. Mail.
 10. Friends, ignore, ignore_mail, mood, avatar upload.
