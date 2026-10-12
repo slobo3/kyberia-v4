@@ -62,6 +62,11 @@
       <div class="thread-bar">
         <h2>112 reakcií</h2>
       </div>
+      <form class="filterbar" action="forum-filter.html" role="search" aria-label="filter v tejto nóde">
+        <input class="field" name="filter" placeholder="filter: text alebo meno" aria-label="filter">
+        <select class="field by" name="by" aria-label="filtrovať podľa"><option value="text">text</option><option value="title">názov</option><option value="user">user</option></select>
+        <button class="btn" type="submit">filtrovať</button>
+      </form>
 
       <ol class="thread deep">
 <!-- flame:start -->
@@ -388,7 +393,12 @@
         </li>
       </ol>
 
-      <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">novšie</a><span>1–50 zo 112</span><a class="btn" href="#">staršie</a></nav>
+      <nav class="pager" aria-label="stránkovanie">
+        <a class="btn" href="#">novšie</a>
+        <span class="pages"><a href="#" aria-current="page">1</a><a href="#">2</a><a href="#">3</a></span>
+        <a class="btn" href="#">staršie</a>
+        <a class="btn ghost firstnew" href="#">skoč na prvé nové</a>
+      </nav>
     </div>
 
     <aside class="side" aria-label="o nóde">

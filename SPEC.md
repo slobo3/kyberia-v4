@@ -288,6 +288,31 @@ visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
 
 ---
 
+### 7.4 Filter (decided)
+
+Every node has a **filter** (part of the node anatomy: details → content → add form → filter → children).
+
+- One field + scope: **text** (title + content), **title**, or **user** (author).
+- Searches **all sub-nodes at any depth**, not only direct children. On a nodeshell it covers the whole
+  subtree.
+- Results: **flat, newest first**, rendered with the normal post component; each result shows its place
+  ("v Re[16]: …"), matches highlighted; one line with the count and **zrušiť filter**. Paged like flat view.
+- Shareable URL: `/id/{n}?filter=kvasar&by=user`.
+- Query: `WHERE path @> ARRAY[{n}]` (vector / materialized path, GIN index) **AND** either
+  `search @@ websearch_to_tsquery('simple', q)` (text/title; `unaccent` so "kvasar" ≈ "kvasár") or
+  `owner_id = (SELECT id FROM users WHERE login = q)`, **AND** the reader's permission check, `ORDER BY
+  created_at DESC, id DESC`, keyset-paged. Works on node 101 (≈4M descendants) thanks to the path index.
+
+### 7.5 Paging (decided)
+
+- **Threaded:** a page holds N **top-level threads** with their complete sub-threads (a thread is never
+  split across pages). **Flat / filter / feeds:** a page holds N posts.
+- N = the user's setup "na stranu" (default 50). Default order newest first (setup can flip it).
+- Controls: **novšie · page numbers · staršie**, plus **skoč na prvé nové** (opens the page with the first
+  post newer than the reader's last visit and scrolls to it). URL `?page=N`.
+- Implementation: keyset pagination on `(created_at, id)`; page numbers come from a cheap count of
+  top-level children (threaded) or the filtered set (flat).
+
 ## 8. Mail (`/mail`)
 
 - Compose box at top: recipient field (login, autocomplete), textarea, `send`.

@@ -736,6 +736,22 @@ input[type=radio] { accent-color: var(--green); }
 .entry .who-line img { image-rendering: pixelated; }
 .blogs-own { margin: 0 0 6px; }
 
+/* filter: searches all sub-nodes (any depth) by text, title or user */
+.filterbar { display: flex; gap: 6px; align-items: center; margin: 10px 0 4px; }
+.filterbar .field { width: 260px; height: 32px; padding: 4px 10px; font-size: var(--fs-s); }
+.filterbar .field.by { width: auto; }
+.filterbar.on .field:first-child { border-color: var(--green); }
+.filterinfo { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin: 6px 0 4px; font-size: var(--fs-s); color: var(--green); }
+.filterinfo b { color: var(--white); }
+.post .ctx { font-size: var(--fs-s); color: var(--mute); margin: 1px 0 3px; }
+.post .ctx a { color: var(--green); }
+mark { background: none; color: var(--white); font-weight: 800; text-decoration: underline; text-decoration-color: var(--green); }
+/* pager: page numbers, newer/older, jump to first new */
+.pager .pages { display: inline-flex; gap: 2px; }
+.pager .pages a { display: inline-grid; place-items: center; min-width: 30px; height: 30px; color: var(--green); border-radius: var(--radius); }
+.pager .pages a[aria-current] { background: var(--green); color: var(--void); font-weight: 700; }
+.pager .firstnew { color: var(--red); margin-left: 8px; }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }
@@ -960,4 +976,10 @@ input[type=radio] { accent-color: var(--green); }
   .setlabel { padding-top: 0; }
   .setact { text-align: left; }
   .rights { font-size: var(--fs-xs); }
+}
+
+@media (max-width: 720px) {
+  .filterbar { flex-wrap: wrap; }
+  .filterbar .field { width: auto; flex: 1 1 160px; }
+  .pager { flex-wrap: wrap; }
 }

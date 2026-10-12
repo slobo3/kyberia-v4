@@ -152,6 +152,8 @@ a blog, a file…) highlights nothing, on desktop and phone.
 | feed item | Used by last, RE, fr, sub, K and search: where (green, parent white bold) · title · who/when · text · score column. |
 | composer | Panel with title field, `bez HTML`, a formatting row, textarea, `náhľad` and `pridať`. The K cost (`−1 K`, red) sits right before `pridať`: **posting spends K**. |
 | mail | Conversations list plus a stream; each message shows where the sender was. |
+| filter bar | Field + scope (text / názov / user) + `filtrovať`, above the children of any node. Results: flat posts with their place (`v Re[n]: …`) and the match highlighted; one line `N od X` + `zrušiť filter`. |
+| pager | `novšie` · page numbers (current in a green block) · `staršie` · `skoč na prvé nové` (red). |
 | segmented control | For view and sort switches (threads/chronological, 24 h/3 days…). |
 
 ---
