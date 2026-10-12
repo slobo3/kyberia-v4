@@ -24,6 +24,8 @@ import re
 SRC = pathlib.Path(__file__).parent
 OUT = SRC.parent
 e = html.escape
+import hashlib
+CSS_VER = hashlib.sha1((OUT / "k.css").read_bytes()).hexdigest()[:8]  # cache-bust the stylesheet on every change
 
 NAV = [
     [("main", "main.html"), ("kyberia", "kyberia.html"), ("fr", "fr.html"),
@@ -164,7 +166,7 @@ def build(path):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} :: kyberia.sk</title>
-<link rel="stylesheet" href="k.css">
+<link rel="stylesheet" href="k.css?v={CSS_VER}">
 </head>
 <body>
 {page}

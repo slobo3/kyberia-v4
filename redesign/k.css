@@ -428,7 +428,7 @@ h1 a, h2 a, h3 a, .art a, .rows .name a, .bm .name a, .feed .where a.parent, blo
 .links a { color: var(--green); }
 .status a { color: var(--green); }
 .status a:hover { text-decoration-color: var(--green); }
-.side section > a, .side p > a { color: var(--green); }
+.side section > a, .side p:not(.nodelinks) > a { color: var(--green); }
 
 /* kyberia (nodeshell) listing: child node links are white, as in v2.
    "Something new" = bold + red counter; quiet nodes stay white, regular weight, never gray. */
@@ -491,7 +491,6 @@ mark { background: none; color: var(--white); font-weight: 700; }
 .nodecol .kv dd a { color: var(--white); }
 .nodecol .viewers { line-height: 1.5; }
 .nodelinks { display: flex; flex-wrap: wrap; margin: 12px 0 0; }
-.nodelinks a { color: var(--green); }
 .nodelinks a + a::before { content: "::"; color: var(--mute); margin: 0 .45em; }
 .actions .ksum { align-self: center; margin-right: 6px; font-size: var(--fs-l); }
 .content > .head:first-child, .content > .prof:first-child { padding-top: 34px; }
@@ -511,7 +510,6 @@ mark { background: none; color: var(--white); font-weight: 700; }
 .mainlist .m { grid-column: 1; font-size: var(--fs-s); color: var(--mute); }
 .mainlist .m a { color: var(--white); }
 .mainlist .k { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-size: var(--fs-l); }
-.nodelinks a { color: var(--white); }
 .nodelinks a + a::before { content: none; }
 .nodelinks a:not(:last-child)::after { content: "::"; color: var(--mute); margin: 0 .45em; }
 
@@ -521,4 +519,6 @@ mark { background: none; color: var(--white); font-weight: 700; }
 .prof { display: block; }
 @media (max-width: 1000px) { .nodeimg { width: 72px; height: 72px; } .nodeimg.tile { font-size: 32px; } }
 .rows.syn li { grid-template-columns: minmax(0, 1fr) 130px 120px; }
-.nodecol .nodelinks a { color: var(--white); }
+.nodecol .nodecol .nodelinks a { color: var(--white); }  /* links: white, always */
+/* real node images (like the kyberia logo) keep their own proportions */
+img.nodeimg { width: auto; height: auto; max-width: 123px; object-fit: initial; border-radius: 0; }
