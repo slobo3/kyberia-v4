@@ -645,6 +645,14 @@ font[size="4"], font[size="5"], font[size="6"], font[size="7"] { font-size: 1.3e
 .bm li.fresh .name a, .bm .name a { font-weight: 400; }
 .bm .name a b, .bm .name a strong { font-weight: 800; }
 
+/* bookmarks: hint of the category tool */
+.bmtools { display: flex; gap: 2px; margin: 0 0 4px -8px; }
+.cat > header .tools a { font-size: var(--fs-xs); color: var(--mute); }
+.cat > header .tools a:hover { color: var(--white); }
+.cat > header .tools { opacity: 0; transition: opacity .15s; }
+.cat:hover > header .tools, .cat > header .tools:focus-within { opacity: 1; }
+@media (hover: none) { .cat > header .tools { opacity: 1; } }
+
 /* ════════ responsive: all media queries last, so they always win ════════ */
 @media (max-width: 1000px) {
   .cols, .cols.wide, .cols.left { grid-template-columns: minmax(0, 1fr); gap: 20px; }

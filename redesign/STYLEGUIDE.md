@@ -151,6 +151,12 @@ link, because a template is a node too.
   (`_src/_gen_banner.py`): the original logo, a circuit-board frame, faint UI text, horizontal tears. No tagline, no flashing blocks.
 - **Friends online** are shown on main as a collage of their icons (no text; name + location on hover), top of the right column.
 
+## 4b2. Node actions
+
+`K+ :: book|unbook :: fook :: put do…`. Toggles say what clicking will do: a bookmarked node shows
+**unbook** (highlighted), an unbookmarked one shows **book**. Bookmarks hint at the category tool with
+`+ nová kategória :: usporiadať` above the list and a quiet `upraviť` on each category (on hover).
+
 ## 4c. Styled titles
 
 Node names may carry the author's inline HTML (`<b>`, `<font color>`, `<font size>`…, see SPEC §2.4).
