@@ -88,9 +88,9 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
   counts, tiamat, K-filters, neurons and polls are not shown.
 - The node column is sticky on desktop. Under 1000px it splits: the **basics** (node image on the left, node/template/
   parent/owner/viewers on the right) go **above** the content; the links and page extras go below it.
-- **mail, bookmarks, RE and fr show no node details** (no node/template/parent/owner/viewers, no stats links).
+- **mail, bookmarks, RE, fr and last show no node details** (no node/template/parent/owner/viewers, no stats links).
   If they have page sections (bookmarks: friends online + wallet; fr: friends) those keep the left column;
-  otherwise the content takes the full width (mail, RE).
+  otherwise the content takes the full width (mail, RE, last).
 - Every post has a `vybrať` checkbox (for bulk K+, put, delete_hardlink).
 - No coordinate trail above titles (dropped). The title starts the page.
 - The node column starts with the **node image** (v2's node image; user avatar on user pages).

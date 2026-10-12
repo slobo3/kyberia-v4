@@ -70,7 +70,7 @@ for day in sorted({p[1] for p in posts}):
     label = DAYS[day] if day < len(DAYS) else DATE[day]
     body += f'  <h2 class="day">{label}</h2>\n  <ol class="feed">\n' + "\n".join(feed_item(p) for p in posts if p[1] == day) + "\n  </ol>\n"
 body += '  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
-write("last.html", page("last", "last", "id=35; name=last; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo,sklo,paprika,mrazik", body))
+write("last.html", page("last", "last", "id=35; name=last; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo,sklo,paprika,mrazik; details=no", body))
 
 # ── fr: friends only ───────────────────────────────────────────────────────
 fr = [p for p in posts if p[0] in FRIENDS]
