@@ -33,8 +33,7 @@ def main_row(idx, t, u, sec, d, k, new, _excerpt):
     nn = f' <span class="new">{new} new</span>' if new else ""
     return (f'      <li><img class="thumb" src="img/n/main{idx}.gif" alt="" width="60" height="75">'
             f'<a class="t" href="forum.html">{e(t)}</a>'
-            f'<span class="m">{ulink(u)} {SEP} {e(sec)} {SEP} {d}{nn}</span>'
-            f'<span class="k">{k} K</span></li>')
+            f'<span class="m">{ulink(u)} {SEP} {e(sec)} {SEP} {d}{nn}</span></li>')
 
 
 friends = "\n".join(
@@ -64,7 +63,6 @@ body = f"""  <header class="front">
       <h2><a href="forum.html">{e(lead[0])}</a></h2>
       <p>{e(lead[6])}</p>
     </div>
-    <span class="k">{lead[4]} K</span>
   </article>
 
   <div class="frontcols">

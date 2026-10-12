@@ -632,3 +632,6 @@ img.nodeimg[src*="img/u/"] { width: 100px; height: 100px; max-width: none; image
 .mail .msg.me { text-align: right; }
 .mail .msg.me .mb { margin-left: auto; text-align: right; }
 .mail .msg.me .mh .who { margin: 0 0 0 4px; }
+/* main: no K numbers on stories (K lives in the K dnes list) */
+.leadstory { grid-template-columns: 120px minmax(0, 1fr); }
+.mainlist li { grid-template-columns: 60px minmax(0, 1fr); }
