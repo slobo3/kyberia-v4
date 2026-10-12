@@ -46,6 +46,25 @@ def feed_item(p, score=True, show_day=False, rank=None):
 </li>"""
 
 
+def feed_post(p, show_day=False):
+    """last / fr: the same post component as a flat discussion, plus where it was written."""
+    user, day, time, where, section, title, k, new, children, text = p
+    when = f"{DATE[day]} {time}" if show_day else time
+    kk = f' {sep()} <span class="k">{k} K</span>' if k else ""
+    nn = f' {sep()} <span class="new">NEW</span>' if new else ""
+    t = f'<div class="pt">{e(title)}</div>' if title else ""
+    return f"""<li><article class="post">
+  {av(user)}
+  <div>
+    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="submission.html">{when}</a>{kk}{nn}</div>
+    <div class="pw">v <a href="forum.html">{e(where)}</a> {sep()} <a href="kyberia.html">{e(section)}</a></div>
+    {t}
+    <div class="pb"><p>{e(text)}</p></div>
+    <div class="pa"><button class="btn">odpovedať</button><button class="btn">K+</button></div>
+  </div>
+</article></li>"""
+
+
 def page(title, nav, node, body, side=""):
     s = f"<!-- title: {title} -->\n<!-- nav: {nav} -->\n<!-- node: {node} -->\n"
     if side:
@@ -68,13 +87,13 @@ body = head("last")
 body += '  <div class="filters"><span class="seg" role="group" aria-label="filter"><a href="#" aria-current="true">všetko</a><a href="#">len nové</a><a href="#">bez ignorovaných</a></span></div>\n'
 for day in sorted({p[1] for p in posts}):
     label = DAYS[day] if day < len(DAYS) else DATE[day]
-    body += f'  <h2 class="day">{label}</h2>\n  <ol class="feed">\n' + "\n".join(feed_item(p) for p in posts if p[1] == day) + "\n  </ol>\n"
+    body += f'  <h2 class="day">{label}</h2>\n  <ol class="thread">\n' + "\n".join(feed_post(p) for p in posts if p[1] == day) + "\n  </ol>\n"
 body += '  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
 write("last.html", page("last", "last", "id=35; name=last; template=system; parent=1|main|main.html; owner=fiktivny_admin; viewers=slobo,sklo,paprika,mrazik; details=no", body))
 
 # ── fr: friends only ───────────────────────────────────────────────────────
 fr = [p for p in posts if p[0] in FRIENDS]
-body = head("fr") + '  <ol class="feed">\n' + "\n".join(feed_item(p, show_day=True) for p in fr) + '\n  </ol>\n  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
+body = head("fr") + '  <ol class="thread">\n' + "\n".join(feed_post(p, show_day=True) for p in fr) + '\n  </ol>\n  <nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">staršie</a></nav>'
 side = '      <section>\n        <h2>priatelia</h2>\n        <ul class="who-list">\n' + "\n".join(
     f'          <li>{av(u, "av s on" if i < 5 else "av s")}<span class="u">{u}</span><span class="idle">{"online" if i < 5 else IDLE[i * 3]}</span></li>'
     for i, u in enumerate(FRIENDS)) + "\n        </ul>\n      </section>"

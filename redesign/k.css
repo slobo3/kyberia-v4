@@ -229,6 +229,8 @@ aside.side { font-size: var(--fs-s); padding-top: 8px; }
 .post .pt.re { font-weight: 400; color: var(--mute); }
 .post .pb { color: var(--ink); max-width: 68ch; }
 .post .pb p:last-child { margin-bottom: 0; }
+.post .pw { font-size: var(--fs-s); color: var(--mute); margin: 2px 0 0; }
+.post .pw a { color: var(--white); }
 .post .pa { display: flex; gap: 4px; margin: 8px 0 0; }
 .pa .btn { height: 26px; padding: 0 10px; }
 .post .orphan { color: var(--red); font-weight: 700; }
