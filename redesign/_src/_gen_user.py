@@ -48,7 +48,7 @@ FLAME = [
     ("sklo", "00:26", None, True, "Nikto nechce Discord. Chcem len prečítať, čo píšem, bez lupy."),
     ("kvasar", "00:41", None, True, "Kúp si okuliare. Alebo sa spýtaj ozveny, tá ti to zopakuje."),
     ("tichá_voda", "01:02", "23 K", True,
-     'Obom vám dávam silence v tejto nóde, kým sa neupokojíte. Choďte von, je pekne.'),
+     'Chlapci, je jedna v noci. Choďte spať, ráno to bude vyzerať inak.'),
     ("ozvena", "01:47", "31 K", True, 'ticho<br>je tiež odpoveď<br><span class="whisper">// dobrú noc</span>'),
 ]
 
@@ -59,15 +59,13 @@ def post(level, user, time, k, new, text, topic="Kyberia session 2026"):
     if level > 1:
         n = "" if level == 2 else f"[{level - 1}]"
         title = f'<div class="pt re">Re{n}: {topic}</div>'
-    role = ' <span class="role">operator</span>' if user == "tichá_voda" else ""
     up = ""  # no UP links (decided)
     kk = f' <span class="sep">::</span> <span class="k">{k}</span>' if k else ""
     nn = ' <span class="sep">::</span> <span class="new">NEW</span>' if new else ""
-    cls = " silence" if user == "tichá_voda" else ""
-    return f"""<article class="post{cls}">
+    return f"""<article class="post">
   <img class="av" src="{icon(user)}" alt="" width="50" height="50">
   <div>
-    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať">{role} <a class="when" href="submission.html">{day} {time}</a> <span class="sep">::</span> <span class="lvl">level {level}</span>{up}{kk}{nn}</div>
+    <div class="ph"><a class="who" href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="submission.html">{day} {time}</a> <span class="sep">::</span> <span class="lvl">level {level}</span>{up}{kk}{nn}</div>
     {title}
     <div class="pb"><p>{text}</p></div>
     <div class="pa"><button class="btn ghost">odpovedať</button><button class="btn ghost">K+</button></div>

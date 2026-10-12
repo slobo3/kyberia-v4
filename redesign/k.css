@@ -412,10 +412,7 @@ h1 a, h2 a, h3 a, .art a, .rows .name a, .bm .name a, .feed .where a.parent, blo
 /* userinfo is the user's own HTML: rendered as-is, in a contained frame */
 .userinfo { margin-top: 22px; border: 1px solid var(--rule); overflow: hidden; font-family: Tahoma, Verdana, sans-serif; font-size: 11px; line-height: 1.35; color: #ccc; }
 .userinfo img { display: inline; max-width: 100%; height: auto; }
-.role { font-size: var(--fs-xs); color: var(--green); border: 1px solid var(--green); padding: 0 5px; border-radius: var(--radius); margin: 0 4px; }
 .post .lvl { color: var(--mute); }
-.post.silence .pb { color: var(--red); }
-.post.silence .pb a { color: var(--white); }
 .whisper { color: var(--mute); }
 
 /* deep threads (flamewars): full indent for 4 levels, then compact so level 20 still fits */

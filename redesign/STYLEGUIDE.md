@@ -31,7 +31,7 @@ pages in this folder are the specimens.
 | `--void` | `#000` | page background (true black, not tinted) |
 | `--green` | `#6DAE42` | body text, headings, titles, labels, control borders, main dividers |
 | `--white` | `#fff` | **links to nodes** (listings, sidebars), people's names, nav |
-| `--red` | `#ff3b30` | `NEW`, `N new`, K counts, silence, `SIROTKA` |
+| `--red` | `#ff3b30` | `NEW`, `N new`, K counts, `SIROTKA` |
 | `--mute` | `#8b8f87` | low-importance meta only: times, ids, counts, `::`, levels |
 | `--rule` | `#1d2e13` | faint row separators |
 | `--rule-3` | `#2f4a1f` | thread guide lines, coordinate separators |

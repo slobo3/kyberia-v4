@@ -263,7 +263,7 @@ the page). No coordinate trail. **Exception: main** has its own front-page layou
 The node column shows only: node image, `node`, `template`, `parent`, `owner`, `viewers` (plain names, not
 avatars), `created`, `updated`, `permissions` (your rights :: access) and links `stats :: source :: commanders :: dendrites & axones`
 (stats: the visitor list, one row per person with last visit, N new for them, booked, K given and visit count, sortable by last visit, visits or K; source: the node's raw HTML, read-only;
-commanders: owner, masters, operators, current silences with links to their justification). Below that, page-specific
+commanders: owner and the six lists masters, ops, execute, access, bans, silence). Below that, page-specific
 sections (friends online, K wallet, fook list…). Dropped as cruft: permissions box,
 visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
 **Exceptions:** main has its own layout; **system nodes** (mail, bookmarks, RE, fr, last, people, K, search…) show no node details at all.
