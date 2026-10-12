@@ -136,4 +136,5 @@ what they do (`pridať`, `poslať`, `náhľad`). Footer:
 3. Is there a subtitle, an explainer or a counter line under a title?
 4. Does the page use the shared skeleton (node image + node column, title), unless it's main?
 5. Is K written as `N K`, in red, with no icon?
-6. Is it readable on a 390px phone: no horizontal scroll, node column below the content?
+6. Is it readable on a 390px phone: no horizontal scroll, node column below the content? Check **every** page in `_src/_mobile-preview.html` after **every** change.
+7. Are all `@media` rules still at the end of `k.css`? Add new base rules above the responsive section, never after it.
