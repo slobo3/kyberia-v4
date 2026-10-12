@@ -440,6 +440,7 @@ h1 a, h2 a, h3 a, .art a, .rows .name a, .bm .name a, .feed .where a.parent, blo
   height: calc(100% + 1px + var(--top)); width: 1px; background: var(--dot); }
 .thread ol > li:not(:last-child)::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--opl)); width: 1px; background: var(--dot); }
 .thread li:has(> ol) > .post { position: relative; }
+.thread .post img.av { position: relative; z-index: 1; }  /* icons sit on top of the elbows */
 .thread li:has(> ol) > .post::after { content: ""; position: absolute; left: var(--cml); top: calc(var(--top) + var(--drop)); bottom: 0; width: 1px; background: var(--dot); }
 
 /* search */
