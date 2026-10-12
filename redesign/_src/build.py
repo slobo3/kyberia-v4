@@ -26,7 +26,7 @@ OUT = SRC.parent
 e = html.escape
 
 NAV = [
-    [("main", "main.html"), ("kyberia", "kyberia.html"), ("sub", "sub.html"), ("fr", "fr.html"),
+    [("main", "main.html"), ("kyberia", "kyberia.html"), ("fr", "fr.html"),
      ("RE", "re.html"), ("bookmarks", "bookmarks.html")],
     [("mail", "mail.html"), ("last", "last.html"), ("people", "people.html")],
     [("K", "k.html")],
