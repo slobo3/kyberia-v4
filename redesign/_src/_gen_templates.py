@@ -62,11 +62,10 @@ body = f"""  <div class="head">
   <section class="topic prose">
     <p>Beriem jedno miesto, ďakujem. Platím benzín aj langoš.</p>
   </section>
-  <div class="thread-bar"><h2>1 reakcia</h2></div>
+{composer("odpovedať na príspevok", "tvoja reakcia…")}
   <ol class="thread">
 {replies}
-  </ol>
-{composer("odpovedať na príspevok", "tvoja reakcia…")}"""
+  </ol>"""
 write("submission.html",
       "<!-- title: Re: Kyberia session 2026 -->\n<!-- nav: node -->\n"
       "<!-- node: id=9184840; name=Re: Kyberia session 2026; template=submission; parent=9184811|Kyberia session 2026|forum.html; "
