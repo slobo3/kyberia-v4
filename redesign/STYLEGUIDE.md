@@ -91,7 +91,10 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
   counts, tiamat, K-filters, neurons and polls are not shown.
 - The node column sits at the top of the page and scrolls away with it (not sticky). Under 1000px it splits: the **basics** (node image on the left, node/template/
   parent/owner/viewers on the right) go **above** the content; the links and page extras go below it.
-- ****system nodes** (mail, bookmarks, RE, fr, last, people, K, search…) show no node details** (no node/template/parent/owner/viewers, no stats links).
+- **System nodes** (mail, bookmarks, RE, fr, last, people, K, search…) **show no node details** (no node/template/parent/owner/viewers, no stats links).
+- **System pages have no visible title**: the active top-bar item already names the page (the h1 is screen-reader only).
+- **RE is a flat discussion** (like a forum in flat view) made of the nodes that reply to yours: the same post component,
+  titled `Re: <your node>`. A reply looks the same everywhere.
   If they have page sections (bookmarks: friends online + wallet; fr: friends) those keep the left column;
   otherwise the content takes the full width (mail, RE, last, people, search).
 - Every post has a checkbox (vybrať) in its header line right after the name, no label (for bulk K+, put, delete_hardlink).

@@ -207,7 +207,8 @@ Each item: avatar · `Re[2]: title in <parent name>` · `author: login [lokacia 
 time-date · `NEW` · body. Paged.
 
 ### 6.4 `re:` (`/re`)
-Replies to *my* nodes (children of anything I own), newest first. Same item layout as `last`.
+Replies to *my* nodes (children of anything I own), newest first, rendered as a **flat discussion**: the same
+post component as a forum in flat view, each titled `Re: <my node>`.
 
 ### 6.5 Search (`/search`)
 - Full-text over name + content. Options: order by (default / K / views / created), show
