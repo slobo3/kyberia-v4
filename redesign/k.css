@@ -512,3 +512,5 @@ mark { background: none; color: var(--white); font-weight: 700; }
 .mainlist .m a { color: var(--white); }
 .mainlist .k { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-size: var(--fs-l); }
 .nodelinks a { color: var(--white); }
+.nodelinks a + a::before { content: none; }
+.nodelinks a:not(:last-child)::after { content: "::"; color: var(--mute); margin: 0 .45em; }

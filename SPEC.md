@@ -76,8 +76,8 @@ Listings print the type as a lowercase prefix: `nodeshell:: Hudba :: (305 childr
   "Like a UNIX symlink." The target is chosen from your bookmarks dropdown, or by typing an id.
 - **`delete_hardlink`**: remove such a link.
 - A node view lists **dendrites** (nodes that link *into* this one) and **axones** (nodes this one
-  links *out to*). **UI labels (decided): "odkazy sem" and "odkazy odtiaľto"**, because nobody knows the
-  internal terms.
+  links *out to*). In the UI they are two links in the node column (`… commanders :: dendrites :: axones`)
+  that open the lists; no sidebar sections (decided).
 - Store as `synapse(src_id, dst_id, created_by, created_at)`.
 
 ---
@@ -205,8 +205,8 @@ Replies to *my* nodes (children of anything I own), newest first. Same item layo
 Every page — including system pages (bookmarks /id/19, mail /id/24, last, people, K, search…) —
 uses the same layout: **left node column** + content (coordinate trail, title, then the page).
 The node column shows only: `node`, `template`, `parent`, `owner`, `viewers` (plain names, not
-avatars), and links `stats :: source :: commanders`. Below that, page-specific sections
-(dendrites/axones, friends online, K wallet, fook list…). Dropped as cruft: permissions box,
+avatars), and links `stats :: source :: commanders :: dendrites :: axones`. Below that, page-specific
+sections (friends online, K wallet, fook list…). Dropped as cruft: permissions box,
 visitor counts, tiamat, K-filter/synapse weights, neurons, polls.
 
 ### 7.1 Node view layout (forum / submission)

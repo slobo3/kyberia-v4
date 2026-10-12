@@ -90,7 +90,7 @@ def node_column(node, extra):
           <dt>owner</dt><dd>{user_link(node["owner"])}</dd>
           <dt>viewers</dt><dd class="viewers">{viewers}</dd>
         </dl>
-        <p class="nodelinks"><a href="#">stats</a><a href="#">source</a><a href="#">commanders</a></p>
+        <p class="nodelinks"><a href="#">stats</a><a href="#">source</a><a href="#">commanders</a><a href="#">dendrites</a><a href="#">axones</a></p>
       </section>
 {extra}
     </aside>"""
