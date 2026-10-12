@@ -75,8 +75,9 @@ Listings print the type as a lowercase prefix: `nodeshell:: Hudba :: (305 childr
   you can write to. The node is not copied. It shows up as a child (`link::`) in the target.
   "Like a UNIX symlink." The target is chosen from your bookmarks dropdown, or by typing an id.
 - **`delete_hardlink`**: remove such a link.
-- The right column of a node view lists **dendrites** (nodes that link *into* this one) and
-  **axones** (nodes this one links *out to*).
+- A node view lists **dendrites** (nodes that link *into* this one) and **axones** (nodes this one
+  links *out to*). **UI labels (decided): "odkazy sem" and "odkazy odtiaľto"**, because nobody knows the
+  internal terms.
 - Store as `synapse(src_id, dst_id, created_by, created_at)`.
 
 ---

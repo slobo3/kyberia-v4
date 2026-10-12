@@ -75,14 +75,14 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
 │   commanders        │ │ …page content…                                         │
 │ ─────────────────── │ │                                                        │
 │ page sections       │ │                                                        │
-│ (dendrites, friends │ │                                                        │
+│ (odkazy sem, friends│ │                                                        │
 │  online, wallet…)   │ │                                                        │
 └─────────────────────┘ └────────────────────────────────────────────────────────┘
   © kyberia.sk v4 :: solon's revenge revisited · provider(s)… guarant Thee nothing · page generation took …
 ```
 
 - The node column shows only node, template, parent, owner, viewers (names, not avatars), and
-  `stats :: source :: commanders`. Page-specific sections go underneath. Permissions, visitor
+  `stats :: source :: commanders` (white links). Page-specific sections go underneath. Use plain words, not internal jargon: dendrites are shown as **odkazy sem**, axones as **odkazy odtiaľto**. Permissions, visitor
   counts, tiamat, K-filters, neurons and polls are not shown.
 - The node column is sticky on desktop and moves below the content under 1000px.
 - The coordinate trail is the signature element: ids in mono above the names. The current node is bold.
