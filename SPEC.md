@@ -100,7 +100,7 @@ someone else's private data:
 | `friend` | (a friend post itself; renders like a post) | — |
 | `blog` | a blog: one node with text and photos (the title is the node name), its replies below, the reply form at the bottom. Hangs under its author or any forum; `blogs` lists the newest | a reply |
 | `system:*` | bookmarks, mail, last, RE, fr, people, K, search: their special views; no node details | per page (mail: a message) |
-| `article` | **MVP: a submission with a "promotable to main" flag** | — |
+| `article` | no separate template: **main lists what main's owner and masters put (hardlink) into it** (decided 13.10.2026) | — |
 | `data` | an uploaded file with its own access rights: preview, file details, download, then a discussion. **Post-MVP.** | a reply |
 
 `link` is not a template: a `put` hard-link is a synapse row (§2.3) that appears in listings as
