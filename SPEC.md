@@ -483,6 +483,21 @@ visit.last_visit_at)` for ~100 bookmarks per page load. Use `last_child_at` /
 - **Hardlinks:** bookmark NEW counts follow real children only, never hardlinks.
 - **User-built templates:** anyone may author them, in a safe template language; see §2.2.
 
+## 12c. The functioning system (13.10.2026)
+Built in the private repo `slobo3/kyberia-app`; architecture and reasons in its `docs/adr/`. Decided:
+- **Stack:** TypeScript (Node 24, no build step), Fastify, LiquidJS (built-in and member templates use one
+  sandboxed engine), Postgres 18, Kysely; Vitest, fast-check, Playwright; Docker; GitHub Actions.
+- **Environments:** local, CI, staging, production, each with its own database, which refuses the wrong one.
+  Platform code (built-in templates, rules) lives in git and runs from the image; never edited live in the DB.
+- **Visibility** (§4.1) is one SQL function; the app's database role can read node names and content only through
+  a visibility-filtered view. **Owning a post is not a grant** (only owning a restricted node is).
+- **Hidden = 404**, identical to a missing node. Tolerated leaks: child counts, `descdnt` timing, SIROTKA.
+- **NEW survives paging:** for 15 minutes after opening a node, NEW is measured against the visit before.
+- **Default page size 200** (kyberia's `listing_amount`; §7.5's 50 is superseded).
+- **Ids:** kyberia had **9,343,582 nodes** on 13.10.2026. System nodes and templates keep kyberia's ids; new
+  nodes start at 10,000,000; platform-only templates live from 100,000,000 up. The benchmark tree has exactly
+  9,343,582 nodes.
+
 ## 13. Open questions for the community/admins
 1. Exact semantics of `moderated`, and of the `operator` vs `master` roles. (`closed` dropped.)
 2. ~~Registration approval~~: member voting (decided). Still need the written rules.
