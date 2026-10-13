@@ -12,7 +12,7 @@ This guide covers only what the rámčeky version changes. Everything else follo
 - The node model, the vocabulary and the page skeleton: node column, content, footer.
 - The colours: green `#6DAE42` for text, white for names and links, red for K and NEW.
 - One post component everywhere, with the same header: name, ☐, date and time, K, NEW, SIROTKA, and `↵ K+ edit` at the right.
-- The phone layout and its sizes.
+- The phone layout.
 
 ## 2. What changes
 
@@ -21,11 +21,11 @@ This guide covers only what the rámčeky version changes. Everything else follo
 | node content | open text, a hairline under the post header | a green frame with a gray band |
 | post title | only a title someone wrote | always, centred in the band, also the automatic `Re[n]: …` |
 | thread lines | solid elbows from the parent's icon into the reply | dotted, one per level, kyberia style |
-| type on desktop | Atkinson Hyperlegible, 15 px, line-height 1.55 | Tahoma 8 pt, line-height normal |
+| type | Atkinson Hyperlegible, 15 px (16 px on phones), line-height 1.55 | Tahoma 8 pt on desktop, 13 px on phones |
 
 ## 3. Type
 
-Kyberia's own sizes, measured on kyberia.sk, **desktop only** (`min-width: 721px`):
+Kyberia's own sizes, measured on kyberia.sk, on desktop (`min-width: 721px`):
 
 | token | value | kyberia |
 |---|---|---|
@@ -36,7 +36,9 @@ Kyberia's own sizes, measured on kyberia.sk, **desktop only** (`min-width: 721px
 | `--fs-xxl` | `16px` | page title |
 | body `line-height` | `normal` | `normal` |
 
-Phones keep the clean v4 sizes (16 / 14 / 12.5 px). Kyberia has no phone layout, and 8 pt is unreadable at 390 px.
+On phones the version stays kyberia-small but readable without zooming: body `13px`, meta `12px`, small `11px`,
+`--fs-l` `14px`, `--fs-xl` `16px`, page title `20px`, line-height `1.4`. Kyberia itself has no phone layout (it shows the
+desktop page zoomed out); 8 pt at 390 px would be smaller than any phone UI.
 
 ## 4. The frame
 
@@ -106,6 +108,6 @@ noise, and the rámčeky version keeps that decision.
 2. Does every post's band have two lines: meta, then the centred title (automatic `Re[n]:` included)?
 3. Is the date green and the name white, regular weight?
 4. Are the thread lines dotted, with no solid elbows left?
-5. Is desktop text 8 pt Tahoma, and phone text the clean v4 size?
+5. Is desktop text 8 pt Tahoma, and phone text 13 px?
 6. Is the clean version unchanged, apart from the `čisté | rámčeky` switch?
 7. Is every page of both versions readable at 390 px, with no horizontal scroll?
