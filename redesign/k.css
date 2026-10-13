@@ -1111,3 +1111,9 @@ img.av.xs { --s: 16px; }
   .visits .new, .visits .none { grid-column: 3; grid-row: 1; }
   .visits .cnt { grid-column: 2 / -1; text-align: left; }
 }
+@media (max-width: 720px) {
+  /* showcase index: name on its own line, the description under it */
+  .rows.pages li { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
+  .rows.pages .name { white-space: normal; overflow: visible; }
+  .rows.pages .desc { text-align: left; }
+}
