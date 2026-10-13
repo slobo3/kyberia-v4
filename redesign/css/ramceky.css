@@ -1,0 +1,39 @@
+/* rámčeky: the skin of the rámčeky version. Node content (posts, blog entries, a node's own text) sits in kyberia's
+   frame: a green 1px border, a #333 band with the meta line and the centred title, then the text. Kyberia's 8pt
+   Tahoma on desktop; phones keep the readable sizes. Loaded after the template CSS: the one layer that overrides.
+   Values measured on kyberia.sk: see STYLEGUIDE-RAMCEKY.md. */
+
+@media (min-width: 721px) {
+  :root {
+    --sans: Tahoma, "Lucida Grande CE", lucida, sans-serif;
+    --fs-xs: 9px; --fs-s: 10.67px; --fs: 10.67px; --fs-l: 10.67px; --fs-xl: 13px; --fs-xxl: 16px;
+  }
+  body { line-height: normal; }
+}
+
+/* ── the frame: a post ── */
+.post > div { display: flex; flex-direction: column; border: 1px solid var(--green); background: var(--bg); }
+.post .ph { margin: 2px 2px 0; padding: .2em .4em; border: 0; background: #333; color: var(--green); }
+.post .ph .who { font-weight: 400; }   /* kyberia: names regular, white */
+.post .ph .when { color: var(--green); }
+.post .pt, .post .pt.auto { display: block; order: 1; margin: 0 2px; padding: 0 .4em .2em; background: #333; font-weight: 400; text-align: center; }
+.post .pw { order: 2; margin: 2px 2px 0; padding: 0 .4em; }
+.post .pb { order: 3; max-width: none; margin: 2px; padding: .2em .4em .3em; }
+
+/* threads: a dotted line per level, a dotted line under each top-level thread; no elbows */
+.thread { --top: 1.6em; }
+.thread li { border-left: 1px dotted #323232; }
+.thread > li { padding-bottom: 2px; border-bottom: 1px dotted #656565; }
+.thread ol > li > .post .ph::before, .thread ol > li > .post .ph::after, .thread li:has(> ol) > .post::after { content: none; }
+
+/* ── the frame: a blog entry (blogs) ── */
+.entry { padding: 10px 0; border-bottom: 0; }
+.entry > div { display: flex; flex-direction: column; border: 1px solid var(--green); }
+.entry .m { order: 0; margin: 2px 2px 0; padding: .2em .4em; background: #333; color: var(--green); }
+.entry h2 { order: 1; margin: 0 2px; padding: 0 .4em .2em; background: #333; font-size: var(--fs); font-weight: 400; text-align: center; }
+.entry h2 a { color: var(--white); }
+.entry .m a { font-weight: 400; }
+.entry .bthumb, .entry p { order: 2; margin: 4px 6px; }
+
+/* ── the frame: a node's own text, a file ── */
+.topic, .datafile { margin-bottom: 1.3em; padding: .4em .6em; border: 1px solid var(--green); }

@@ -36,11 +36,61 @@ VIEW_CSS = {
 }
 
 
-def css_links(name, header=True, node=True):
-    files = ["base"] + ["header"] * header + ["node"] * node + ([VIEW_CSS[name]] if name in VIEW_CSS else []) + ["showcase"]
+def css_links(name, header=True, node=True, skin=False):
+    """skin: the rámčeky version adds its skin after the template CSS (the one layer allowed to override)."""
+    files = (["base"] + ["header"] * header + ["node"] * node + ([VIEW_CSS[name]] if name in VIEW_CSS else [])
+             + ["ramceky"] * skin + ["showcase"])
+
     def ver(f):
         return hashlib.sha1((OUT / "css" / f"{f}.css").read_bytes()).hexdigest()[:8]
     return "\n".join(f'<link rel="stylesheet" href="css/{f}.css?v={ver(f)}">' for f in files)
+
+
+# the two versions of the showcase: the clean look in redesign/, the rámčeky look in redesign/ramceky/
+SKIN_DIR = "ramceky"
+
+
+def skin_switch(page, skin):
+    """čisté | rámčeky: the same page in the other version."""
+    clean, framed = (f"../{page}", page) if skin else (page, f"{SKIN_DIR}/{page}")
+    cur = ' aria-current="page"'
+    return (f'<span class="skin-switch"><a href="{clean}"{"" if skin else cur}>čisté</a><span class="sep">|</span>'
+            f'<a href="{framed}"{cur if skin else ""}>rámčeky</a></span>')
+
+
+RE_N = re.compile(r"^Re(?:\[(\d+)\])?:\s*(.*)$", re.S)
+
+
+def re_title(of, depth=1):
+    """kyberia's automatic reply title: a reply to "X" is "Re: X", to "Re: X" is "Re[2]: X", and so on."""
+    m = RE_N.match(of)
+    n0, base = (int(m.group(1) or 1), m.group(2)) if m else (0, of)
+    n = n0 + depth
+    return f"Re: {base}" if n == 1 else f"Re[{n}]: {base}"
+
+
+def add_auto_titles(doc, name):
+    """Give every post without a title its automatic one: by depth in a threaded list, by the parent in a flat one."""
+    out, pos, stack = [], 0, []  # stack: one entry per open thread list, True if flat
+    for m in re.finditer(r'<ol class="thread([^"]*)"|<ol[\s>]|</ol>|<article class="post[^"]*">.*?</article>', doc, re.S):
+        tok = m.group(0)
+        if tok.startswith('<ol class="thread'):
+            stack.append("flat" in m.group(1))
+        elif tok.startswith("<ol"):
+            if stack:
+                stack.append(stack[-1])
+        elif tok == "</ol>":
+            if stack:
+                stack.pop()
+        elif 'class="pt' not in tok and '<div class="pb">' in tok:
+            where = re.search(r'<div class="pw">v <a [^>]*>(.*?)</a>', tok)
+            if where or not stack or stack[-1]:
+                title = re_title(where.group(1) if where else e(name))
+            else:
+                title = re_title(e(name), len(stack))
+            out.append(doc[pos:m.start()] + tok.replace('\n    <div class="pb">', f'\n    <div class="pt auto">{title}</div>\n    <div class="pb">', 1))
+            pos = m.end()
+    return "".join(out) + doc[pos:]
 
 NAV = [
     [("main", "main.html"), ("kyberia", "kyberia.html"), ("fr", "fr.html"),
@@ -71,7 +121,7 @@ def header(active, title=""):
     mgroups = ['<div class="grp">' + "".join(ls) + "</div>" for ls in mobile_sets]
     here = e(title or active)
     return f"""<a class="skip" href="#obsah">preskočiť na obsah</a>
-<div class="showcase-strip"><a class="showcase-back" href="index.html">← kyberia v4 showcase</a></div>
+<div class="showcase-strip"><a class="showcase-back" href="index.html">← kyberia v4 showcase</a><!-- skin switch --></div>
 <header class="top"><div class="top-in">
   <nav class="nav" aria-label="hlavná navigácia">
     {"".join(groups)}
@@ -203,9 +253,9 @@ def split_old_format(body):
 def post_process(doc):
     """Site-wide rules applied to every built page."""
     # post titles ("Re: …" or own title) are white links to the post node
-    doc = re.sub(r'<div class="pt( re)?">Re: <a href="([^"]+)">(.*?)</a></div>',
+    doc = re.sub(r'<div class="pt( re| auto)?">Re: <a href="([^"]+)">(.*?)</a></div>',
                  r'<div class="pt\1"><a href="\2">Re: \3</a></div>', doc)
-    doc = re.sub(r'<div class="pt( re)?">(?!<a )(.*?)</div>',
+    doc = re.sub(r'<div class="pt( re| auto)?">(?!<a )(.*?)</div>',
                  r'<div class="pt\1"><a href="submission.html">\2</a></div>', doc)
     # the time is plain text, not a link
     doc = re.sub(r'<a class="when" href="[^"]*">(.*?)</a>', r'<span class="when">\1</span>', doc)
@@ -230,8 +280,9 @@ PAGER = ('<nav class="pager" aria-label="stránkovanie"><a class="btn" href="#">
          '<a class="btn" href="#">staršie</a></nav>')
 
 
-def build(path):
+def build(path, skin=False):
     text = path.read_text(encoding="utf-8")
+    name = parse_node(text).get("name", "") if "<!-- node: " in text else ""
     title = re.search(r"<!-- title: (.*?) -->", text).group(1)
     nav = re.search(r"<!-- nav: (.*?) -->", text).group(1)
     body = re.sub(r"<!-- (title|nav|node): .*? -->\n?", "", text)
@@ -279,18 +330,27 @@ def build(path):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} :: kyberia.sk</title>
-{css_links(path.stem, header=nav != "none", node=nav != "none" and "<!-- layout: free -->" not in text)}
+{css_links(path.stem, header=nav != "none", node=nav != "none" and "<!-- layout: free -->" not in text, skin=skin)}
 </head>
 <body>
 {page}
 </body>
 </html>
 """
+    html_doc = html_doc.replace("<!-- skin switch -->", skin_switch(path.name, skin))
+    if name:
+        html_doc = add_auto_titles(html_doc, name)
     html_doc = post_process(html_doc)
-    (OUT / path.name).write_text(html_doc, encoding="utf-8")
-    print("built", path.name)
+    out = OUT
+    if skin:  # one folder down: assets come from the clean version's folders
+        html_doc = re.sub(r'(src|href)="(img/|css/|mobile\.html)', r'\1="../\2', html_doc)
+        out = OUT / SKIN_DIR
+        out.mkdir(exist_ok=True)
+    (out / path.name).write_text(html_doc, encoding="utf-8")
+    print("built", ("ramceky/" if skin else "") + path.name)
 
 
 if __name__ == "__main__":
     for p in sorted(q for q in SRC.glob("*.html") if not q.name.startswith("_")):
         build(p)
+        build(p, skin=True)

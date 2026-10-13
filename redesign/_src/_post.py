@@ -4,7 +4,8 @@ a post's or blog's replies, friend posts on a user node) is built from post(); n
 Anatomy, always the same:
   icon | name ☐ date time :: K :: NEW            (header; SIROTKA for orphans)
        | v parent :: grandparent                 (only where the post isn't shown under its parent)
-       | title                                   (only a title someone wrote; automatic Re[n]: … is hidden)
+       | title                                   (a title someone wrote; automatic Re[n]: … is class "auto",
+                                                  hidden in the clean look, shown in the rámčeky skin)
        | text
        | (odpovedať · K+ sit at the right end of the header as small text actions, not buttons)
 Threaded = these nested in <ol>; flat = the same, not nested.
@@ -43,7 +44,8 @@ def article(user, when, text, title=None, k=None, new=False, where=None, orphan=
     ctx = ""
     if where:
         ctx = '\n    <div class="pw">v ' + f" {SEP} ".join(f'<a href="{h}">{e(lbl)}</a>' for lbl, h in where) + "</div>"
-    ttl = f'\n    <div class="pt">{e(title)}</div>' if title and not AUTO_TITLE.match(title) else ""
+    # an automatic "Re[n]: …" title is in the markup but only the rámčeky skin shows it (build.py adds missing ones)
+    ttl = f'\n    <div class="pt{" auto" if AUTO_TITLE.match(title) else ""}">{e(title)}</div>' if title else ""
     return f"""<article class="post{' is-new' if new else ''}">
   <img class="av" src="{icon(user)}" alt="" width="50" height="50">
   <div>

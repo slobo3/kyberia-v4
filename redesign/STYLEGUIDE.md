@@ -4,7 +4,8 @@ The same kyberia, made readable. v4 keeps kyberia's colours, vocabulary and node
 rebuilds type, spacing, layout and mobile. The reference implementation is the CSS in [`css/`](css/); the
 pages in this folder are the specimens.
 
-(For the classic v2 look as it is today, see [`../design/DESIGN.md`](../design/DESIGN.md).)
+(For the classic v2 look as it is today, see [`../design/DESIGN.md`](../design/DESIGN.md). For the rámčeky
+version, with kyberia's frames on node content, see [`STYLEGUIDE-RAMCEKY.md`](STYLEGUIDE-RAMCEKY.md).)
 
 ---
 
@@ -234,4 +235,4 @@ what they do (`pridať`, `poslať`, `náhľad`). Footer:
 6. Is it readable on a 390px phone: no horizontal scroll, node column below the content? Check **every** page in `mobile.html` after **every** change.
 7. Is the CSS in the right file? Shared components go in `css/base.css`; a template's own rules go in its file
    (`css/forum.css`, `css/mail.css`…). A template file only adds, it never overrides base. Each file keeps its
-   `@media` rules at its end.
+   `@media` rules at its end. The one layer allowed to override is a skin (`css/ramceky.css`).
