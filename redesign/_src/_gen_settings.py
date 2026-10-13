@@ -116,6 +116,7 @@ setup_body = f"""  <div class="head"><h1>setup</h1></div>
 ])}
 {section("súkromie", [
     row("bookmarks", '<label class="check"><input type="checkbox" checked> ostatní vidia moje bookmarks</label>'),
+    row("kde som teraz", '<label class="check"><input type="checkbox" checked> ostatní vidia, kde práve som</label>'),
     row("movement", '<label class="check"><input type="checkbox" checked> ostatní vidia, kde chodím</label>'),
 ])}
 {section("ignore", [

@@ -157,7 +157,9 @@ Keep it, safely:
 - **Profile sidebar links:** bookmarks, movement (recent locations), their nodeshells, forums,
   submissions, articles, blogs, data, K given/received, friends, and "you have N mutual friends".
 - **Bookmarks and movement on a profile (decided 13.10.2026):** public, as on kyberia, but each member can turn
-  either off in setup; then only they see it. Like every list, they show only nodes the viewer may see.
+  either off in setup; then only they see it. Movement has two levels, switched separately: **where I am now**
+  (people, "where most people are", the mail header) and **where I've been** (the movement tab). Like every list,
+  they never name a node the viewer may not see.
 
 ---
 
