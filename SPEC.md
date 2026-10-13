@@ -163,8 +163,16 @@ Keep it, safely:
 - The **owner** is a single user (`owner_id`), with full control. The owner can hand the node over
   (`set_creator`).
 - **Effective rights** ("you: r, w, …" in the node details) are computed from: system access → owner →
-  lists (bans and silence override, masters and ops add powers) → inheritance from ancestors
-  **[inferred: whether and how lists inherit down the subtree must be confirmed]**.
+  lists (bans and silence override, masters and ops add powers) → inheritance from ancestors.
+- **Visibility: nearest wins** (confirmed by slobo). Walk up from the node; the closest node that
+  decides about you (a restricted node you can't enter, or an explicit grant) decides. A grant opens
+  that node *and its subtree*, even inside a parent you can't enter, until a deeper restricted node
+  closes it again. Ancestors you can't see are never named (node column, "v parent :: …" lines,
+  titles): they show as nothing.
+- **Implementation:** per user, a *forbidden* set (restricted nodes they can't enter) and an *allowed*
+  set (explicit grants). Visible = the deepest member of either set on the node's path is allowed, or
+  no forbidden node is on the path. Grants and node changes rewrite no subtree rows. All visibility
+  goes through one function; tests log in as an outsider and as "granted on a child, not the parent".
 - Site-wide ban is separate (admin only).
 - "Sirotka" (orphan) is shown in red in the post header when a post's parent is gone or
   inaccessible **[inferred]**.
