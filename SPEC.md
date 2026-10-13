@@ -382,10 +382,15 @@ Every node has a **filter**, opened from the node links like stats and source (`
 
 ## 10. URL map (keep `/id/{n}` stable, which matters for decades of internal links)
 
+**Decided: URLs are exactly kyberia's**: `kyberia.sk/id/{node id}` and
+`kyberia.sk/id/{node id}/{template id}` to view a node through a non-default template (configure,
+commanders, stats… are template nodes too). The clone column below lists optional friendly aliases
+that redirect to the canonical `/id/…` URL.
+
 | original | clone | notes |
 |---|---|---|
 | `/id/{n}` | `/id/{n}` | node view. **Must keep the ids when importing.** |
-| `/id/{n}/{template}` | `/id/{n}/{view}` | view variants: `conf`, `flat`, `k`, `history` |
+| `/id/{n}/{template id}` | `/id/{n}/{template id}` | the node through another template |
 | `/id/1` (main) | `/id/1` | |
 | `/id/101` (kyberia) | `/id/101` | the community nodeshell root |
 | `/id/19` | `/bookmarks` | also alias `/id/19` |
@@ -451,6 +456,14 @@ visit.last_visit_at)` for ~100 bookmarks per page load. Use `last_child_at` /
   and keep the number honest.
 
 ---
+
+## 12b. Build decisions (13.10.2026)
+- **Data:** synthetic data for the build and the benchmark, but everything shaped so a migration
+  from kyberia stays possible: same node ids, same URLs, same tree.
+- **Relationship to kyberia:** a parallel test instance with real members early; it replaces
+  kyberia only if the community accepts it.
+- **Hardlinks:** bookmark NEW counts follow real children only, never hardlinks.
+- **User-built templates:** wanted; design under discussion (§2.2).
 
 ## 13. Open questions for the community/admins
 1. Exact semantics of `moderated`, and of the `operator` vs `master` roles. (`closed` dropped.)
