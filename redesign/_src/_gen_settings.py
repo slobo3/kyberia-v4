@@ -114,6 +114,10 @@ setup_body = f"""  <div class="head"><h1>setup</h1></div>
     row("na stranu", '<input class="field num" value="200" inputmode="numeric">'),
     row("poradie", '<select class="field"><option>najnovšie hore</option><option>najstaršie hore</option></select>'),
 ])}
+{section("súkromie", [
+    row("bookmarks", '<label class="check"><input type="checkbox" checked> ostatní vidia moje bookmarks</label>'),
+    row("movement", '<label class="check"><input type="checkbox" checked> ostatní vidia, kde chodím</label>'),
+])}
 {section("ignore", [
     row("ignoruješ", f'<span class="tags">{ignored}</span><input class="field num id" value="7004021" inputmode="numeric" aria-label="číslo používateľa"><p class="nodetitle"><a href="user.html">mrak</a></p>', "pridať"),
 ])}

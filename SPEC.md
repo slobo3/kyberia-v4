@@ -156,6 +156,8 @@ Keep it, safely:
 - **Ignore:** `ignore` (hide their posts) and `ignore_mail` (block their mail). Buttons on the profile.
 - **Profile sidebar links:** bookmarks, movement (recent locations), their nodeshells, forums,
   submissions, articles, blogs, data, K given/received, friends, and "you have N mutual friends".
+- **Bookmarks and movement on a profile (decided 13.10.2026):** public, as on kyberia, but each member can turn
+  either off in setup; then only they see it. Like every list, they show only nodes the viewer may see.
 
 ---
 
