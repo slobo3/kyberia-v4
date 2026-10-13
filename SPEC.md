@@ -154,6 +154,7 @@ Keep it, safely:
   levels, no reply-to-reply, no view switch. Every post there is a `friend` node. Friends get a separate
   "friends" section in `people` and in the bookmarks sidebar, and their avatar gets a border.
 - **Ignore:** `ignore` (hide their posts) and `ignore_mail` (block their mail). Buttons on the profile.
+  **`disappear`** (seen on kyberia.sk 13.10.2026) is the reverse of ignore: that person stops seeing *me*.
 - **Profile sidebar links:** bookmarks, movement (recent locations), their nodeshells, forums,
   submissions, articles, blogs, data, K given/received, friends, and "you have N mutual friends".
 - **Bookmarks and movement on a profile (decided 13.10.2026):** public, as on kyberia, but each member can turn
@@ -270,6 +271,7 @@ which right to give + pridať. User settings (setup) are a separate page.
 Global feed of the newest submissions across the site (respecting my read rights and ignores).
 Each item: avatar · `Re[2]: title in <parent name>` · `author: login [lokacia :: where-they-are-now]` ·
 time-date · `NEW` · body. Paged.
+**PAPPA** (`/id/20`, seen on kyberia.sk 13.10.2026): a live `last` limited to my bookmarks (new posts inside what I booked).
 
 ### 6.4 `re:` (`/re`)
 Replies to *my* nodes (children of anything I own), newest first, rendered as a **flat discussion**: the same
