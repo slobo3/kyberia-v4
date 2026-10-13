@@ -1,7 +1,6 @@
 /* kyberia v4 :: base. Loaded on every page: tokens, type, controls and the components several templates share
    (post + thread, list rows, key/value lists, people lists, pager). Templates add to this, never override it. */
 
-@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;500&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap");
 
 :root {
   --bg: #000;

@@ -38,7 +38,7 @@ VIEW_CSS = {
 
 def css_links(name, header=True, node=True, skin=False):
     """skin: the rámčeky version adds its skin after the template CSS (the one layer allowed to override)."""
-    files = (["base"] + ["header"] * header + ["node"] * node + ([VIEW_CSS[name]] if name in VIEW_CSS else [])
+    files = (["fonts", "base"] + ["header"] * header + ["node"] * node + ([VIEW_CSS[name]] if name in VIEW_CSS else [])
              + ["ramceky"] * skin + ["showcase"])
 
     def ver(f):
