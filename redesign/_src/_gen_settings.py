@@ -114,6 +114,9 @@ setup_body = f"""  <div class="head"><h1>setup</h1></div>
     row("na stranu", '<input class="field num" value="200" inputmode="numeric">'),
     row("poradie", '<select class="field"><option>najnovšie hore</option><option>najstaršie hore</option></select>'),
 ])}
+{section("vzhľad", [
+    row("vzhľad", '<span class="radios"><label><input type="radio" name="skin" checked> čisté</label><label><input type="radio" name="skin"> rámčeky</label></span>'),
+])}
 {section("súkromie", [
     row("bookmarks", '<label class="check"><input type="checkbox" checked> ostatní vidia moje bookmarks</label>'),
     row("kde som teraz", '<label class="check"><input type="checkbox" checked> ostatní vidia, kde práve som</label>'),
@@ -121,6 +124,7 @@ setup_body = f"""  <div class="head"><h1>setup</h1></div>
 ])}
 {section("ignore", [
     row("ignoruješ", f'<span class="tags">{ignored}</span><input class="field num id" value="7004021" inputmode="numeric" aria-label="číslo používateľa"><p class="nodetitle"><a href="user.html">mrak</a></p>', "pridať"),
+    row("ignore_mail", '<span class="tags"><span class="tag">bager <button class="btn ghost" type="button" aria-label="zrušiť ignore_mail bager">×</button></span></span><input class="field num id" inputmode="numeric" aria-label="číslo používateľa">', "pridať"),
 ])}
 {section("heslo", [
     row("staré heslo", '<input class="field" type="password" autocomplete="current-password">', ""),
