@@ -1,0 +1,18 @@
+/* stats: the node's visitors (last visit, new for them, booked, K, visits) */
+
+.visits { margin: 0; padding: 0; list-style: none; }
+.visits li {
+  display: grid; grid-template-columns: 25px minmax(0, 1fr) 150px 80px 110px 100px; align-items: center; gap: 12px;
+  padding: 6px 0; border-bottom: 1px solid var(--line); font-size: var(--fs-s);
+}
+.visits li > a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
+.visits .when { color: var(--gray); }
+.visits .new, .visits .none, .visits .cnt { text-align: right; }
+.visits .flags { display: flex; gap: 8px; }
+
+@media (max-width: 720px) {
+  .visits li { grid-template-columns: 25px minmax(0, 1fr) auto; row-gap: 2px; }
+  .visits .when, .visits .flags, .visits .cnt { grid-column: 2 / -1; }
+  .visits .new, .visits .none { grid-column: 3; grid-row: 1; }
+  .visits .cnt { text-align: left; }
+}

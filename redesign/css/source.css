@@ -1,0 +1,6 @@
+/* source: the node's raw HTML */
+
+.source {
+  margin: 0; padding: 16px; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel);
+  font: 400 var(--fs-s)/1.6 var(--mono); white-space: pre-wrap; word-break: break-word;
+}

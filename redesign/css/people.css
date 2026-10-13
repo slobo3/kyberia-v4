@@ -1,0 +1,19 @@
+/* people: who is online and where */
+
+.people {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px 24px; margin: 0; padding: 0;
+  list-style: none;
+}
+.people li { display: grid; grid-template-columns: 50px minmax(0, 1fr); align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.people .u { color: var(--white); font-weight: 700; }
+.people .loc { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-s); }
+.people .loc a { color: var(--green); }
+.people .idle { color: var(--gray); font-size: var(--fs-xs); }
+.block { margin-top: 10px; }
+/* where most people are */
+.hot { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.hot li a {
+  display: inline-flex; align-items: baseline; gap: 8px; padding: 6px 12px; border: 1px solid var(--green);
+  border-radius: var(--radius); font-size: var(--fs-s);
+}
+.hot li a b { color: var(--green); }

@@ -1,7 +1,7 @@
 # kyberia v4: styleguide
 
 The same kyberia, made readable. v4 keeps kyberia's colours, vocabulary and node model, and
-rebuilds type, spacing, layout and mobile. The reference implementation is [`k.css`](k.css); the
+rebuilds type, spacing, layout and mobile. The reference implementation is the CSS in [`css/`](css/); the
 pages in this folder are the specimens.
 
 (For the classic v2 look as it is today, see [`../design/DESIGN.md`](../design/DESIGN.md).)
@@ -28,13 +28,12 @@ pages in this folder are the specimens.
 
 | token | value | use |
 |---|---|---|
-| `--void` | `#000` | page background (true black, not tinted) |
+| `--bg` | `#000` | page background (true black, not tinted) |
 | `--green` | `#6DAE42` | body text, headings, titles, labels, control borders, main dividers |
 | `--white` | `#fff` | **links to nodes** (listings, sidebars), people's names, nav |
 | `--red` | `#ff3b30` | `NEW`, `N new`, K counts, `SIROTKA` |
-| `--mute` | `#8b8f87` | low-importance meta only: times, ids, counts, `::`, levels |
-| `--rule` | `#1d2e13` | faint row separators |
-| `--rule-3` | `#2f4a1f` | thread guide lines, coordinate separators |
+| `--gray` | `#8b8f87` | low-importance meta only: times, ids, counts, `::`, levels |
+| `--line` | `#1d2e13` | faint row separators, thread lines |
 | `--panel` | `#0a1206` | the one surface: composer, mail panes, own messages |
 
 Grays and extra greens are allowed only in those exact roles. No text is ever a second green.
@@ -233,4 +232,6 @@ what they do (`pridať`, `poslať`, `náhľad`). Footer:
 4. Does the page use the shared skeleton (node image + node column, title), unless it's main?
 5. Is K written as `N K`, in red, with no icon?
 6. Is it readable on a 390px phone: no horizontal scroll, node column below the content? Check **every** page in `mobile.html` after **every** change.
-7. Are all `@media` rules still at the end of `k.css`? Add new base rules above the responsive section, never after it.
+7. Is the CSS in the right file? Shared components go in `css/base.css`; a template's own rules go in its file
+   (`css/forum.css`, `css/mail.css`…). A template file only adds, it never overrides base. Each file keeps its
+   `@media` rules at its end.

@@ -1,0 +1,11 @@
+/* blogs: the newest blog entries, each with the author's icon and the first photo */
+
+.entries { margin-top: 10px; }
+.entries.list .entry { display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 0 16px; }
+.entry { padding: 20px 0; border-bottom: 1px solid var(--line); }
+.entry img.av { margin-top: 4px; }
+.entry h2 { font-size: var(--fs-l); line-height: 1.15; }
+.entry h2 a { color: var(--green); }
+.entry .m { margin: 6px 0 8px; color: var(--gray); font-size: var(--fs-s); }
+.entry p { margin: 0; }
+.entry .bthumb { width: 100%; max-width: 320px; height: auto; margin: 8px 0; border: 1px solid var(--green); image-rendering: pixelated; }

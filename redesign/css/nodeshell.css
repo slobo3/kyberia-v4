@@ -1,0 +1,6 @@
+/* nodeshell: the node's text, an add form that takes a template number, children grouped by template */
+
+.notice { color: var(--red); font-weight: 700; }
+.composer .tpl { display: inline-flex; align-items: center; gap: 6px; color: var(--gray); font-size: var(--fs-s); white-space: nowrap; }
+.tplpick { display: inline-flex; align-items: center; gap: 6px; }
+.tplpick .field { width: 64px; }

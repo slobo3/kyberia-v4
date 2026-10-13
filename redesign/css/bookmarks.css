@@ -1,0 +1,43 @@
+/* bookmarks: categories of booked nodes with NEW counts; K wallet and "my K in 24 h" in the column */
+
+.cat { margin-top: 30px; }
+.cat > header { display: flex; align-items: baseline; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--green); }
+.cat > header h2 { font-size: var(--fs-l); }
+.cat > header .total { font-size: var(--fs-s); }
+.cat > header .tools { margin-left: auto; opacity: 0; transition: opacity .15s; }   /* shows on hover */
+.cat:hover > header .tools, .cat > header .tools:focus-within { opacity: 1; }
+.cat > header .tools a { color: var(--gray); font-size: var(--fs-xs); }
+.cat > header .tools a:hover { color: var(--white); }
+.bmtools { display: flex; gap: 2px; margin: 26px 0 0 -8px; }
+
+.bm { margin: 0; padding: 0; list-style: none; }
+.bm li {
+  display: grid; grid-template-columns: 14px minmax(0, 1fr) 96px 64px 64px 110px; align-items: baseline; gap: 12px;
+  padding: 7px 0; font-size: var(--fs-s);
+}
+.bm .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs); line-height: 1.3; }
+.bm .name b { font-weight: 800; }
+.bm .new, .bm .flag { text-align: right; }
+.bm .owner { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right; }
+.bm .owner a { color: var(--green); }
+
+/* K wallet */
+.ledger { width: 100%; border-collapse: collapse; }
+.ledger th { padding: 3px 0; text-align: left; font-weight: 400; color: var(--gray); }
+.ledger td { padding: 3px 0; text-align: right; white-space: nowrap; }
+.ledger td.minus { color: var(--red); }
+.ledger tr.total > * { padding-top: 7px; border-top: 1px solid var(--green); color: var(--green); font-size: var(--fs-l); font-weight: 800; }
+/* my nodes that got K in the last 24 h */
+.mykay { margin: 0; padding: 0; list-style: none; }
+.mykay li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 6px 0; }
+.mykay li > a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mykay .k { text-align: right; }
+
+@media (hover: none) {
+  .cat > header .tools { opacity: 1; }
+}
+
+@media (max-width: 720px) {
+  .bm li { grid-template-columns: 14px minmax(0, 1fr) auto; }
+  .bm .flag, .bm .owner { display: none; }
+}

@@ -1,0 +1,202 @@
+/* kyberia v4 :: base. Loaded on every page: tokens, type, controls and the components several templates share
+   (post + thread, list rows, key/value lists, people lists, pager). Templates add to this, never override it. */
+
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;500&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap");
+
+:root {
+  --bg: #000;
+  --green: #6dae42;   /* kyberia green: text, titles, controls. Never changes. */
+  --gray: #8b8f87;    /* low-importance meta: times, counts, "::" */
+  --white: #fff;      /* names and links */
+  --red: #ff3b30;     /* NEW and K */
+  --line: #1d2e13;    /* faint row lines */
+  --panel: #0a1206;   /* the only surface colour */
+  --sans: "Atkinson Hyperlegible Next", Tahoma, Verdana, "DejaVu Sans", sans-serif;
+  --mono: "Atkinson Hyperlegible Mono", ui-monospace, Consolas, monospace;
+  --fs-xs: 12px; --fs-s: 13px; --fs: 15px; --fs-l: 18px; --fs-xl: 26px; --fs-xxl: clamp(30px, 4.2vw, 44px);
+  --radius: 2px;
+  --page: 1208px;
+  color-scheme: dark;
+}
+
+/* ── type ── */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; }
+body { margin: 0; background: var(--bg); color: var(--green); font: 400 var(--fs)/1.55 var(--sans); font-variant-numeric: tabular-nums; }
+a { color: var(--white); text-decoration: none; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration: underline; text-decoration-color: var(--green); }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+img { display: block; max-width: 100%; }
+h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -0.01em; }
+p { margin: 0 0 .8em; }
+mark { background: none; color: var(--white); font-weight: 800; text-decoration: underline; text-decoration-color: var(--green); }
+font[size="2"] { font-size: .95em; }   /* authors' <font> in node names, capped */
+font[size="3"] { font-size: 1.15em; }
+
+.g { color: var(--green); }
+.g2, .none { color: var(--gray); }
+.new, .k { color: var(--red); font-weight: 700; white-space: nowrap; }
+.sep { color: var(--gray); margin: 0 .35em; }
+.flag { font-weight: 700; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 8px; top: 8px; z-index: 100; padding: 6px 10px; background: var(--bg); }
+
+/* ── page frame ── */
+.wrap, .foot { max-width: calc(var(--page) + 40px); margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+.wrap { padding-bottom: 80px; }
+.foot {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding-top: 24px; padding-bottom: 40px;
+  border-top: 1px solid var(--line); font-size: var(--fs-xs); color: var(--gray);
+}
+.foot b { color: var(--green); font-weight: 500; }
+.head { padding: 34px 0 22px; }
+.head h1 { font-size: var(--fs-xxl); line-height: 1.08; }
+.day { margin: 26px 0 0; padding-bottom: 6px; border-bottom: 1px solid var(--green); font-size: var(--fs-s); }
+
+/* ── controls ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border: 1px solid var(--green);
+  border-radius: var(--radius); background: var(--bg); color: var(--white); font: 500 var(--fs-s) var(--sans);
+  white-space: nowrap; cursor: pointer;
+}
+.btn:hover { text-decoration: none; }
+.btn.primary { background: var(--green); color: var(--bg); font-weight: 700; }
+.btn.primary:hover { background: #82c556; }
+.btn.on { color: var(--green); }
+.btn.ghost { padding: 0 8px; border-color: transparent; color: var(--green); }
+.btn.ghost:hover { color: var(--white); }
+.act { padding: 0; border: 0; background: none; color: var(--gray); font: 400 var(--fs-s) var(--sans); cursor: pointer; }
+.act:hover, .act:focus-visible { color: var(--white); text-decoration: underline; }
+.field {
+  width: 100%; padding: 7px 10px; border: 1px solid var(--green); border-radius: var(--radius);
+  background: var(--bg); color: var(--white); font: 400 var(--fs) var(--sans);
+}
+.field:focus { outline: none; }
+.field::placeholder { color: var(--gray); }
+textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
+label.lab { margin: 0 0 4px; font-size: var(--fs-s); }
+.check { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-s); }
+input[type=checkbox] { width: 14px; height: 14px; margin: 0; accent-color: var(--green); }
+input[type=radio] { accent-color: var(--green); }
+.seg { display: inline-flex; border: 1px solid var(--green); border-radius: var(--radius); }
+.seg a { padding: 4px 10px; color: var(--green); font-size: var(--fs-s); }
+.seg a + a { border-left: 1px solid var(--green); }
+.seg a:hover { color: var(--white); text-decoration: none; }
+.seg a[aria-current] { background: var(--green); color: var(--bg); font-weight: 700; }
+.filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px; padding: 12px 0 16px; border-bottom: 1px solid var(--green); }
+.filters .f { display: flex; flex-direction: column; gap: 4px; }
+.filters .f .field { height: 30px; padding: 4px 8px; font-size: var(--fs-s); }
+
+/* the add form under a node */
+.composer { margin: 30px 0 8px; padding: 14px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.composer .title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.composer .title-row .field { flex: 1; }
+.composer .tools { display: flex; gap: 2px; margin: 0 0 6px; }
+.composer .tools .btn { height: 26px; }
+.composer .send { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; margin-top: 8px; }
+
+.pager { display: flex; justify-content: center; align-items: center; gap: 6px; margin: 30px 0; font-size: var(--fs-s); }
+.pager .pages { display: inline-flex; gap: 2px; }
+.pager .pages a { display: inline-grid; place-items: center; min-width: 30px; height: 30px; border-radius: var(--radius); color: var(--green); }
+.pager .pages a[aria-current] { background: var(--green); color: var(--bg); font-weight: 700; }
+.bulk { margin: 14px 0 0; text-align: right; color: var(--gray); font-size: var(--fs-s); }
+
+/* ── icons: users' GIFs at native pixel size; a tinted initial where there is no GIF ── */
+.av { --s: 50px; width: var(--s); height: var(--s); flex: none; }
+.av.s { --s: 25px; }
+.av.xs { --s: 16px; }
+img.av { object-fit: cover; image-rendering: pixelated; background: #000; }
+span.av {
+  display: grid; place-items: center; overflow: hidden; border-radius: var(--radius);
+  background: hsl(var(--h, 100) 35% 14%); color: hsl(var(--h, 100) 55% 70%); font: 700 calc(var(--s) * .42)/1 var(--sans);
+}
+.av.on { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--green); }   /* friend online */
+.uid { margin-left: 4px; color: var(--gray); font-family: var(--mono); font-size: var(--fs-xs); }   /* [user node id] */
+
+/* ── node content (author HTML) ── */
+.topic { padding: 0 0 26px; border-bottom: 1px solid var(--green); }
+.topic > * { max-width: 68ch; }
+.prose a { text-decoration: underline; text-decoration-color: var(--gray); }
+.prose h2 { margin: 1.2em 0 .4em; font-size: var(--fs-l); }
+.prose ol, .prose ul { margin: 0 0 .8em; padding-left: 1.3em; }
+
+/* ── key/value list (node details, file details) ── */
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 0; }
+.kv dt { color: var(--gray); }
+.kv dd { margin: 0; }
+
+/* ── people list (sidebars): icon, name, where they are ── */
+.who-list { margin: 0; padding: 0; list-style: none; }
+.who-list li { display: grid; grid-template-columns: 25px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 5px 0; }
+.who-list .u { color: var(--white); font-weight: 700; }
+.who-list .loc { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-xs); }
+.who-list .loc a { color: var(--green); }
+.who-list .idle { color: var(--gray); font-size: var(--fs-xs); }
+
+/* ── list rows: child nodes, links, the showcase index ── */
+.listing { margin-top: 28px; }
+.listing h2 { margin: 26px 0 6px; font-size: var(--fs-s); font-weight: 700; }
+.listing h2 .g2 { font-weight: 400; }
+.rows { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.rows li {
+  display: grid; grid-template-columns: 18px minmax(0, 1fr) 110px 80px 60px 110px; align-items: baseline; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid var(--line); font-size: var(--fs-s);
+}
+.rows li:hover { background: linear-gradient(90deg, var(--panel), transparent 80%); }
+.rows .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs); font-weight: 700; line-height: 1.3; }
+.rows .name b { font-weight: 800; }
+.rows li.quiet .name a { font-weight: 400; }   /* nothing new inside */
+.rows .cnt { text-align: right; white-space: nowrap; color: var(--gray); }
+.rows .owner { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right; }
+.rows .owner a { color: var(--green); }
+.rows .owner a:hover { color: var(--white); }
+.rows .k, .rows .new { text-align: right; }
+
+/* ── post: one component everywhere posts appear ── */
+.thread, .thread ol { margin: 0; padding: 0; list-style: none; }
+/* thread geometry: --av icon column, --gap icon to text, --ml/--pl a reply list's margin/padding, --cml where a post's
+   own reply line runs, --top a post's top padding. The elbow lines follow these at every depth and width. */
+.thread { --line-c: var(--line); --av: 50px; --gap: 14px; --ml: 25px; --pl: 20px; --top: 18px; }
+.thread li { --cml: 25px; --drop: calc(var(--av) + 4px); }
+.thread ol { margin-left: var(--ml); padding-left: var(--pl); --opl: var(--pl); }
+.post { display: grid; grid-template-columns: var(--av) minmax(0, 1fr); gap: 0 var(--gap); padding: var(--top) 0 6px; }
+.post img.av { --s: var(--av); position: relative; z-index: 1; }   /* icons sit above the lines */
+.post > div { grid-column: 2; min-width: 0; }
+.post .ph {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 4px; margin-bottom: 6px; padding-bottom: 5px;
+  border-bottom: 1px solid var(--line); color: var(--gray); font-size: var(--fs-s);
+}
+.post .ph .who { margin-right: 6px; font-size: var(--fs); font-weight: 700; }
+.post .ph .pick { align-self: center; margin: 0 8px 0 -2px; }
+.post .ph .pa { display: inline-flex; gap: 12px; margin-left: auto; }
+.post .orphan { color: var(--red); font-weight: 700; }
+.post .pw { margin: 2px 0 0; color: var(--gray); font-size: var(--fs-s); }
+.post .pt { margin: 2px 0 4px; font-weight: 700; }
+.post .pt a:hover { text-decoration: underline; }
+.post .pb { max-width: 68ch; }
+.post .pb p:last-child { margin-bottom: 0; }
+.post .pb blockquote { margin: 4px 0 8px; padding-left: 12px; border-left: 2px solid #2f4a1f; color: var(--gray); font-style: italic; }
+.act.re-act { font-size: 17px; line-height: 1; transform: translateY(1px); }
+/* elbows: from under the parent's icon, down, then right into the reply's header line */
+.thread ol > li, .thread ol > li > .post .ph, .thread li:has(> ol) > .post { position: relative; }
+.thread ol > li > .post .ph::before, .thread ol > li > .post .ph::after, .thread li:has(> ol) > .post::after {
+  content: ""; position: absolute; background: var(--line-c);
+}
+.thread ol > li > .post .ph::before { right: 100%; bottom: -1px; width: calc(var(--opl) + var(--av) + var(--gap)); height: 1px; }
+.thread ol > li > .post .ph::after { left: calc(-1 * (var(--opl) + var(--av) + var(--gap))); bottom: -1px; width: 1px; height: calc(100% + 1px + var(--top)); }
+.thread li:has(> ol) > .post::after { left: var(--cml); top: calc(var(--top) + var(--drop)); bottom: 0; width: 1px; }
+
+@media (max-width: 720px) {
+  :root { --fs-xs: 12.5px; --fs-s: 14px; --fs: 16px; }
+  .wrap, .foot { padding-left: 14px; padding-right: 14px; }
+  .wrap { padding-bottom: 60px; }
+  .pager { flex-wrap: wrap; }
+  .rows li { grid-template-columns: minmax(0, 1fr) auto auto; row-gap: 0; }
+  .rows li > input, .rows .cnt, .rows .owner { display: none; }
+  .thread { --gap: 10px; --pl: 0px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

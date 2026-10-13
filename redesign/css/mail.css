@@ -1,0 +1,44 @@
+/* mail: conversations on the left, the open one on the right (newest first); new message */
+
+.mail { display: grid; grid-template-columns: 250px minmax(0, 1fr); }
+.convos { border-right: 1px solid var(--green); }
+.convos .newmail { justify-content: center; width: calc(100% - 16px); margin: 0 16px 8px 0; }
+.convos ul { margin: 0; padding: 0; list-style: none; }
+.convos li a {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1px 10px; padding: 9px 16px 9px 12px;
+  border-bottom: 1px solid var(--line);
+}
+.convos li a:hover { background: var(--panel); text-decoration: none; }
+.convos li a[aria-current] { background: var(--panel); box-shadow: inset 2px 0 0 var(--green); }
+.convos .u { font-weight: 700; }
+.convos .t { text-align: right; color: var(--gray); font-size: var(--fs-xs); }
+.convos .last { grid-column: 1 / -1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--green); font-size: var(--fs-s); }
+
+.stream { min-width: 0; padding-left: 28px; }
+.stream > header { display: flex; align-items: baseline; gap: 12px; padding: 0 0 12px; }
+.stream > header .u { color: var(--white); font-size: var(--fs-l); font-weight: 700; }
+.stream > header .loc { font-size: var(--fs-s); }
+.reply { display: flex; align-items: flex-end; gap: 10px; padding: 0 0 20px; }
+.reply textarea.field { min-height: 64px; }
+.msgs { margin: 0; padding: 0; list-style: none; }
+.msg { padding: 12px 0; border-top: 1px solid var(--line); }
+.msg .mh { color: var(--gray); font-size: var(--fs-s); }
+.msg .mh .who { margin-right: 4px; font-weight: 700; }
+.msg .mb { max-width: 68ch; margin: 3px 0 0; }
+.msg.me { text-align: right; }   /* mine on the right, theirs on the left */
+.msg.me .mb { margin-left: auto; }
+.msg.me .mh .who { margin: 0 0 0 4px; }
+
+/* new message: recipient with suggestions */
+.newmsg { display: grid; gap: 6px; max-width: 620px; }
+.newmsg .lab { margin-top: 6px; }
+.newmsg .send { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.suggest { max-width: 620px; margin: 0; padding: 0; list-style: none; border: 1px solid var(--green); border-top: 0; }
+.suggest a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-top: 1px solid var(--line); }
+.suggest a:hover { background: var(--panel); text-decoration: none; }
+
+@media (max-width: 720px) {
+  .mail { grid-template-columns: minmax(0, 1fr); }
+  .convos { padding-top: 12px; border-top: 1px solid var(--green); border-right: 0; }
+  .stream { order: -1; padding: 0 0 24px; }
+}

@@ -1,0 +1,42 @@
+/* configure (a node) and setup (yourself): labelled rows, one save bar pinned to the bottom */
+
+.settings { margin-top: 6px; }
+.setsec { padding: 18px 0; border-top: 1px solid var(--green); }
+.setsec h2 { margin-bottom: 8px; font-size: var(--fs-l); }
+.setrow { display: grid; grid-template-columns: 140px minmax(0, 1fr) auto; align-items: start; gap: 6px 18px; padding: 8px 0; }
+.setlabel { padding-top: 7px; color: var(--gray); font-size: var(--fs-s); }
+.setctl .field { max-width: 520px; }
+.setctl .field.num { width: 90px; }
+.setctl .field.num.id { width: 120px; font-family: var(--mono); }   /* a node number, its title under it */
+.setctl .nodetitle { margin: 6px 0 0; font-size: var(--fs-s); }
+.setact { text-align: right; }
+.setact:empty { display: none; }
+.hint { margin: 6px 0 0; color: var(--gray); font-size: var(--fs-xs); }
+.preview { color: var(--white); }
+.imgpick { display: flex; align-items: center; gap: 14px; }
+.imgpick img { image-rendering: pixelated; }
+.radios { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 6px; }
+.radios label { display: inline-flex; align-items: center; gap: 6px; color: var(--white); font-size: var(--fs-s); }
+.savebar {
+  position: sticky; bottom: 0; z-index: 40; display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px;
+  padding: 12px 0; border-top: 1px solid var(--green); background: var(--bg);
+}
+
+/* rights: people with their rights as removable chips, and one row to add someone */
+.person { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: 6px; color: var(--white); }
+.person .av { grid-row: span 2; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.tag {
+  display: inline-flex; align-items: center; gap: 2px; padding: 2px 2px 2px 10px; border: 1px solid var(--green);
+  border-radius: var(--radius); color: var(--white); font-size: var(--fs-s);
+}
+.tag .btn { height: 22px; padding: 0 6px; }
+.adder { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; max-width: 100%; }
+.adder .field.num.id { width: 110px; }
+.adder select.field { width: auto; max-width: 100%; }
+
+@media (max-width: 720px) {
+  .setrow { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .setlabel { padding-top: 0; }
+  .setact { text-align: left; }
+}

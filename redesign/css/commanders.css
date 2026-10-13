@@ -1,0 +1,11 @@
+/* commanders: the node's rights lists (masters, ops, access, execute, bans, silence) */
+
+.statsec { padding: 16px 0; border-top: 1px solid var(--green); }
+.statsec h2 { margin-bottom: 10px; font-size: var(--fs-l); }
+.whos { margin: 0; padding: 0; list-style: none; }
+.whos li {
+  display: grid; grid-template-columns: 25px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 6px 0;
+  border-bottom: 1px solid var(--line); font-size: var(--fs-s);
+}
+.whos li a { font-weight: 700; }
+.whos li.none { display: block; }

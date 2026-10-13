@@ -1,0 +1,15 @@
+/* user: name and actions, tabs to the user's nodes, userinfo (the user's own HTML), friend posts */
+
+.prof h1 { line-height: 1; }
+.tabs { display: flex; gap: 2px; margin: 26px 0 0; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--green); }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs a { margin-bottom: -1px; padding: 8px 12px; border-bottom: 2px solid transparent; color: var(--green); font-size: var(--fs-s); white-space: nowrap; }
+.tabs a:hover { color: var(--white); text-decoration: none; }
+.tabs a[aria-current] { border-color: var(--green); font-weight: 700; }
+/* userinfo is rendered as written, in a contained frame */
+.userinfo { margin-top: 22px; overflow: hidden; border: 1px solid var(--line); color: #ccc; font-family: Tahoma, Verdana, sans-serif; font-size: 11px; line-height: 1.35; }
+
+@media (max-width: 720px) {
+  .tabs a { padding: 8px 9px; }
+  .userinfo > div { padding: 0 1em 3em !important; }
+}

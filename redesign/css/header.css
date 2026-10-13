@@ -1,0 +1,72 @@
+/* header template: the top bar on every page. Phones: page name, mail/RE, and a menu that folds out (no JS). */
+
+.top { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--green); background: var(--bg); }
+.top-in {
+  display: flex; align-items: center; gap: 20px; max-width: calc(var(--page) + 40px); height: 48px;
+  margin: 0 auto; padding: 0 20px;
+}
+.nav { display: flex; flex: 1; gap: 14px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.grp { display: flex; align-items: center; gap: 2px; white-space: nowrap; }
+.grp::before { content: "["; margin-right: 4px; }
+.grp::after { content: "]"; margin-left: 4px; }
+.grp a { padding: 4px 7px; border-radius: var(--radius); font-size: var(--fs-s); font-weight: 500; }
+.grp a:hover { background: var(--panel); text-decoration: none; }
+.grp a .new { margin-left: 3px; }
+.grp a[aria-current], .grp a[aria-current] .new { background: var(--green); color: var(--bg); }
+
+/* search: a magnifying glass that rolls out a field */
+.search-top { display: flex; align-items: center; margin-left: auto; }
+.search-top .loupe { display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--radius); color: var(--white); cursor: pointer; }
+.search-top .loupe:hover, .search-top:focus-within .loupe { color: var(--green); }
+.jump {
+  width: 0; height: 30px; padding: 0; border: 1px solid transparent; border-radius: var(--radius); opacity: 0;
+  background: transparent; color: var(--white); font: inherit; font-size: var(--fs-s);
+  transition: width .22s ease, padding .22s ease, opacity .18s ease, border-color .22s ease;
+}
+.jump:focus { outline: none; }
+.jump::placeholder { color: var(--gray); }
+.search-top:focus-within .jump, .jump:not(:placeholder-shown) { width: 230px; padding: 0 10px; border-color: var(--green); background: var(--bg); opacity: 1; }
+
+.top .me { display: flex; align-items: center; gap: 8px; margin-left: 8px; font-size: var(--fs-s); white-space: nowrap; }
+.top .me .logout { height: 26px; border-color: var(--green); color: var(--white); }
+.top .here, .top .mquick, .top .mmenu { display: none; }
+
+@media (max-width: 720px) {
+  .top-in { position: relative; gap: 10px; padding: 0 12px; }
+  .top .nav, .top .search-top, .top .me { display: none; }
+  .top .here {
+    display: block; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 800;
+  }
+  .top .mquick { display: flex; gap: 10px; font-size: var(--fs-s); }
+  .top .mquick a { white-space: nowrap; }
+  .top .mquick .new { margin-left: 2px; }
+  .top .mmenu { display: block; }
+  .top .here, .top .mquick, .top .mmenu > summary { position: relative; z-index: 90; }   /* stay bright above the dimming */
+  .mmenu > summary {
+    display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--green); border-radius: var(--radius);
+    color: var(--white); list-style: none; cursor: pointer;
+  }
+  .mmenu > summary::-webkit-details-marker { display: none; }
+  .mmenu > summary svg { fill: currentColor; }
+  .mmenu[open] > summary { background: var(--green); color: var(--bg); }
+
+  /* the menu: a panel on the right, page dimmed behind it */
+  .mnav {
+    position: fixed; top: 48px; right: 0; z-index: 80; width: min(320px, 82vw); max-height: calc(100vh - 48px);
+    overflow-y: auto; padding: 4px 14px 14px; border-left: 1px solid var(--green); background: var(--bg);
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .6);
+  }
+  .mnav .grp { flex-direction: column; align-items: stretch; gap: 0; padding: 4px 0; border-bottom: 1px solid var(--line); }
+  .mnav .grp::before, .mnav .grp::after { content: none; }
+  .mnav .grp a { display: flex; justify-content: space-between; align-items: center; padding: 7px 8px; font-size: var(--fs); }
+  .mnav .grp a .new { margin-left: auto; }
+  .mnav .who-me { margin: 0 auto 0 6px; color: var(--green); font-weight: 400; }
+  .mnav .mme { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 4px; margin-top: 4px; padding: 8px 0 2px; font-size: var(--fs-s); }
+  .mnav .mme a { padding: 6px 8px; }
+  .mnav .mme .logout {
+    align-self: flex-start; height: auto; margin-left: auto; border: 0; background: none; color: var(--white);
+    font: 400 var(--fs-s) var(--sans);
+  }
+  .mnav .mme .logout:hover { color: var(--green); }
+}

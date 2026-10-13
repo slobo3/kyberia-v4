@@ -14,7 +14,7 @@ mobile layout. The pages are pure HTML and CSS, with no JavaScript. All people a
 |---|---|
 | [`redesign/`](redesign/) | the v4 showcase pages: main, kyberia, discussion, sub, fr, RE, bookmarks, mail, last, people, user, search, K |
 | [`redesign/STYLEGUIDE.md`](redesign/STYLEGUIDE.md) | v4 styleguide: colour rules, type, page skeleton, components |
-| [`redesign/k.css`](redesign/k.css) | the stylesheet |
+| [`redesign/css/`](redesign/css/) | the stylesheets: `base.css` (shared), `header.css`, `node.css`, then one file per template |
 | [`SPEC.md`](SPEC.md) | product and technical spec for an MVP rewrite (node model, permissions, K, bookmarks, mail…) |
 | [`design/`](design/) | notes on the classic v2 look as it is today, plus a classic specimen |
 

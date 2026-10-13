@@ -1,0 +1,43 @@
+/* feeds: last, fr, RE, K, search, sub. Posts come from base; this is the K list, search filters and sub's list. */
+
+.feed { margin: 0; padding: 0; list-style: none; }
+.feed > li { display: grid; gap: 0 14px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.feed .where { color: var(--gray); font-size: var(--fs-s); }
+.feed .where a.parent { color: var(--green); font-weight: 700; }
+.feed .ttl { font-weight: 700; }
+.feed .by { margin-top: 1px; color: var(--gray); font-size: var(--fs-s); }
+.feed .by a { font-weight: 700; }
+.feed .txt { max-width: 72ch; margin-top: 6px; }
+.feed .score { text-align: right; font-size: var(--fs-s); }
+.feed .score .k { display: block; font-size: var(--fs-l); line-height: 1; }
+
+/* K: most K / newest K, with photos and videos */
+.feed.klist > li { grid-template-columns: 40px minmax(0, 1fr) auto; }
+.rank { padding-top: 4px; color: var(--gray); font: 500 var(--fs-xl)/1 var(--mono); }
+.art { margin: 2px 0; font-size: var(--fs-l); line-height: 1.3; }
+.art a { color: var(--green); }
+.klist .by .pa { margin-left: 10px; }
+.klist .kimg { width: 100%; max-width: 640px; height: auto; margin: 10px 0 6px; border: 1px solid var(--green); image-rendering: pixelated; }
+.klist .video {
+  position: relative; display: grid; place-items: center; max-width: 640px; aspect-ratio: 16 / 9; margin: 10px 0 6px;
+  border: 1px solid var(--green); background: repeating-linear-gradient(0deg, #0a1206 0 2px, #050805 2px 4px);
+}
+.klist .video .play { margin-left: 8px; border-left: 34px solid var(--green); border-top: 21px solid transparent; border-bottom: 21px solid transparent; }
+.klist .video .src { position: absolute; left: 12px; bottom: 10px; color: var(--gray); font-size: var(--fs-xs); }
+
+/* search */
+.filters .f.grow { flex: 1; min-width: 200px; }
+.filters .seg + .seg { margin-left: 8px; }
+
+/* sub */
+.feed.subs > li { grid-template-columns: minmax(0, 1fr) auto; }
+.links { margin: 0; padding: 0; list-style: none; }
+.links li { padding: 2px 0; }
+.links a { color: var(--green); }
+
+@media (max-width: 720px) {
+  .feed > li, .feed.klist > li { grid-template-columns: 50px minmax(0, 1fr); }
+  .feed .score { display: flex; align-items: center; gap: 10px; grid-column: 2; margin-top: 6px; text-align: left; }
+  .feed .score .k { font-size: var(--fs-s); }
+  .rank { font-size: var(--fs-l); }
+}

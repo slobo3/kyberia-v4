@@ -1,0 +1,7 @@
+/* dendrites & axones: links into and out of the node */
+
+.rows.syn li { grid-template-columns: minmax(0, 1fr) 130px 120px; }
+
+@media (max-width: 720px) {
+  .rows.syn li { grid-template-columns: minmax(0, 1fr) auto auto; }
+}

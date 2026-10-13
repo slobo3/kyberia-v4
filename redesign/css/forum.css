@@ -1,0 +1,21 @@
+/* forum: deep threads (flamewars) and the filter result */
+
+/* full indent for 4 levels, then compact so level 20 still fits */
+.thread.deep ol ol ol ol { --ml: 12px; --pl: 6px; }
+.thread.deep ol ol ol > li { --cml: 12px; }
+.whisper { color: var(--gray); }
+
+.filterbar { display: flex; align-items: center; gap: 6px; margin: 10px 0 4px; }
+.filterbar .field { width: 260px; height: 32px; padding: 4px 10px; font-size: var(--fs-s); }
+.filterbar .field.by { width: auto; }
+.filterinfo { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 6px 0 4px; font-size: var(--fs-s); }
+.filterinfo b { color: var(--white); }
+
+@media (max-width: 720px) {
+  /* icons stay (25 px from level 4); the indent stops after level 8, the line stays at the icon centre */
+  .thread.deep ol ol ol ol { --av: 25px; --gap: 8px; --pl: 0px; }
+  .thread.deep ol ol ol ol ol ol ol ol ol { --opl: -12px; }
+  .thread.deep ol ol ol ol ol ol ol ol ol > li { margin-left: -12px; }
+  .filterbar { flex-wrap: wrap; }
+  .filterbar .field { flex: 1 1 160px; }
+}

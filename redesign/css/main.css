@@ -1,0 +1,58 @@
+/* main: the banner, the lead story, what people put on main; friends online, K today, where people write */
+
+.front { padding-top: 24px; }
+.front .banner { width: 100%; max-width: var(--page); height: auto; image-rendering: pixelated; }
+.frontcols { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 0 56px; padding-top: 6px; }
+.frontcols .day a { color: var(--green); }
+
+.leadstory {
+  display: grid; grid-template-columns: 120px minmax(0, 1fr); align-items: start; gap: 0 26px; padding: 30px 0 32px;
+  border-bottom: 1px solid var(--green);
+}
+.leadstory .leadimg { grid-row: 1 / span 3; image-rendering: pixelated; }
+.leadstory .m { color: var(--gray); font-size: var(--fs-s); }
+.leadstory .m a { font-weight: 700; }
+.leadstory h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.1; }
+.leadstory h2 a { color: var(--green); }
+.leadstory p { max-width: 62ch; margin: 6px 0 0; font-size: var(--fs-l); line-height: 1.5; }
+
+.mainlist { margin: 0; padding: 0; list-style: none; }
+.mainlist li { display: grid; grid-template-columns: 60px minmax(0, 1fr); gap: 2px 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.mainlist .thumb { grid-row: 1 / span 3; image-rendering: pixelated; }
+.mainlist .t, .mainlist .m, .mainlist .x { grid-column: 2; }
+.mainlist .t { color: var(--green); font-size: var(--fs-l); font-weight: 700; line-height: 1.3; }
+.mainlist .m { color: var(--gray); font-size: var(--fs-s); }
+.mainlist .x {   /* excerpt: three lines at most */
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin: 4px 0 0;
+  font-size: var(--fs-s); line-height: 1.45;
+}
+
+.collage { display: flex; flex-wrap: wrap; gap: 2px; margin: 0 0 22px; padding: 0; list-style: none; }
+.collage a { display: block; }
+.collage a:hover img { outline: 1px solid var(--green); outline-offset: -1px; }
+.compact { margin: 0 0 18px; padding: 0; list-style: none; }
+.compact li {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 12px; padding: 7px 0;
+  border-bottom: 1px solid var(--line); font-size: var(--fs-s);
+}
+.compact li a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.compact.ranked { counter-reset: r; }
+.compact.ranked li { grid-template-columns: 20px minmax(0, 1fr) auto; }
+.compact.ranked li::before { content: counter(r); counter-increment: r; color: var(--gray); font: 400 var(--fs-xs) var(--mono); }
+
+@media (max-width: 1000px) {
+  .front { padding-bottom: 22px; }
+  .frontcols { grid-template-columns: minmax(0, 1fr); }
+  .leadstory { grid-template-columns: 72px minmax(0, 1fr); }
+  .leadstory .leadimg { grid-row: 1; width: 72px; height: auto; }
+}
+
+@media (max-width: 720px) {
+  .front .banner { height: 120px; object-fit: cover; object-position: left center; }
+  .leadstory { gap: 0 14px; }
+  .leadstory h2 { font-size: 22px; }
+  .leadstory p { font-size: var(--fs); }
+  .mainlist li { grid-template-columns: 48px minmax(0, 1fr); gap: 2px 12px; }
+  .mainlist .thumb { width: 48px; height: 60px; }
+  .mainlist .t { font-size: var(--fs); }
+}

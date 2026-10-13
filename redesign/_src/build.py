@@ -25,7 +25,22 @@ SRC = pathlib.Path(__file__).parent
 OUT = SRC.parent
 e = html.escape
 import hashlib
-CSS_VER = hashlib.sha1((OUT / "k.css").read_bytes()).hexdigest()[:8]  # cache-bust the stylesheet on every change
+
+# CSS lives with its template: base (everyone), header (the header template), node (the node column), then the
+# template the page is viewed through, then the showcase strip. Each file is cache-busted by its own hash.
+VIEW_CSS = {
+    "kyberia": "nodeshell", "forum": "forum", "forum-filter": "forum", "user": "user", "data": "data", "main": "main",
+    "conf": "settings", "setup": "settings", "commanders": "commanders", "stats": "stats", "source": "source",
+    "synapses": "synapses", "blogs": "blog", "bookmarks": "bookmarks", "mail": "mail", "mail-new": "mail",
+    "people": "people", "last": "feed", "fr": "feed", "re": "feed", "k": "feed", "search": "feed", "sub": "feed",
+}
+
+
+def css_links(name, header=True, node=True):
+    files = ["base"] + ["header"] * header + ["node"] * node + ([VIEW_CSS[name]] if name in VIEW_CSS else []) + ["showcase"]
+    def ver(f):
+        return hashlib.sha1((OUT / "css" / f"{f}.css").read_bytes()).hexdigest()[:8]
+    return "\n".join(f'<link rel="stylesheet" href="css/{f}.css?v={ver(f)}">' for f in files)
 
 NAV = [
     [("main", "main.html"), ("kyberia", "kyberia.html"), ("fr", "fr.html"),
@@ -264,7 +279,7 @@ def build(path):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} :: kyberia.sk</title>
-<link rel="stylesheet" href="k.css?v={CSS_VER}">
+{css_links(path.stem, header=nav != "none", node=nav != "none" and "<!-- layout: free -->" not in text)}
 </head>
 <body>
 {page}

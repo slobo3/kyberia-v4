@@ -1,0 +1,13 @@
+/* data: an uploaded file, its preview and details, then the discussion */
+
+.datafile {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 0 28px; padding: 4px 0 26px;
+  border-bottom: 1px solid var(--green);
+}
+.datafile .preview { height: auto; border: 1px solid var(--green); image-rendering: pixelated; }
+.datafile .kv dd { color: var(--white); }
+
+@media (max-width: 720px) {
+  .datafile { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .datafile .preview { width: 100%; max-width: 320px; }
+}

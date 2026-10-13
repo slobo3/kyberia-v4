@@ -1,0 +1,18 @@
+/* showcase only, never part of kyberia: the grey strip back to the index, and the index page */
+
+.showcase-strip { border-bottom: 1px dashed #444; background: #1c1c1c; }
+.showcase-back { display: inline-block; padding: 4px 12px; color: #9a9a9a; font: 400 12px/1.4 ui-monospace, Consolas, monospace; letter-spacing: .02em; }
+.showcase-back:hover { color: #ddd; text-decoration: none; }
+
+.showcase .head { padding-top: 56px; }
+.brand { display: flex; align-items: baseline; gap: 2px; margin: 0; font-size: var(--fs-l); font-weight: 800; letter-spacing: -0.02em; }
+.brand b { color: var(--white); }
+.showcase h1 { margin-top: 14px; font-size: clamp(34px, 5.5vw, 64px); line-height: 1; letter-spacing: -0.03em; }
+.status { max-width: 62ch; margin: 14px 0 0; font-size: var(--fs-l); line-height: 1.5; }
+.pages li { grid-template-columns: 140px minmax(0, 1fr); }
+.pages .name { font-size: var(--fs-l); }
+
+@media (max-width: 720px) {
+  .rows.pages li { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
+  .rows.pages .name { overflow: visible; white-space: normal; }
+}
