@@ -97,7 +97,9 @@ Grays and extra greens are allowed only in those exact roles. No text is ever a 
   titled `Re: <your node>`. A reply looks the same everywhere.
   If they have page sections (bookmarks: friends online + wallet; fr: friends) those keep the left column;
   otherwise the content takes the full width (mail, RE, last, people, search).
-- Every post has a checkbox (vybrať) in its header line right after the name, no label (for bulk K+, put, delete_hardlink).
+- Every post has a checkbox (vybrať) in its header line right after the name, no label. **K is given by ticking posts and
+  pressing K+ in the left column**; with nothing ticked, K+ gives K to the node itself. Feed pages (last, fr, RE, search, K)
+  have a K+ button at the top of their column for this.
 - No coordinate trail above titles (dropped). The title starts the page.
 - The node column starts with the **node image** (v2's node image; user avatar on user pages).
 
@@ -147,14 +149,14 @@ a blog, a file…) highlights nothing, on desktop and phone.
 | top bar | Bracketed groups in green, white links; the active link is a green block with black text. Red badge for new mail and RE. Search field, wallet, user. |
 | child listing (`.rows`) | Grouped under `nodeshell::`, `forum::`, `submission::`, `link::`. Columns: name (white) · children (gray) · `N new`/`descdnt` (red) · K (red) · owner (green). |
 | bookmarks (`.bm`) | Category heading (green) + total `N new`. Rows: name · `N new` · `descdnt` · `changed` · owner. |
-| post | **One component (`_src/_post.py`) for every list of posts**: threaded and flat discussion, filter, last, fr, RE, replies under a post or blog, friend posts. Anatomy: icon · white name · unlabeled ☐ · gray date+time (not a link) · red K · red `NEW` · red `SIROTKA` for orphans; then `v parent :: grandparent` (white links, only where the post isn't shown under its parent: last, fr, RE, filter); then the title only if someone wrote one (automatic `Re[n]: …` is hidden), a white link to the post; green text. A hairline under the header separates it from the content. Post actions `↵` (odpovedať, as an enter icon) and `K+` are **small gray text at the right end of the header** (white on hover), never bordered buttons (those are for node actions and forms). No `level N`, no coordinates. |
+| post | **One component (`_src/_post.py`) for every list of posts**: threaded and flat discussion, filter, last, fr, RE, replies under a post or blog, friend posts. Anatomy: icon · white name · unlabeled ☐ · gray date+time (not a link) · red K · red `NEW` · red `SIROTKA` for orphans; then `v parent :: grandparent` (white links, only where the post isn't shown under its parent: last, fr, RE, filter); then the title only if someone wrote one (automatic `Re[n]: …` is hidden), a white link to the post; green text. A hairline under the header separates it from the content. **No per-post buttons** (no reply, no K+): tick ☐ and use K+ in the left column. Only my own posts get a small gray `edit` at the right end of the header. No `level N`, no coordinates. |
 | thread | Threaded = the same posts nested. A **solid elbow, in the same colour as the header hairline,** runs from under the parent's icon (its centre) down and right into each reply's header hairline. On phones icons stay (25px from level 4) and the indent stops after level 8, so level 20 still reads; flat = not nested, by time. That is the only difference. Full indent for 4 levels, then compact, so a 20-deep flamewar still fits. |
 | user page | Avatar, coordinate trail, name, `K` + actions (`mail`, `book`, `K+`, `ignore`, `ignore_mail`), tabs, userinfo frame, then **friends**: flat, chronological, newest first. Posting there makes you a friend. |
 | feed item | Used by last, RE, fr, sub, K and search: where (green, parent white bold) · title · who/when · text · score column. |
 | composer | Panel with title field, `bez HTML`, a formatting row, textarea, `náhľad` and `pridať`. Posting spends K, but the cost is **not** shown in the composer (only in the wallet ledger). |
 | mail | Conversations list plus a stream; each message shows where the sender was. |
 | filter bar | Field + scope (text / názov / user) + `filtrovať`, above the children of any node. Results: flat posts with their place (`v Re[n]: …`) and the match highlighted; one line `N od X` + `zrušiť filter`. |
-| pager | `novšie` · page numbers (current in a green block) · `staršie`. Above it, right-aligned, the line `vybrané K+ :: put do… :: delete_hardlink` for checked posts. |
+| pager | `novšie` · page numbers (current in a green block) · `staršie`. In the discussion, above it, right-aligned, the line `vybrané put do… :: delete_hardlink` for checked posts. |
 | segmented control | For view and sort switches (threads/chronological, 24 h/3 days…). |
 
 ---
@@ -173,8 +175,8 @@ a blog, a file…) highlights nothing, on desktop and phone.
 ## 4b2. Node actions
 
 **One button style for every action:** the bordered `.btn` (white text, gray border, green on hover;
-`.on` = green for an active toggle, `.primary` = filled green for the one main action of a form). Per-post actions
-(`odpovedať`, `K+`) are the exception: small text actions in the post header, never dimmed. Borderless ghost buttons only for
+`.on` = green for an active toggle, `.primary` = filled green for the one main action of a form). Posts have no
+action buttons (K goes through the column's K+, see above); `edit` on my own posts is small gray text. Borderless ghost buttons only for
 `×` on chips and `zrušiť` next to a save.
 
 
@@ -189,11 +191,11 @@ under the title. Toggles say what clicking will do: a bookmarked node shows
 
 - **Composer:** every add form has the same toolbar (`B`, `I`, `odkaz`, `obrázok`, `@user`).
 - **Templates are nodes:** picked by node number everywhere (configure and "add a node"), with the name shown next to it.
-- **Selecting posts:** every list of posts ends with a quiet `vybrané K+` line (the discussion adds `put do… :: delete_hardlink`); bookmarks end with `vybrané prečítané :: unbook`.
-- **My own posts** have a gray `edit` before `↵ K+`, linking to that post's configure (change the content, move it).
+- **Selecting posts:** tick ☐, then K+ in the left column. The discussion ends with `vybrané put do… :: delete_hardlink`; bookmarks end with `vybrané prečítané :: unbook`.
+- **My own posts** have a gray `edit` at the right of the header, linking to that post's configure (change the content, move it).
 - **One pager:** `novšie · 1 2 3 · staršie` on every page.
 - **No subtitles or hints** under titles or form fields; the title preview in configure is shown bare.
-- **K in lists** (K page, search) is inline in the meta line with a quiet `K+`, never a big right-hand column.
+- **K in lists** (K page, search) is inline in the meta line, never a big right-hand column; a ☐ selects the item for K+ in the column.
 - **Node images:** a blog's image is its first photo, or none; never the author's icon.
 
 ## 4b3. Links go to the template's page

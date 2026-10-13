@@ -215,7 +215,7 @@ which right to give + pridať. User settings (setup) are a separate page.
 
 ## 5. K (appreciation)
 
-- **K+** button on every node and under the discussion as a quiet line "vybrané K+ :: put do… :: delete_hardlink" (acts on the checked posts).
+- **K+** button in the node column of every node (decided 13.10.2026): with posts ticked (☐) it gives K to them, with nothing ticked to the node itself. Feed pages (last, fr, RE, search, K) get a K+ button at the top of their column. No per-post K+ or reply buttons. The discussion keeps the quiet line "vybrané put do… :: delete_hardlink".
 - One K per user per node. Received K shows next to the node everywhere (`205 K`, red).
 - **K wallet, old style (decided):** every user has a wallet. It is refilled by a **daily
   allowance** and grows by every **K received** on your nodes. Giving K spends one from the

@@ -11,7 +11,7 @@ This guide covers only what the rámčeky version changes. Everything else follo
 
 - The node model, the vocabulary and the page skeleton: node column, content, footer.
 - The colours: green `#6DAE42` for text, white for names and links, red for K and NEW.
-- One post component everywhere, with the same header: name, ☐, date and time, K, NEW, SIROTKA, and `↵ K+ edit` at the right.
+- One post component everywhere, with the same header: name, ☐, date and time, K, NEW, SIROTKA, and `edit` at the right on my own posts. No per-post buttons: K is ticking ☐ and K+ in the left column.
 - The phone layout.
 
 ## 2. What changes
@@ -51,7 +51,7 @@ In v4 the same markup gets the frame from [`css/ramceky.css`](css/ramceky.css):
 
 ```
 icon  ┌─ 1px green ───────────────────────────────────────┐
-      │▓ name ☐ 12.10.2026 23:04 :: 4 K          ↵  K+   ▓│  band #333, line 1: meta
+      │▓ name ☐ 12.10.2026 23:04 :: 4 K                  ▓│  band #333, line 1: meta
       │▓              Re[2]: Kyberia session 2026          ▓│  band #333, line 2: title, centred
       │ v parent :: grandparent                             │  only on last, fr, RE, filter, search
       │ text                                                │  green
@@ -63,7 +63,7 @@ Colour roles inside the band:
 - the date and time are green
 - K, NEW and SIROTKA are red
 - the title is white
-- `↵ K+ edit` are gray, white on hover
+- `edit` (my own posts) is gray, white on hover
 
 ## 5. Where frames go
 

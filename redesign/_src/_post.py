@@ -7,7 +7,7 @@ Anatomy, always the same:
        | title                                   (a title someone wrote; automatic Re[n]: … is class "auto",
                                                   hidden in the clean look, shown in the rámčeky skin)
        | text
-       | (odpovedať · K+ sit at the right end of the header as small text actions, not buttons)
+       | (no per-post buttons: tick ☐ and press K+ in the left column; my own posts get "edit" at the right)
 Threaded = these nested in <ol>; flat = the same, not nested.
 """
 import html
@@ -18,7 +18,6 @@ from _content import icon
 e = html.escape
 SEP = '<span class="sep">::</span>'
 EDIT = '<a class="act edit" href="conf.html">edit</a>'
-ACTS = '<span class="pa"><button class="act re-act" type="button" aria-label="odpovedať" title="odpovedať">↵</button><button class="act" type="button">K+</button></span>'
 BLOCK = re.compile(r"^\s*<(p|figure|ul|ol|blockquote|div|pre)[\s>]", re.I)  # text that is already block HTML
 ME = "slobo"  # the logged-in user in the showcase
 AUTO_TITLE = re.compile(r"^\s*Re(\[\d+\])?:", re.I)
@@ -49,7 +48,7 @@ def article(user, when, text, title=None, k=None, new=False, where=None, orphan=
     return f"""<article class="post{' is-new' if new else ''}">
   <img class="av" src="{icon(user)}" alt="" width="50" height="50">
   <div>
-    <div class="ph"><a class="who" href="user.html">{name}</a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="submission.html">{e(when)}</a>{meta}{ACTS.replace('<span class="pa">', '<span class="pa">' + EDIT) if user == ME else ACTS}</div>{ctx}{ttl}
+    <div class="ph"><a class="who" href="user.html">{name}</a><input class="pick" type="checkbox" aria-label="vybrať"> <a class="when" href="submission.html">{e(when)}</a>{meta}{'<span class="pa">' + EDIT + '</span>' if user == ME else ''}</div>{ctx}{ttl}
     <div class="pb">{text if BLOCK.match(text) else f"<p>{text}</p>"}</div>
   </div>
 </article>"""

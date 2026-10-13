@@ -17,7 +17,7 @@ def k_item(rank, user, where, section, title, kind, media, text, k, when):
   <span class="rank">{rank}</span>
   <div>
     <h3 class="art"><a href="submission.html">{e(title)}</a></h3>
-    <div class="by">v <a class="parent" href="forum.html">{e(where)}</a> {SEP} od <a href="user.html">{e(user)}</a> {SEP} <a class="when" href="submission.html">{e(when)}</a> {SEP} <span class="k">{k} K</span><span class="pa"><button class="act" type="button">K+</button></span></div>
+    <div class="by">v <a class="parent" href="forum.html">{e(where)}</a> {SEP} od <a href="user.html">{e(user)}</a><input class="pick" type="checkbox" aria-label="vybrať"> {SEP} <a class="when" href="submission.html">{e(when)}</a> {SEP} <span class="k">{k} K</span></div>
     {body}
   </div>
 </li>"""

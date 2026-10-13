@@ -14,6 +14,7 @@ img.nodeimg[src*="img/u/"] { width: 100px; height: 100px; max-width: none; image
 .nodecol .viewers { line-height: 1.5; }
 .nodeacts { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 12px 0 0; }
 .nodeacts .ksum { margin-right: 6px; }
+.nodeacts.kgive { margin: 0 0 14px; }   /* system pages listing posts: tick posts, press K+ */
 .nodelinks { display: flex; flex-wrap: wrap; margin: 12px 0 14px; }
 .nodelinks a:not(:last-child)::after { content: "::"; margin: 0 .45em; color: var(--gray); }
 /* page sections in the column (bookmarks, fr…) */

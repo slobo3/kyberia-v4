@@ -182,8 +182,11 @@ def take_node_actions(content):
     return content.replace(m.group(0), block, 1), "".join(order)
 
 
-def node_column(node, extra, acts=""):
+def node_column(node, extra, acts="", kgive=False):
+    """kgive: a system page listing posts gets a K+ button on top of its column (tick posts, press K+)."""
     if node.get("details") == "no" or node.get("template") == "system":  # system nodes: no node details, only page sections
+        if kgive:
+            extra = '      <p class="nodeacts kgive"><button class="btn">K+</button></p>\n' + extra
         return f'<aside class="side nodecol" aria-label="nóda">\n{extra}\n    </aside>' if extra.strip() else ""
     pid, pname, phref = (node.get("parent") or "||").split("|")
     parent = f'<a href="{phref}">{e(pname)}</a>' if pname else "—"
@@ -259,17 +262,9 @@ def post_process(doc):
                  r'<div class="pt\1"><a href="submission.html">\2</a></div>', doc)
     # the time is plain text, not a link
     doc = re.sub(r'<a class="when" href="[^"]*">(.*?)</a>', r'<span class="when">\1</span>', doc)
-    # posts can be selected (☐) wherever they appear, so every list of posts ends with what to do with them
-    if 'class="pick"' in doc and 'class="bulk"' not in doc:
-        m = re.search(r'<ol class="thread[^"]*">', doc)
-        if m:
-            depth, i = 0, m.start()
-            for tok in re.finditer(r"<ol[\s>]|</ol>", doc[m.start():]):
-                depth += 1 if tok.group(0) != "</ol>" else -1
-                if depth == 0:
-                    i = m.start() + tok.end()
-                    break
-            doc = doc[:i] + '\n<p class="bulk">vybrané <a href="#">K+</a></p>' + doc[i:]
+    # no per-post reply / K+ buttons (also in hand-written pages): tick ☐ and press K+ in the left column
+    doc = re.sub(r'<button class="act re-act"[^>]*>↵</button>|<button class="act" type="button">K\+</button>', "", doc)
+    doc = doc.replace('<span class="pa"></span>', "")
     # one pager everywhere
     doc = re.sub(r'<nav class="pager"[^>]*>.*?</nav>', PAGER, doc, flags=re.S)
     return doc
@@ -308,7 +303,8 @@ def build(path, skin=False):
         acts = ""
         if node.get("template") != "system" and node.get("details") != "no":
             content, acts = take_node_actions(content)
-        column = node_column(node, side.rstrip(), acts)
+        kgive = '<article class="post' in content or 'class="feed klist' in content
+        column = node_column(node, side.rstrip(), acts, kgive=kgive)
         wide = " wide" if 'class="mail' in content else ""
         if not column:
             wide += " solo"  # no left column at all

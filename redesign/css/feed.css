@@ -16,7 +16,7 @@
 .rank { padding-top: 4px; color: var(--gray); font: 500 var(--fs-xl)/1 var(--mono); }
 .art { margin: 2px 0; font-size: var(--fs-l); line-height: 1.3; }
 .art a { color: var(--green); }
-.klist .by .pa { margin-left: 10px; }
+.klist .by .pick { margin: 0 0 0 6px; vertical-align: -2px; }
 .klist .kimg { width: 100%; max-width: 640px; height: auto; margin: 10px 0 6px; border: 1px solid var(--green); image-rendering: pixelated; }
 .klist .video {
   position: relative; display: grid; place-items: center; max-width: 640px; aspect-ratio: 16 / 9; margin: 10px 0 6px;

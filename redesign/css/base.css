@@ -178,7 +178,6 @@ span.av {
 .post .pb { max-width: 68ch; }
 .post .pb p:last-child { margin-bottom: 0; }
 .post .pb blockquote { margin: 4px 0 8px; padding-left: 12px; border-left: 2px solid #2f4a1f; color: var(--gray); font-style: italic; }
-.act.re-act { font-size: 17px; line-height: 1; transform: translateY(1px); }
 /* elbows: from under the parent's icon, down, then right into the reply's header line */
 .thread ol > li, .thread ol > li > .post .ph, .thread li:has(> ol) > .post { position: relative; }
 .thread ol > li > .post .ph::before, .thread ol > li > .post .ph::after, .thread li:has(> ol) > .post::after {
