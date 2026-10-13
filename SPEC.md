@@ -70,6 +70,24 @@ behave differently is the node's **template**:
   the same node, the same children, rendered differently.
 - New templates can be added later **without changing the data model**.
 
+**User-built templates (decided 13.10.2026).** Any node can be viewed through any template
+(`/id/{node}/{template id}`), so a template is untrusted by design and must be safe to run on
+someone else's private data:
+- **Anyone** may create a template node. The node's **owner and masters** set its default template
+  (any template, by number, in configure). Personal per-viewer overrides: later, not MVP.
+- Templates are written in a **logic-light template language** (loops, conditions, no general code),
+  never server code or custom JavaScript.
+- They receive only what the **viewer** may see (through the visibility rule), via a small fixed
+  data set (node, children, ancestors, viewer, K, NEW counts) with size limits on every list.
+- Output goes through the post HTML allowlist; CSS is scoped to the template's own area.
+- Writing stays built-in: a template can place the add form, K+, book…, never invent actions.
+- If a template errors or runs too long, the node renders with the built-in default. Templates are
+  nodes, so they have history; their owner may edit them, anyone may fork.
+- **Header template:** the shared chrome (logo, navigation, mail, everything common to all pages) is
+  itself a template node. Each user can pick their header template in setup (by number). The page
+  content is never part of it. Escape hatch: `?header=default` always renders the standard header,
+  so a broken header can't lock anyone out.
+
 **Default templates (MVP):**
 
 | template | children render as | add form creates |
@@ -463,7 +481,7 @@ visit.last_visit_at)` for ~100 bookmarks per page load. Use `last_child_at` /
 - **Relationship to kyberia:** a parallel test instance with real members early; it replaces
   kyberia only if the community accepts it.
 - **Hardlinks:** bookmark NEW counts follow real children only, never hardlinks.
-- **User-built templates:** wanted; design under discussion (§2.2).
+- **User-built templates:** anyone may author them, in a safe template language; see §2.2.
 
 ## 13. Open questions for the community/admins
 1. Exact semantics of `moderated`, and of the `operator` vs `master` roles. (`closed` dropped.)
