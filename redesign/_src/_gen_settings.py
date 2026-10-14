@@ -114,9 +114,6 @@ setup_body = f"""  <div class="head"><h1>setup</h1></div>
     row("na stranu", '<input class="field num" value="200" inputmode="numeric">'),
     row("poradie", '<select class="field"><option>najnovšie hore</option><option>najstaršie hore</option></select>'),
 ])}
-{section("vzhľad", [
-    row("vzhľad", '<span class="radios"><label><input type="radio" name="skin" checked> čisté</label><label><input type="radio" name="skin"> rámčeky</label></span>'),
-])}
 {section("súkromie", [
     row("bookmarks", '<label class="check"><input type="checkbox" checked> ostatní vidia moje bookmarks</label>'),
     row("kde som teraz", '<label class="check"><input type="checkbox" checked> ostatní vidia, kde práve som</label>'),
