@@ -12,13 +12,13 @@
 
 .bm { margin: 0; padding: 0; list-style: none; }
 .bm li {
-  display: grid; grid-template-columns: 14px minmax(0, 1fr) 96px 64px 64px 110px; align-items: baseline; gap: 12px;
+  display: grid; grid-template-columns: 14px minmax(0, 1fr) 96px 64px 64px; align-items: baseline; gap: 12px;
   padding: 7px 0; font-size: var(--fs-s);
 }
 .bm .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs); line-height: 1.3; }
 .bm .name b { font-weight: 800; }
 .bm .new, .bm .flag { text-align: right; }
-.bm .owner { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right; }
+.bm .owner { color: var(--gray); font-size: var(--fs-s); }   /* "name [owner]", as on kyberia */
 .bm .owner a { color: var(--green); }
 
 /* K wallet */
@@ -39,5 +39,5 @@
 
 @media (max-width: 720px) {
   .bm li { grid-template-columns: 14px minmax(0, 1fr) auto; }
-  .bm .flag, .bm .owner { display: none; }
+  .bm .flag { display: none; }
 }
