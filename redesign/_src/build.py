@@ -162,31 +162,37 @@ def user_link(name):
     return f'<a href="user.html">{e(name)}</a>'
 
 
-DEFAULT_ACTS = '<button class="btn">K+</button><button class="btn">book</button><button class="btn">fook</button>'
-NODE_ACT = re.compile(r'\s*(<span class="k ksum">[^<]*</span>|<button class="btn[^"]*"[^>]*>(?:K\+|un)?(?:book|fook)?</button>)')
+DEFAULT_ACTS = '<button class="btn">K+</button><button class="btn">book</button><button class="btn">fook</button><button class="btn">put do…</button>'
+NODE_ACT = re.compile(r'\s*(<span class="k ksum">[^<]*</span>|<button class="btn[^"]*"[^>]*>(?:(?:K\+|un)?(?:book|fook)?|put do…)</button>)')
 
 
 def take_node_actions(content):
-    """K+, book and fook always sit in the node column (as on kyberia): move them out of the page head."""
+    """K+, book, fook and put do… always sit in the node column (as on kyberia): move them out of the page head."""
     m = re.search(r'<div class="actions">(.*?)</div>', content, flags=re.S)
     if not m:
         return content, ""
-    found = [x for x in NODE_ACT.findall(m.group(1)) if re.search(r'ksum|>K\+<|>(un)?[bf]ook<', x)]
+    found = [x for x in NODE_ACT.findall(m.group(1)) if re.search(r'ksum|>K\+<|>(un)?[bf]ook<|>put do…<', x)]
     if not found:
         return content, ""
     rest = m.group(1)
     for x in found:
         rest = rest.replace(x, "", 1)
     block = f'<div class="actions">{rest}</div>' if rest.strip() else ""
-    order = sorted(found, key=lambda x: (0 if "ksum" in x else 1 if "K+" in x else 2 if "book" in x else 3))
+    order = sorted(found, key=lambda x: (0 if "ksum" in x else 1 if "K+" in x else 2 if "book" in x else 4 if "put do" in x else 3))
     return content.replace(m.group(0), block, 1), "".join(order)
 
 
+def put_do(acts):
+    """put do… is on every node, last in the row, whatever buttons a page wrote itself."""
+    return acts if "put do…" in acts else acts + '<button class="btn">put do…</button>'
+
+
 def node_column(node, extra, acts="", kgive=False):
-    """kgive: a system page listing posts gets a K+ button on top of its column (tick posts, press K+)."""
+    """kgive: a system page listing posts gets K+ and put do… on top of its column (tick posts, press one), the same
+    buttons in the same place as on every other node."""
     if node.get("details") == "no" or node.get("template") == "system":  # system nodes: no node details, only page sections
         if kgive:
-            extra = '      <p class="nodeacts kgive"><button class="btn">K+</button></p>\n' + extra
+            extra = '      <p class="nodeacts kgive"><button class="btn">K+</button><button class="btn">put do…</button></p>\n' + extra
         return f'<aside class="side nodecol" aria-label="nóda">\n{extra}\n    </aside>' if extra.strip() else ""
     pid, pname, phref = (node.get("parent") or "||").split("|")
     parent = f'<a href="{phref}">{e(pname)}</a>' if pname else "—"
@@ -220,7 +226,7 @@ def node_column(node, extra, acts="", kgive=False):
           <dt>viewers</dt><dd class="viewers">{viewers}</dd>
           {dates}
         </dl>
-        <p class="nodeacts">{acts or DEFAULT_ACTS}</p>
+        <p class="nodeacts">{put_do(acts or DEFAULT_ACTS)}</p>
       </section>
       <p class="nodelinks"><a href="stats.html">stats</a><a href="source.html">source</a><a href="commanders.html">commanders</a><a href="synapses.html">dendrites &amp; axones</a><a href="forum-filter.html">filter</a></p>
 {extra}
